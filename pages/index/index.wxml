@@ -9,7 +9,7 @@
   </view>
   <ft-button text="测试" bindtap="btnTap" />
   <ft-star-box score="{{4.2}}" max-score="{{10}}" size="{{40}}" show-score-text="{{true}}" color="red" start-color="green" end-color="pink" />
-  <ft-avatar avatar="/assets/images/scan_btn.png" message="{{10}}" />
+  <ft-avatar avatar="/assets/images/scan_btn.png" message="{{10}}" message-bg="rgba(0,0,0,0.5)" />
   <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
   </view>

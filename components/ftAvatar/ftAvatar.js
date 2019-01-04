@@ -8,13 +8,21 @@ Component({
       type: String,
       value: ''
     },
+    avatarBg: {
+      type: String,
+      value: 'transparent'
+    },
     size: { // rpx
       type: Number,
-      value: 120
+      value: 80
     },
     message: {
       type: Number,
       value: 0
+    },
+    messageBg: {
+      type: String,
+      value: '#FF3A30'
     }
   },
 
