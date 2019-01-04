@@ -36,3 +36,13 @@ bindtap:
 | end-color | String | N | 空字符 | 渐变星星的结束颜色 |
 | empty-color | String | N | #D7D7D7 | 星星（位填充部分）颜色 |
 
+### ft-avatar
+#### 属性说明
+| 属性名 | 类型 | 必填 | 默认值 | 说明 |
+| --- | --- | --- | --- | --- |
+| avatar | String | Y | 空字符 | 头像url |
+| avatar-bg | String | N | 空字符 | 头像背景色 |
+| size | Number | N | 80 | 头像大小（单位rpx） |
+| message | Number | N | 0 | 消息个数，默认0时不展示消息条数 |
+| message-bg | String | N | #FF3A30 | 消息模块背景色 |
+
