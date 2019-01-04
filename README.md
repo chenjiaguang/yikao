@@ -15,6 +15,8 @@
 | loading | Boolean | N | false | loading状态会在按钮上覆盖一个过渡变化的半透明层 |
 | text | String | Y | 空字符 | 按钮上的文字 |
 | icon | String | N | 空字符 | 按钮上的icon(图片路径) |
+| open-type | String | N | 空字符 | 支持除了2.4.2基础库为止的open-type(除了feedback) |
+| app-parameter | String | N | 空字符 | 打开app时传递的参数 |
 
 ### ft-button
 | 属性名 | 类型 | 必填 | 默认值 | 说明 |
