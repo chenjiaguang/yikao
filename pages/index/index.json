@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "ft-button": "../../components/ftButton/ftButton",
+    "ft-star-box": "../../components/ftStarBox/ftStarBox",
+    "ft-avatar": "../../components/ftAvatar/ftAvatar"
+  }
+}

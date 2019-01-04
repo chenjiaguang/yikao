@@ -1,0 +1,16 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <ft-button text="测试" bindtap="btnTap" />
+  <ft-star-box score="{{4.2}}" max-score="{{10}}" size="{{40}}" show-score-text="{{true}}" color="red" start-color="green" end-color="pink" />
+  <ft-avatar avatar="/assets/images/scan_btn.png" message="{{10}}" />
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>
+</view>

@@ -1,0 +1,7 @@
+<!--components/ftAvatar/ftAvatar.wxml-->
+<view class='wrapper' style="width:{{size}}rpx;height:{{size}}rpx;">
+  <image src="{{avatar}}" mode="{{mode}}" class='avatar' />
+  <view wx:if="{{message}}" class='message'>
+    <text>{{message > 99 ? '99+' : message}}</text>
+  </view>
+</view>
