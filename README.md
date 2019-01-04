@@ -3,6 +3,7 @@
 
 ## 组件
 ### ft-button
+#### 属性说明
 | 属性名 | 类型 | 必填 | 默认值 | 说明 |
 | --- | --- | --- | --- | --- |
 | border-color | String | N | transparent |  |
@@ -17,8 +18,13 @@
 | icon | String | N | 空字符 | 按钮上的icon(图片路径) |
 | open-type | String | N | 空字符 | 支持除了2.4.2基础库为止的open-type(除了feedback) |
 | app-parameter | String | N | 空字符 | 打开app时传递的参数 |
+| extra-data | Object | N | null | 按钮上额外的参数，在bindtap触发时的回调事件里可以访问 |
+#### 事件说明
+bindtap:
+按钮点击后触发，事件对象里可以访问传入的extra-data
 
 ### ft-button
+#### 属性说明
 | 属性名 | 类型 | 必填 | 默认值 | 说明 |
 | --- | --- | --- | --- | --- |
 | score | Number | Y | 0 | 评分 |
