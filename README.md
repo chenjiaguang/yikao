@@ -46,3 +46,24 @@ bindtap:
 | message | Number | N | 0 | 消息个数，默认0时不展示消息条数 |
 | message-bg | String | N | #FF3A30 | 消息模块背景色 |
 
+### ft-entrance
+#### 属性说明
+| 属性名 | 类型 | 必填 | 默认值 | 说明 |
+| --- | --- | --- | --- | --- |
+| required | Boolean | N | false | 是否必填项，必填项则会在左侧出现红色星号 |
+| disabled | Boolean | N | false | 是否禁用，true则点击无效，且不会出现点击态 |
+| loading | Boolean | N | false | 阻止事件频繁触发（可在网络请求时，loading设置为true来阻止事件再次触发） |
+| image | String | N | 空字符 | 在title前插入一个60rpx * 60rpx的图片 |
+| sub-image | String | N | 空字符 | 在sub-title之后、icon之前，插入一个60rpx * 60rpx的图片 |
+| sub-mask | Boolean | N | false | sub-image上覆盖一个过渡变化的半透明层 |
+| title | String | N | 空字符 | 左侧文字 |
+| sub-title | String | N | 空字符 | 右侧文字 |
+| extra-data | Object | N | null | 额外的参数，在bindtap触发时的回调事件里可以访问 |
+| top-border | Boolean | N | false | 上边框 |
+| bottom-border | Boolean | N | false | 下边框 |
+| next-icon | Boolean | N | true | 是否显示右侧icon |
+| spacing | String | N | 30rpx | 左右两侧的padding |
+#### 事件说明
+bindtap:
+按钮点击后触发，事件对象里可以访问传入的extra-data
+
