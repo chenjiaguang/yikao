@@ -71,3 +71,26 @@ bindtap:
 bindtap:
 按钮点击后触发，事件对象里可以访问传入的extra-data
 
+### ft-banners
+#### 属性说明
+| 属性名 | 类型 | 必填 | 默认值 | 说明 |
+| --- | --- | --- | --- | --- |
+| index | Number | N | 0 | 初始展示的banner |
+| banners | Array | Y | [] | banner的数组，数组元素：{key:xxx,url:xxx,title:xxx},其中key和url必填，没项的key唯一 |
+| duration | Number | N | 300 | banner切换的时间 |
+| autoplay | Boolean | N | true | 是否自动播放 |
+| interval | Number | N | 3000 | 一张banner停留时间 |
+| circular | Boolean | N | true | 是否循环播放 |
+| width | String | N | '100%' | banner宽度 |
+| height | String | N | '302rpx' | banner高（包括指示器在内） |
+| indicator-pos | String | N | 'in' | 支持in和out，表示只是器在banner内展示还是banner外展示 |
+| indicator-color | String | N | '#333' | 指示器颜色，选中的为0.9不透明度，未选中为0.4 |
+| spacing | Number | N | 16 | banner间隔 |
+| previous-margin | String | N | '0rpx | 前边距，可用于露出前一项的一小部分，接受 px 和 rpx 值 |
+| next-margin | String | N | '0rpx | 后边距，可用于露出后一项的一小部分，接受 px 和 rpx 值 |
+| border-radius | String | N | '16rpx' | 每项banner的圆角 |
+| extra-data | Object | N | null | 额外的参数，在bindtap触发时的回调事件里可以访问 |
+#### 事件说明
+bindtap:
+按钮点击后触发，事件对象里可以访问传入的extra-data
+
