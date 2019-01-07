@@ -23,7 +23,7 @@
 bindtap:
 按钮点击后触发，事件对象里可以访问传入的extra-data
 
-### ft-button
+### ft-star-box
 #### 属性说明
 | 属性名 | 类型 | 必填 | 默认值 | 说明 |
 | --- | --- | --- | --- | --- |
@@ -45,6 +45,10 @@ bindtap:
 | size | Number | N | 80 | 头像大小（单位rpx） |
 | message | Number | N | 0 | 消息个数，默认0时不展示消息条数 |
 | message-bg | String | N | #FF3A30 | 消息模块背景色 |
+| extra-data | Object | N | null | 额外的参数，在bindtap触发时的回调事件里可以访问 |
+#### 事件说明
+bindtap:
+按钮点击后触发，事件对象里可以访问传入的extra-data
 
 ### ft-entrance
 #### 属性说明
