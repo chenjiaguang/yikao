@@ -2,6 +2,9 @@
   "usingComponents": {
     "ft-button": "../../components/ftButton/ftButton",
     "ft-star-box": "../../components/ftStarBox/ftStarBox",
-    "ft-avatar": "../../components/ftAvatar/ftAvatar"
+    "ft-avatar": "../../components/ftAvatar/ftAvatar",
+    "ft-entrance": "../../components/ftEntrance/ftEntrance",
+    "ft-banners": "../../components/ftBanners/ftBanners",
+    "ft-tabs": "../../components/ftTabs/ftTabs"
   }
 }

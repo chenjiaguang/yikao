@@ -1,0 +1,17 @@
+<!--components/ftEntrance/ftEntrance.wxml-->
+<view catchtap="boxTap" class='entrance-wrapper'>
+  <view wx:if="{{topBorder}}" class='line-separator-h'></view>
+  <view class='entrance-box' style="padding:0 {{spacing}}">
+    <image wx:if="{{image}}" class='entrance-image' src="{{image}}" mode='aspectFit'></image>
+    <text wx:if="{{required}}" class='ft-icon c-icon-xinghao'></text>
+    <text class='entrance-title'>{{title}}</text>
+    <text wx:if="{{subTitle}}" class='entrance-sub-title'>{{subTitle}}</text>
+    <view wx:if="{{subImage}}" class='entrance-sub-image-box'>
+      <image wx:if="{{subImage}}" class='entrance-sub-image' src="{{subImage}}" mode="aspectFill"></image>
+      <view wx:if="{{subMask}}" class='entrance-sub-image-mask'></view>
+    </view>
+    <text wx:if="{{nextIcon}}" class="ft-icon c-icon-next {{disabled ? 'disabled' : ''}}"></text>
+  </view>
+  <view wx:if="{{bottomBorder}}" class='line-separator-h'></view>
+  <view class="hover-bg {{(disabled || loading) ? 'hover-disabled' : ''}}" hover-class="hover" hover-start-time="{{20}}" hover-stay-time="{{0}}" hover-stop-propagation="{{true}}"></view>
+</view>

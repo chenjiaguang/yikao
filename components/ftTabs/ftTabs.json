@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ft-list-loader": "../../components/ftListLoader/ftListLoader",
+    "ft-list-footer": "../../components/ftListFooter/ftListFooter",
+    "ft-iphone-bottom-adapter": "../../components/ftIphoneBottomAdapter/ftIphoneBottomAdapter"
+  }
+}

@@ -1,0 +1,14 @@
+<!--components/ftBanners/ftBanners.wxml-->
+  <view wx:if="{{banners && banners[0]}}" class='banners-box' style="width:{{width}};height:{{height}}">
+    <swiper class='banner-swiper' previous-margin="{{previousMargin}}" next-margin="{{nextMargin}}" autoplay="{{autoplay}}" circular="{{circular}}" current="{{current}}" interval="{{interval}}" duration="{{duration}}" bindchange="currentChange">
+      <swiper-item wx:for="{{banners}}" wx:for-item="banner" wx:for-index="idx" wx:key="key">
+        <view class='banner-item-content' style="margin:0 {{spacing / 2}}rpx;border-radius:{{borderRadius}}" catchtap="bannerTap" data-idx="{{idx}}">
+          <image class='banner-image image-bg' src="{{banner.url}}" mode="aspectFill"></image>
+          <view wx:if="{{banner.title}}" class='title'>{{banner.title}}</view>
+        </view>
+      </swiper-item>
+    </swiper>
+    <view class='banner-indicator' style="position:{{indicatorPos === 'out' ? 'relative' : 'absolute'}}">
+      <view class="banner-indicator-item {{current === idx ? 'current' : ''}}" style="background:{{indicatorColor}}" wx:for="{{banners}}" wx:for-index="idx" wx:for-item="banner" wx:key="key"></view>
+    </view>
+  </view>

@@ -1,5 +1,5 @@
 <!--components/ftAvatar/ftAvatar.wxml-->
-<view class='wrapper' style="width:{{size}}rpx;height:{{size}}rpx;">
+<view class='wrapper' style="width:{{size}}rpx;height:{{size}}rpx;" catchtap="boxTap">
   <image src="{{avatar}}" mode="{{mode}}" class='avatar' style="background:{{avatarBg}}" />
   <view wx:if="{{message}}" class='message' style="background:{{messageBg}}">
     <text>{{message > 99 ? '99+' : message}}</text>

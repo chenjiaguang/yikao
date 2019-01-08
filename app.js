@@ -1,6 +1,11 @@
 //app.js
+const config = require('/configs/index.js')
+import util from '/utils/util.js'
+import expand from '/utils/expand.js'
+
 App({
   onLaunch: function () {
+    this.config = config
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
@@ -33,6 +38,7 @@ App({
       }
     })
   },
+  config: null,
   globalData: {
     userInfo: null
   }

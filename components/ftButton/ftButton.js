@@ -12,6 +12,18 @@ Component({
       type: String,
       value: '8rpx'
     },
+    width: {
+      type: String,
+      value: '100%'
+    },
+    height: {
+      type: String,
+      value: '100%'
+    },
+    fontSize: {
+      type: Number,
+      value: 36
+    },
     color: {
       type: String,
       value: '#fff'
@@ -70,6 +82,9 @@ Component({
    */
   methods: {
     buttonTap: function () {
+      if (this.data.loading) {
+        return false
+      }
       this.triggerEvent('tap', this.data.extraData)
     },
     otError: function (e) { // open-type能力发生错误的回调

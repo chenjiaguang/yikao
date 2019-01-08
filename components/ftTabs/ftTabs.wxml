@@ -1,0 +1,38 @@
+<!--components/ftTabs/ftTabs.wxml-->
+<view class='tabs-wrapper' wx:if="{{tabs && tabs[0]}}">
+  <!-- type=1 -->
+  <view wx:if="{{type === '1'}}" class='header1-wrapper'>
+    <scroll-view scroll-with-animation class="header header{{type}}" style="position:relative;z-index:2;" scroll-x scroll-into-view="tab{{current}}">
+      <view class="title-box title-box{{type}}" id="tab{{idx}}" wx:for="{{tabs}}" wx:for-item="tab" wx:for-index="idx" wx:key="title" catchtap="tabTap" data-idx="{{idx}}">
+        <view class='title' style="color:{{current === idx ? currentColor : color}}">
+          <text>{{tab.title}}</text>
+          <view hidden="{{current !== idx}}" class='current-sign' style="background:{{currentColor}}"></view>
+        </view>
+      </view>
+    </scroll-view>
+    <view wx:if="{{headerSeparator}}" style="z-index:1;" class='line-separator-h'></view>
+  </view>
+  <!-- type=2 -->
+  <view wx:if="{{type === '2'}}" class="header header{{type}}">
+    <view class="title-box title-box{{type}}" id="tab{{idx}}" wx:for="{{tabs}}" wx:for-item="tab" wx:for-index="idx" wx:key="title" catchtap="tabTap" data-idx="{{idx}}">
+      <view class='title' style="color:{{current === idx ? currentColor : color}}">
+        <text>{{tab.title}}</text>
+      </view>
+    </view>
+    <view class='slide-box'>
+      <view class='slide-block' style="background:{{currentColor}};transform:translateX({{(0.5 + current) * 250}}rpx)"></view>
+    </view>
+    <view wx:if="{{headerSeparator}}" class='line-separator-h'></view>
+  </view>
+  <!-- body部分 -->
+  <swiper class='tab-swiper' current="{{current}}" duration="{{300}}" bindchange="currentChange">
+    <swiper-item wx:for="{{tabs}}" wx:for-item="tab" wx:for-index="idx" wx:key="title">
+      <scroll-view class='body-wrapper' scroll-y data-idx="{{idx}}" bindscrolltolower="scrollToEnd">
+        <ft-list-loader visible="{{!tab.loaded}}" />
+        <slot name="tab{{idx}}"></slot>
+        <ft-list-footer loaded="{{tab.loaded}}" loading="{{tab.loading}}" page="{{tab.page}}" show-no-more="{{tab.page && tab.page.pn && tab.page.pn !== '0'}}" no-more-text="{{noMoreText}}" />
+        <ft-iphone-bottom-adapter wx:if="{{tab.list && tab.list[0]}}" />
+      </scroll-view>
+    </swiper-item>
+  </swiper>
+</view>

@@ -23,6 +23,10 @@ Component({
     messageBg: {
       type: String,
       value: '#FF3A30'
+    },
+    extraData: {
+      type: Object,
+      value: null
     }
   },
 
@@ -37,6 +41,8 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    boxTap: function (e) {
+      this.triggerEvent('tap', this.data.extraData)
+    }
   }
 })

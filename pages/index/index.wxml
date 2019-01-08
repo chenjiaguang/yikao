@@ -4,12 +4,21 @@
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
     <block wx:else>
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      <view class="userinfo-nickname" style="background:{{color}}">{{userInfo.nickName}}</view>
     </block>
   </view>
   <ft-button text="测试" bindtap="btnTap" />
   <ft-star-box score="{{4.2}}" max-score="{{10}}" size="{{40}}" show-score-text="{{true}}" color="red" start-color="green" end-color="pink" />
   <ft-avatar avatar="/assets/images/scan_btn.png" message="{{10}}" message-bg="rgba(0,0,0,0.5)" />
+  <ft-entrance image="/assets/images/scan_btn.png" required="{{false}}" title="善良的肌肤善良的肌肤 阿善良简单阿三l" next-icon="{{true}}" bottom-border="{{true}}" bindtap="entranceTap" extra-data="{{extraData}}" />
+  <ft-banners banners="{{banners}}" previous-margin="40rpx" next-margin="40rpx" index="{{2}}" bindtap="btnTap" extra-data="{{extraData}}" indicator-pos="in" indicator-color="blue" />
+  <view style="height:500rpx;width:750rpx;">
+    <ft-tabs tabs="{{tabs}}" style="height:500rpx;width:500rpx;" type="2" bindtabchange="tabChange" bindfetchlist="fetchLxMerchant">
+      <view class='tab-content' wx:for="{{tabs}}" wx:for-item="tab" wx:for-index="idx" wx:key="title" slot="tab{{idx}}">
+        {{tab.content}}
+      </view>
+    </ft-tabs>
+  </view>
   <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
   </view>
