@@ -5,6 +5,8 @@
     "ft-avatar": "../../components/ftAvatar/ftAvatar",
     "ft-entrance": "../../components/ftEntrance/ftEntrance",
     "ft-banners": "../../components/ftBanners/ftBanners",
-    "ft-tabs": "../../components/ftTabs/ftTabs"
+    "ft-tabs": "../../components/ftTabs/ftTabs",
+    "ft-visiting-card": "../../components/ftVisitingCard/ftVisitingCard",
+    "ft-table-list": "../../components/ftTableList/ftTableList"
   }
 }

@@ -53,6 +53,33 @@ Page({
         title: 'tab3',
         content: 'content333333333'
       }
+    ],
+    visitingCard: {
+      fontSize: {
+        title: 32,
+        content: 28,
+        state: 28
+      },
+      color: {
+        title: '#333',
+        content: '#666',
+        state: '#419DF0'
+      },
+      maxLine: {
+        title: 1,
+        content: 2,
+        state: 1
+      },
+      image: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1451698316,2699404580&fm=26&gp=0.jpg'
+    },
+    tableData: [
+      { title: '书名', content: '某某书哈哈哈哈哈某某书哈哈哈哈哈'},
+      { title: '出版社', content: '某某书哈某某书哈哈哈哈哈某某书哈哈哈哈哈某某书哈哈哈哈哈某某书哈哈哈哈哈哈哈哈哈' },
+      { title: '原价', content: '¥5.00' },
+      { title: '购买价', content: '¥2.99' },
+      { title: '测', content: 'sdfsdfs9' },
+      { title: '测是十四', content: 'sdfsdfs9' },
+      { title: '', content: '' }
     ]
   },
   //事件处理函数

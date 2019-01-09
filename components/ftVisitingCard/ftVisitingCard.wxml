@@ -1,0 +1,15 @@
+<!--components/ftVisitingCard/ftVisitingCard.wxml-->
+<view class="wrapper" style="width:{{width || 'auto'}};height:{{height || 'auto'}};" catchtap="eleTap" data-ele="wrapper">
+  <view wx:if="{{topSeparator}}" class='line-separator-h'></view>
+  <view class="container {{imagePosition}}" style="{{containerStyle}}">
+    <view class="overview">
+      <view wx:if="{{title}}" style="font-size:{{fontSize.title}}rpx;color:{{color.title}};text-align:{{textAlign}};-webkit-line-clamp:{{maxLine.title || '1'}}" class="title title{{maxLine.title || '1'}}" catchtap="eleTap" data-ele="title">{{title}}</view>
+      <view wx:if="{{content}}" style="font-size:{{fontSize.content}}rpx;color:{{color.content}};text-align:{{textAlign}};-webkit-line-clamp:{{maxLine.content || '2'}}" class="content content{{maxLine.content || '1'}}" catchtap="eleTap" data-ele="content">{{content}}</view>
+      <view wx:if="{{state}}" style="font-size:{{fontSize.state}}rpx;color:{{color.state}};text-align:{{textAlign}};-webkit-line-clamp:{{maxLine.state || '1'}}" class="state state{{maxLine.state || '1'}}" catchtap="eleTap" data-ele="state">{{state}}</view>
+    </view>
+    <!-- 有title、content、state、三者之一，且有图片时才有spacing -->
+    <view wx:if="{{(title || content || state) && image}}" class='spacing'></view>
+    <image wx:if="{{image}}" style="{{imageStyle}}" class="image" src="{{image}}" mode="aspectFill" catchtap="eleTap" data-ele="image" />
+  </view>
+  <view wx:if="{{bottomSeparator}}" class='line-separator-h'></view>
+</view>

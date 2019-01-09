@@ -7,6 +7,8 @@
       <view class="userinfo-nickname" style="background:{{color}}">{{userInfo.nickName}}</view>
     </block>
   </view>
+  <ft-table-list font-size="{{24}}" title-color="red" content-color="blue" table-data="{{tableData}}" />
+  <ft-visiting-card bindtap="btnTap" title="阿斯顿看了风景阿斯顿发家水电费了家阿三分阿三阿克索德" image="{{visitingCard.image}}" content="内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容" state="标签标签标签标签标签标签标" />
   <ft-button text="测试" bindtap="btnTap" />
   <ft-star-box score="{{4.2}}" max-score="{{10}}" size="{{40}}" show-score-text="{{true}}" color="red" start-color="green" end-color="pink" />
   <ft-avatar avatar="/assets/images/scan_btn.png" message="{{10}}" message-bg="rgba(0,0,0,0.5)" />
