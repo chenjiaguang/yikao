@@ -7,6 +7,7 @@
     "ft-banners": "../../components/ftBanners/ftBanners",
     "ft-tabs": "../../components/ftTabs/ftTabs",
     "ft-visiting-card": "../../components/ftVisitingCard/ftVisitingCard",
-    "ft-table-list": "../../components/ftTableList/ftTableList"
+    "ft-table-list": "../../components/ftTableList/ftTableList",
+    "ft-custom-modal": "../../components/ftCustomModal/ftCustomModal"
   }
 }

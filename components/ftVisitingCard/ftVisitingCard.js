@@ -20,7 +20,11 @@ Component({
       type: String,
       value: ''
     },
-    state: {
+    sign1: {
+      type: String,
+      value: ''
+    },
+    sign2: {
       type: String,
       value: ''
     },
@@ -29,7 +33,8 @@ Component({
       value: {
         title: 32,
         content: 28,
-        state: 28
+        sign1: 28,
+        sign2: 28
       }
     },
     color: {
@@ -37,7 +42,8 @@ Component({
       value: {
         title: '#333',
         content: '#666',
-        state: '#419DF0'
+        sign1: '#333',
+        sign2: '#333'
       }
     },
     maxLine: {
@@ -45,7 +51,8 @@ Component({
       value: {
         title: 1,
         content: 2,
-        state: 1
+        sign1: 1,
+        sign2: 1
       }
     },
     image: {
@@ -89,6 +96,9 @@ Component({
 
   },
 
+  ready: function () {
+    console.log('data', this.data)
+  },
   /**
    * 组件的方法列表
    */

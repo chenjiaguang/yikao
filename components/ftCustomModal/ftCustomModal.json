@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ft-button": "../../components/ftButton/ftButton"
+  }
+}

@@ -20,9 +20,17 @@ Component({
       type: String,
       value: '#666'
     },
+    titleAlign: {
+      type: String,
+      value: 'justify',
+    },
     spacing: {
       type: Number,
       value: 12
+    },
+    contentLine: {
+      type: String,
+      value: ''
     }
   },
 

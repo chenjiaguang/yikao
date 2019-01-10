@@ -1,0 +1,152 @@
+/* components/ftCustomModal/ftCustomModal.wxss */
+
+.line-separator-h {
+  width: 100%;
+  height: 1px;
+  background: #e5e5e5;
+  transform: scaleY(0.5);
+}
+
+.line-separator-v {
+  height: 100%;
+  width: 1px;
+  background: #e5e5e5;
+  transform: scaleX(0.5);
+}
+
+@media screen and (min-resolution: 2dppx) {
+  .line-separator-h {
+    width: 100%;
+    height: 1rpx;
+    background: #e5e5e5;
+  }
+
+  .line-separator-v {
+    height: 100%;
+    width: 1rpx;
+    background: #e5e5e5;
+  }
+}
+
+.wrapper{
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: -1;
+}
+.wrapper.show{
+  z-index: 99;
+  visibility: visible;
+}
+.wrapper.hide{
+  z-index: -1;
+  visibility: hidden;
+}
+.wrapper-bg{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1;
+  opacity: 0;
+  transition: all 0.2s;
+}
+.wrapper-bg.show{
+  opacity: 1;
+}
+.wrapper-bg.hide{
+  opacity: 0;
+  transition: all 0s;
+}
+.box{
+  width: 88%;
+  background: #fff;
+  border-radius: 4rpx;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.2s;
+}
+.box.show{
+  transform: scale(1, 1);
+}
+.box.hide{
+  transform: scale(0.8, 0.8);
+  visibility: hidden;
+}
+
+.header-wrapper{
+  width: 100%;
+}
+.header{
+  width: 100%;
+  padding: 0 16rpx;
+  height: 88rpx;
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 32rpx;
+  color: #333;
+}
+.title{
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 16rpx;
+}
+.title1{
+  text-align: center;
+}
+.title2{
+  text-align: left;
+}
+.close-btn-wrapper{
+  width: 56rpx;
+  height: 56rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.close-btn{
+  display: block;
+  width: 32rpx;
+  height: 32rpx;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.clost-btn-hover{
+  background: rgba(0,0,0,0.1);
+}
+.content-wrapper{
+  margin: 0 32rpx;
+}
+.buttons-wrapper{
+  width: 100%;
+}
+.buttons{
+  width: 100%;
+  height: 120rpx;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 16rpx;
+}
+.buttons2{
+  justify-content: flex-end;
+}
+.buttons1{
+  justify-content: center;
+}
+.button-wrapper{
+  margin: 0 16rpx;
+}
