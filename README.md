@@ -8,6 +8,9 @@
 | --- | --- | --- | --- | --- |
 | border-color | String | N | transparent |  |
 | border-radius | String | N | 8rpx |  |
+| width | String | N | 100% |  |
+| height | String | N | 100% |  |
+| font-size | Number | N | 36 |  |
 | color | String | N | #fff | 字体颜色 |
 | disabled-color | String | N | #666 | 按钮置灰（点击无效）时的字体色 |
 | bg | String | N | #419DF0 | 按钮背景色 |
