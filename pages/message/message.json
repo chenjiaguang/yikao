@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "ft-iphone-bottom-adapter": "../../components/ftIphoneBottomAdapter/ftIphoneBottomAdapter"
+  }
+}

@@ -41,11 +41,15 @@ Component({
     },
     indicatorPos: {
       type: String,
-      value: 'out'
+      value: 'in'
     },
     indicatorColor: {
       type: String,
-      value: '#333'
+      value: '#F2E0CA'
+    },
+    indicatorCurruntColor: {
+      type: String,
+      value: '#AA5917'
     },
     spacing: {
       type: Number,

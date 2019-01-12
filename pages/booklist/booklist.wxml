@@ -1,0 +1,13 @@
+<!--pages/booklist/booklist.wxml-->
+<view class='page-booklist'>
+  <ft-list-loader visible="{{!loaded}}" />
+  <view class='book-wrapper'>
+    <view class='book-box' wx:for="{{books}}" wx:for-index="idx" wx:for-item="book" wx:key="id">
+      <image class='book-image' src="{{book.image}}" mode="aspectFit"></image>
+      <view class='book-title'>{{book.name}}</view>
+      <view class='book-p-house'>{{book.p_house}}</view>
+    </view>
+  </view>
+  <ft-list-footer loaded="{{loaded}}" loading="{{loading}}" page="{{page}}" show-no-more="{{page && page.pn && page.pn !== '0'}}" no-more-text="{{noMoreText}}" />
+  <ft-iphone-bottom-adapter wx:if="{{books && books[0]}}" />
+</view>

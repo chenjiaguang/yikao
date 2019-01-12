@@ -20,11 +20,19 @@ Component({
       type: String,
       value: ''
     },
+    imageSize: {
+      type: Number,
+      value: 44
+    },
     subImage: {
       type: String,
       value: ''
     },
     title: {
+      type: String,
+      value: ''
+    },
+    titleStyle: {
       type: String,
       value: ''
     },

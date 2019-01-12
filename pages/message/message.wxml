@@ -1,0 +1,2 @@
+<!--pages/message/message.wxml-->
+<view class='page-message'>消息页面</view>

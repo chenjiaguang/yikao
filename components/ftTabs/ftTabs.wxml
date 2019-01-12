@@ -6,7 +6,7 @@
       <view class="title-box title-box{{type}}" id="tab{{idx}}" wx:for="{{tabs}}" wx:for-item="tab" wx:for-index="idx" wx:key="title" catchtap="tabTap" data-idx="{{idx}}">
         <view class='title' style="color:{{current === idx ? currentColor : color}}">
           <text>{{tab.title}}</text>
-          <view hidden="{{current !== idx}}" class='current-sign' style="background:{{currentColor}}"></view>
+          <view hidden="{{current !== idx}}" class='current-sign' style="background:{{currentColor}};width:{{indicatorSize.width || 44}}rpx;height:{{indicatorSize.height || 4}}rpx"></view>
         </view>
       </view>
     </scroll-view>
@@ -20,12 +20,12 @@
       </view>
     </view>
     <view class='slide-box'>
-      <view class='slide-block' style="background:{{currentColor}};transform:translateX({{(0.5 + current) * 250}}rpx)"></view>
+      <view class='slide-block' style="background:{{currentColor}};transform:translateX({{(0.5 + current) * 250}}rpx);width:{{indicatorSize.width || 44}}rpx;height:{{indicatorSize.height || 4}}rpx;margin-left:{{-(indicatorSize.width || 44) / 2}}rpx"></view>
     </view>
     <view wx:if="{{headerSeparator}}" class='line-separator-h'></view>
   </view>
   <!-- body部分 -->
-  <swiper class='tab-swiper' current="{{current}}" duration="{{300}}" bindchange="currentChange">
+  <swiper class='tab-swiper' style="{{contentStyle}}" current="{{current}}" duration="{{300}}" bindchange="currentChange">
     <swiper-item wx:for="{{tabs}}" wx:for-item="tab" wx:for-index="idx" wx:key="title">
       <scroll-view class='body-wrapper' scroll-y data-idx="{{idx}}" bindscrolltolower="scrollToEnd">
         <ft-list-loader visible="{{!tab.loaded}}" />

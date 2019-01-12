@@ -1,0 +1,52 @@
+/* pages/booklist/booklist.wxss */
+page{
+  background: #F4F4F4;
+}
+
+.page-booklist{
+  background: #F4F4F4;
+}
+.book-wrapper{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.book-box{
+  width: 370rpx;
+  height: 548rpx;
+  background: #fff;
+  margin-top: 10rpx;
+}
+
+.book-image{
+  display: block;
+  width: 100%;
+  height: 370rpx;
+}
+
+.book-title{
+  font-size: 28rpx;
+  line-height: 36rpx;
+  min-height: 72rpx;
+  box-sizing: centent-box;
+  padding: 28rpx 32rpx 0;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+  -webkit-line-clamp: 2;
+  color: #333;
+  font-weight: bold;
+}
+
+.book-p-house{
+  font-size: 24rpx;
+  line-height: 32rpx;
+  padding: 28rpx 32rpx 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #999;
+}

@@ -1,12 +1,50 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/demo/demo",
+    "pages/enroll/enroll",
+    "pages/usercenter/usercenter",
+    "pages/myenroll/myenroll",
+    "pages/message/message",
+    "pages/dynamiclist/dynamiclist",
+    "pages/dynamicdetail/dynamicdetail",
+    "pages/booklist/booklist",
+    "pages/apply/apply",
+    "pages/applycontacts/applycontacts",
+    "pages/queryscore/queryscore",
+    "pages/queryhall/queryhall"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#999",
+    "selectedColor": "#D0021B",
+    "backgroundColor": "#FAFAFA",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "主页",
+        "iconPath": "assets/images/p_index_disable.png",
+        "selectedIconPath": "assets/images/p_index_able.png"
+      },
+      {
+        "pagePath": "pages/enroll/enroll",
+        "text": "报考",
+        "iconPath": "assets/images/p_enroll_disable.png",
+        "selectedIconPath": "assets/images/p_enroll_able.png"
+      },
+      {
+        "pagePath": "pages/usercenter/usercenter",
+        "text": "个人中心",
+        "iconPath": "assets/images/p_usercenter_disable.png",
+        "selectedIconPath": "assets/images/p_usercenter_able.png"
+      }
+    ]
   }
 }

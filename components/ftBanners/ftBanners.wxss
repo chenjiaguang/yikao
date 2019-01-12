@@ -56,10 +56,6 @@
   width: 14rpx;
   height: 14rpx;
   border-radius: 50%;
-  opacity: 0.5;
   margin: 0 6rpx;
   box-shadow: 0 0 6rpx 2rpx rgba(255,255,255,0.4);
-}
-.banner-indicator-item.current{
-  opacity: 0.9;
 }

@@ -1,0 +1,11 @@
+{
+  "navigationBarBackgroundColor": "#67462B",
+  "navigationBarTitleText": "考场查询",
+  "backgroundColor": "#F4F4F4",
+  "backgroundTextStyle": "dark",
+  "navigationBarTextStyle": "white",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "ft-iphone-bottom-adapter": "../../components/ftIphoneBottomAdapter/ftIphoneBottomAdapter"
+  }
+}

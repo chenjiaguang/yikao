@@ -1,0 +1,12 @@
+{
+  "navigationBarBackgroundColor": "#67462B",
+  "navigationBarTitleText": "艺术考级",
+  "backgroundColor": "#F4F4F4",
+  "backgroundTextStyle": "dark",
+  "navigationBarTextStyle": "white",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "big-header": "../../components/bigHeader/bigHeader",
+    "ft-custom-modal": "../../components/ftCustomModal/ftCustomModal"
+  }
+}

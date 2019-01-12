@@ -1,0 +1,42 @@
+/* pages/myenroll/myenroll.wxss */
+
+.page-myenroll{
+  background: #fff;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
+.tab-content{
+  background: #FFFFFF;
+}
+
+.header{
+  display: flex;
+  justify-content: space-between;
+  padding: 30rpx 32rpx 4rpx;
+}
+.title{
+  flex: 1;
+  font-size: 30rpx;
+  line-height: 38rpx;
+  color: #333;
+  font-weight: bold;
+}
+.status{
+  font-size: 30rpx;
+  line-height: 38rpx;
+  flex-shrink: 0;
+  flex-grow: 0;
+  margin-left: 32rpx;
+  font-weight: bold;
+}
+.enroll-content-text{
+  font-size: 26rpx;
+  line-height: 34rpx;
+  color: #333;
+  word-break: break-all;
+  padding: 4rpx 32rpx;
+}

@@ -1,32 +1,96 @@
-<!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <view class="userinfo-nickname" style="background:{{color}}">{{userInfo.nickName}}</view>
-    </block>
+<!--pages/index/index.wxml-->
+<view class='page-index'>
+<!-- 轮播 -->
+  <view class='ad'>
+    <ft-banners banners="{{banners}}" border-radius="4rpx" previous-margin="24rpx" next-margin="24rpx" />
   </view>
-  <view catchtap="changeModal">点击</view>
-  <input type="idcard" bindinput="nameInput" value="{{name}}" placeholder='请输入拼音' />
-  <ft-custom-modal visible="{{modal}}" buttons="{{['取消', '确定']}}" title="标题标题标题" bindtap="modalTap">
-    <view class='custom-content' style="color:yellow" catchtap="customContentTap">这里时自定义的内容</view>
-  </ft-custom-modal>
-  <ft-table-list content-line="1px solid blue" table-data="{{tableData}}" />
-  <ft-visiting-card text-align="center" bindtap="btnTap" title="阿斯顿看了风景阿斯顿发家水电费了家阿三分阿三阿克索德" content="内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容" sign1="标签标签标签标签标签标签标" sign2="标签222标签2222" />
-  <ft-button text="测试" bindtap="btnTap" />
-  <ft-star-box score="{{4.2}}" max-score="{{10}}" size="{{40}}" show-score-text="{{true}}" color="red" start-color="green" end-color="pink" />
-  <ft-avatar avatar="/assets/images/scan_btn.png" message="{{10}}" message-bg="rgba(0,0,0,0.5)" />
-  <ft-entrance image="/assets/images/scan_btn.png" required="{{false}}" title="善良的肌肤善良的肌肤 阿善良简单阿三l" next-icon="{{true}}" bottom-border="{{true}}" bindtap="entranceTap" extra-data="{{extraData}}" />
-  <ft-banners banners="{{banners}}" previous-margin="40rpx" next-margin="40rpx" index="{{2}}" bindtap="btnTap" extra-data="{{extraData}}" indicator-pos="in" indicator-color="blue" />
-  <view style="height:500rpx;width:750rpx;">
-    <ft-tabs tabs="{{tabs}}" style="height:500rpx;width:500rpx;" type="2" bindtabchange="tabChange" bindfetchlist="fetchLxMerchant">
-      <view class='tab-content' wx:for="{{tabs}}" wx:for-item="tab" wx:for-index="idx" wx:key="title" slot="tab{{idx}}">
-        {{tab.content}}
+  <!-- 入口按钮 -->
+  <view class='page-entry'>
+    <view class='entry-box' data-ele="enroll" catchtap="pageEntryTap">
+      <image class='entry-image' src="/assets/images/icon_enroll.png" mode="aspectFit" />
+      <view class='entry-title'>考级报名</view>
+    </view>
+    <view class='entry-box' data-ele="queryscore" catchtap="pageEntryTap">
+      <image class='entry-image' src="/assets/images/icon_score.png" mode="aspectFit" />
+      <view class='entry-title'>成绩查询</view>
+    </view>
+    <view class='entry-box' data-ele="queryhall" catchtap="pageEntryTap">
+      <image class='entry-image' src="/assets/images/icon_hall.png" mode="aspectFit" />
+      <view class='entry-title'>考场查询</view>
+    </view>
+  </view>
+  <!-- 考级动态 -->
+  <view class='dynamics'>
+    <view class='block-separator' style="margin-bottom:30rpx"></view>
+    <big-header title="考级动态" />
+    <view style="margin-bottom:10rpx"></view>
+    <view class='dynamics-body'>
+      <visiting-card bindtap="cardTap" data-ele="dynamic" data-id="{{dynamic.id}}" wx:for="{{dynamics}}" wx:for-item="dynamic" wx:for-index="idx" wx:key="title" card-data="{{dynamic}}" top-separator="{{idx !== 0}}" />
+    </view>
+    <view class='line-separator-h'></view>
+    <view class='show-more' catchtap="seeMore" data-ele="dynamic" data-title="考级动态">
+      <text>查看更多</text><text class='ft-icon c-icon-next' style="display:block;font-size:20rpx;color:#666;margin-left:12rpx"></text>
+    </view>
+  </view>
+  <!-- 师资培训 -->
+  <view class='courses'>
+    <view class='block-separator' style="margin-bottom:30rpx"></view>
+    <big-header title="师资培训" />
+    <view style="margin-bottom:10rpx"></view>
+    <view class='courses-body'>
+      <visiting-card bindtap="cardTap" data-ele="course" data-id="{{course.id}}" wx:for="{{courses}}" wx:for-item="course" wx:for-index="idx" wx:key="title" card-data="{{course}}" max-line="{{courseMaxLine}}" top-separator="{{idx !== 0}}" />
+    </view>
+    <view class='line-separator-h'></view>
+    <view class='show-more' catchtap="seeMore" data-ele="course" data-title="师资培训">
+      <text>查看更多</text><text class='ft-icon c-icon-next' style="display:block;font-size:20rpx;color:#666;margin-left:12rpx"></text>
+    </view>
+  </view>
+  <!-- 艺术团表演 -->
+  <view class='performs'>
+    <view class='block-separator' style="margin-bottom:30rpx"></view>
+    <big-header title="艺术团表演" />
+    <view style="margin-bottom:10rpx"></view>
+    <view class='performs-body'>
+      <visiting-card bindtap="cardTap" data-ele="perform" data-id="{{perform.id}}" wx:for="{{performs}}" wx:for-item="perform" wx:for-index="idx" wx:key="title" card-data="{{perform}}" max-line="{{performMaxLine}}" top-separator="{{idx !== 0}}" />
+    </view>
+    <view class='line-separator-h'></view>
+    <view class='show-more' catchtap="seeMore" data-ele="perform" data-title="艺术团表演">
+      <text>查看更多</text><text class='ft-icon c-icon-next' style="display:block;font-size:20rpx;color:#666;margin-left:12rpx"></text>
+    </view>
+  </view>
+  <!-- 大赛 -->
+  <view class='races'>
+    <view class='block-separator' style="margin-bottom:30rpx"></view>
+    <big-header title="大赛" />
+    <view style="margin-bottom:10rpx"></view>
+    <view class='races-body'>
+      <visiting-card bindtap="cardTap" data-ele="race" data-id="{{race.id}}" wx:for="{{races}}" wx:for-item="race" wx:for-index="idx" wx:key="title" card-data="{{race}}" max-line="{{raceMaxLine}}" top-separator="{{idx !== 0}}" />
+    </view>
+    <view class='line-separator-h'></view>
+    <view class='show-more' catchtap="seeMore" data-ele="race" data-title="大赛">
+      <text>查看更多</text><text class='ft-icon c-icon-next' style="display:block;font-size:20rpx;color:#666;margin-left:12rpx"></text>
+    </view>
+  </view>
+  <!-- 考级教材 -->
+  <view class='books'>
+    <view class='block-separator' style="margin-bottom:30rpx"></view>
+    <big-header title="考级教材" />
+    <view style="margin-bottom:10rpx"></view>
+    <view class='books-body'>
+      <view class='book-box' catchtap="cardTap" data-ele="book" data-id="{{book.id}}" data-title="{{book.title}}" wx:for="{{books}}" wx:for-item="book" wx:for-index="idx" wx:key="title">
+        <image class='book-image' src="{{book.image}}" mode="aspectFit" />
+        <view class='book-title'>{{book.title}}</view>
       </view>
-    </ft-tabs>
+    </view>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+  <!-- 报名弹窗 -->
+  <ft-custom-modal visible="{{modal.visible}}" buttons="{{['确定']}}" button-font-size="{{36}}" button-color="#108EE9" button-bg="transparent" title="中国音乐学院社会艺术水平考级" title-style="text-align:left" bindtap="modalTap">
+    <view class="modal-content">
+      <view class='modal-content-text'>中国音乐学院社会艺术水平考级——海南考区</view>
+      <view class='modal-content-text'>承办机构：</view>
+      <view class='modal-content-text'>报名起止日期：2018年12月10日~2018年12月20日</view>
+      <view class='modal-content-text'>考试起止日期：2019年01月19日~2019年01月25日</view>
+      <view class='regulations-entry' catchtap="regulationsEntryTap">其他详细事宜请参加简章</view>
+    </view>
+  </ft-custom-modal>
 </view>

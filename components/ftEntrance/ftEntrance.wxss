@@ -19,7 +19,7 @@
   width: 60rpx;
   height: 60rpx;
   flex-shrink: 0;
-  margin-right: 22rpx;
+  margin-right: 32rpx;
 }
 .c-icon-xinghao{
   font-size: 20rpx;
@@ -28,7 +28,7 @@
 }
 .entrance-title{
   flex: 1;
-  font-size: 34rpx;
+  font-size: 30rpx;
   color: #333;
   line-height: 48rpx;
   white-space: nowrap;

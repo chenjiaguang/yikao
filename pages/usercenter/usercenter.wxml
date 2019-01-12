@@ -1,0 +1,25 @@
+<!--pages/usercenter/usercenter.wxml-->
+<view class='page-usercenter'>
+  <view class='header'>
+    <view class='avatar-box'>
+      <user-avatar avatar="{{avatar}}" style="100%" height="100%" />
+    </view>
+    <view class='name-box'>
+      <user-name name="{{name}}" />
+    </view>
+    <view class='message-box' catchtap="messageTap">
+      <image class='message-image' mode="aspectFit" src="/assets/images/icon_notice.png" />
+      <view wx:if="{{message}}" class='message-num'>
+        <text>{{message > 99 ? '99+' : message}}</text>
+      </view>
+    </view>
+  </view>
+  <view class='block-separator' style="height:40rpx"></view>
+  <view class='entry-box'>
+    <ft-entrance catchtap="entryTap" data-ele="enroll" image="/assets/images/u_icon_enroll.png" image-size="{{44}}" title="我的报名" />
+    <view class='line-separator-h' style="margin-left:108rpx"></view>
+    <ft-entrance catchtap="entryTap" data-ele="wechat" image="/assets/images/u_icon_wechat.png" image-size="{{44}}" title="加入微信群" />
+    <view class='line-separator-h' style="margin-left:108rpx"></view>
+    <ft-entrance catchtap="entryTap" data-ele="about" image="/assets/images/u_icon_about.png" image-size="{{44}}" title="关于我们" />
+  </view>
+</view>

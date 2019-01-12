@@ -1,0 +1,70 @@
+/* pages/applycontacts/applycontacts.wxss */
+
+.contacts-wrapper{
+  background: #fff;
+}
+
+.header{
+  height: 88rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.title{
+  width: 686rpx;
+  height: 60rpx;
+  background: #FAF1E7;
+  font-size: 30rpx;
+  color: #67462B;
+  line-height: 38rpx;
+  font-weight: bold;
+  border-radius: 6rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact{
+  padding: 0 32rpx 8rpx;
+}
+.location, .phone, .user{
+  display: flex;
+  align-items: center;
+}
+.location-image, .phone-image, .user-image{
+  display: block;
+  width: 26rpx;
+  height: 26rpx;
+  flex-grow: 0;
+  flex-shrink: 0;
+  margin-right: 10rpx;
+}
+.location-text, .user-text{
+  font-size: 26rpx;
+  line-height: 30rpx;
+  padding: 6rpx 0;
+  word-break: break-all;
+}
+.phone-text{
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+}
+.phone-item{
+  height: 42rpx;
+  font-size: 26rpx;
+  line-height: 30rpx;
+  margin-right: 26rpx;
+  display: flex;
+  align-items: center;
+}
+
+.tip-box{
+  padding: 0 32rpx;
+}
+.tip{
+  font-size: 26rpx;
+  line-height: 34rpx;
+  padding: 20rpx 0;
+  text-align:center;
+}

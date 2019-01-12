@@ -1,0 +1,64 @@
+/* pages/usercenter/usercenter.wxss */
+
+page{
+  background: #F4F4F4;
+}
+.page-usercenter{
+  background: #fff;
+}
+.header{
+  height: 268rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.avatar-box{
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.name-box{
+  font-size: 34rpx;
+  color: #333;
+  line-height: 34rpx;
+  overflow: visible;
+  padding-top: 20rpx;
+}
+.message-box{
+  position: absolute;
+  width: 120rpx;
+  height: 120rpx;
+  right: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.message-image{
+  display: block;
+  width: 35rpx;
+  height: 43rpx;
+}
+
+.message-num{
+  font-size: 24rpx;
+  line-height: 24rpx;
+  height: 32rpx;
+  padding: 0 10rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: 18rpx;
+  margin-top: -12rpx;
+  transform: translate(-50%, -50%);
+  background: #FF3B30;
+  color: #fff;
+  border-radius: 16rpx;
+}

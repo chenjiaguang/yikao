@@ -1,0 +1,9 @@
+/* pages/dynamiclist/dynamiclist.wxss */
+
+page{
+  background: #F4F4F4;
+}
+.dynamiclist-body{
+  padding: 0 32rpx;
+  background: #fff;
+}

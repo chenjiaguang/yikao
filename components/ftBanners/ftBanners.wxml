@@ -9,6 +9,6 @@
       </swiper-item>
     </swiper>
     <view class='banner-indicator' style="position:{{indicatorPos === 'out' ? 'relative' : 'absolute'}}">
-      <view class="banner-indicator-item {{current === idx ? 'current' : ''}}" style="background:{{indicatorColor}}" wx:for="{{banners}}" wx:for-index="idx" wx:for-item="banner" wx:key="key"></view>
+      <view class="banner-indicator-item {{current === idx ? 'current' : ''}}" style="background:{{current === idx ? indicatorCurruntColor : indicatorColor}}" wx:for="{{banners}}" wx:for-index="idx" wx:for-item="banner" wx:key="key"></view>
     </view>
   </view>

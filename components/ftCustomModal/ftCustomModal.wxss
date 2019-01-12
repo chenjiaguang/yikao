@@ -66,13 +66,14 @@
   transition: all 0s;
 }
 .box{
-  width: 88%;
+  width: 640rpx;
   background: #fff;
   border-radius: 4rpx;
   box-sizing: border-box;
   position: relative;
   z-index: 2;
   transition: transform 0.2s;
+  overflow: visible;
 }
 .box.show{
   transform: scale(1, 1);
@@ -84,6 +85,7 @@
 
 .header-wrapper{
   width: 100%;
+  overflow: visible;
 }
 .header{
   width: 100%;
@@ -96,6 +98,7 @@
   align-items: center;
   font-size: 32rpx;
   color: #333;
+  overflow: visible;
 }
 .title{
   flex: 1;
@@ -111,18 +114,19 @@
   text-align: left;
 }
 .close-btn-wrapper{
-  width: 56rpx;
-  height: 56rpx;
+  width: 100rpx;
+  height: 100rpx;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  top: -137rpx;
+  right: -22rpx;
 }
 .close-btn{
   display: block;
-  width: 32rpx;
-  height: 32rpx;
-  flex-grow: 0;
-  flex-shrink: 0;
+  width: 55rpx;
+  height: 55rpx;
 }
 .clost-btn-hover{
   background: rgba(0,0,0,0.1);
@@ -132,10 +136,11 @@
 }
 .buttons-wrapper{
   width: 100%;
+  overflow: hidden;
 }
 .buttons{
   width: 100%;
-  height: 120rpx;
+  height: 100rpx;
   display: flex;
   align-items: center;
   box-sizing: border-box;

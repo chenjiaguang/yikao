@@ -1,11 +1,11 @@
 <!--components/ftTableList/ftTableList.wxml-->
 <view class='wrapper'>
-  <view wx:for="{{tableData}}" wx:if="{{item.title || item.content}}" wx:key="title" class='item-box' style="padding-top:{{spacing * 3 / 4}}rpx">
+  <view wx:for="{{tableData}}" wx:if="{{item.title && item.content}}" wx:key="title" class='item-box' style="padding-top:{{spacing * 3 / 4}}rpx">
     <view class='title-wrapper'>
       <!-- 获取最长的字符位置 -->
       <view class='title-text'>
         <view class='title-text-box' style="font-size:{{fontSize}}rpx;color:{{titleColor}};justify-content:{{titleAlign === 'right' ? 'flex-end' : 'space-between'}}">
-          <text wx:for="{{item.title}}" wx:for-item="char" class="title-char">{{char}}</text>
+          <text wx:for="{{item.title}}" wx:for-item="char" wx:key="*this" class="title-char">{{char}}</text>
         </view>
         <text wx:if="{{item.title}}" class='title-sign' style="font-size:{{fontSize}}rpx">：</text>
       </view>

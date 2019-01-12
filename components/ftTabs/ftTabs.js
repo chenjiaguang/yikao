@@ -27,6 +27,16 @@ Component({
       type: String,
       value: '#FF9500'
     },
+    indicatorSize: {
+      type: Object,
+      value: {
+        width: ''
+      }
+    },
+    contentStyle: {
+      type: String,
+      value: ''
+    },
     type: { // type:1（tab按钮左对齐），type:2（tab按钮居中对齐）
       type: String,
       value: '1'

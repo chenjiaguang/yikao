@@ -16,13 +16,17 @@ Component({
       type: String,
       value: ''
     },
+    titleStyle: {
+      type: String,
+      value: ''
+    },
     clostButton: {
       type: Boolean,
       value: true
     },
     closeImage: {
       type: String,
-      value: '/assets/images/close_btn.png'
+      value: '/assets/images/icon_round_close.png'
     },
     headerLine: {
       type: Boolean,
@@ -35,6 +39,18 @@ Component({
     buttons: {
       type: Array,
       value: ['确定']
+    },
+    buttonFontSize: {
+      type: Number,
+      value: 30
+    },
+    buttonColor: {
+      type: String,
+      value: '#fff'
+    },
+    buttonBg: {
+      type: String,
+      value: '#108EE9'
     },
     extraData: {
       type: Object,

@@ -1,0 +1,5 @@
+<!--components/bigHeader/bigHeader.wxml-->
+<view class='wrapper'>
+<image class='image' src="/assets/images/big_header_bg.png" mode="scaleToFill" />
+<text class='title'>{{title}}</text>
+</view>
