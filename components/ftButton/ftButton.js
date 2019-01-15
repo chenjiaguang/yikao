@@ -82,7 +82,7 @@ Component({
    */
   methods: {
     buttonTap: function () {
-      if (this.data.loading) {
+      if (this.data.loading || this.data.disabled) {
         return false
       }
       this.triggerEvent('tap', this.data.extraData)

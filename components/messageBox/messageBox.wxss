@@ -1,0 +1,38 @@
+/* components/messageBox/messageBox.wxss */
+
+.wrapper{
+  width: 100%;
+}
+.time{
+  font-size: 24rpx;
+  line-height: 56rpx;
+  color: #838383;
+  background: #F4F4F4;
+  text-align: center;
+}
+.box{
+  padding: 24rpx 32rpx;
+  background: #fff;
+}
+.title{
+  font-size: 34rpx;
+  line-height: 46rpx;
+  font-weight: bold;
+  color: #333;
+}
+.content{
+  font-size: 28rpx;
+  line-height: 40rpx;
+  color: #333;
+  padding-top: 4rpx;
+}
+.buttons{
+  padding-top: 10rpx;
+}
+.btn{
+  font-size: 28rpx;
+  line-height: 40rpx;
+  color: #108EE9;
+  text-decoration: underline;
+  text-align: right;
+}

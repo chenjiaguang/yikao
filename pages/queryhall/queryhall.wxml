@@ -1,2 +1,35 @@
 <!--pages/queryhall/queryhall.wxml-->
-<view class='page-queryhall'>考场查询</view>
+<view class='page-queryhall'>
+  <view class='query-box'>
+    <view class='header'>中国音乐学院全国社会艺术水平考级考场查询</view>
+    <view class='form-box'>
+      <view class='name'>
+        <image class='name-image' mode="aspectFit" src="/assets/images/icon_user2.png"></image>
+        <input class='name-input' placeholder-style="font-size:30rpx;color:#999;font-weight:normal" value="{{name}}" placeholder='姓名' bindinput='inputChange' data-ele="name" />
+      </view>
+      <view class='idcard'>
+        <image class='idcard-image' mode="aspectFit" src="/assets/images/icon_idcard2.png"></image>
+        <input class='idcard-input' placeholder-style="font-size:30rpx;color:#999;font-weight:normal" value="{{idcard}}" placeholder='身份证号' type="idcard" bindinput='inputChange' data-ele="idcard" />
+      </view>
+      <view class='major-and-level'>
+        <picker bindchange="pickerChange" value="{{selectedMajor || 0}}" range="{{major}}" range-key="text" data-ele="major">
+          <view class="major">
+            <view class="major-text {{(selectedMajor || selectedMajor === 0) ? '' : 'unselected'}}">{{major[selectedMajor].text || '请选择专业'}}</view>
+            <text class='ft-icon c-icon-sanjiao' style="font-size:18rpx;color:#BFBFBF;margin:0 20rpx;line-height:18rpx"></text>
+          </view>
+        </picker>
+        <picker bindchange="pickerChange" value="{{selectedLevel || 0}}" range="{{level}}" range-key="text" data-ele="level">
+          <view class="level">
+            <view class="level-text {{(selectedLevel || selectedLevel === 0) ? '' : 'unselected'}}">{{level[selectedLevel].text || '请选择级别'}}</view>
+            <text class='ft-icon c-icon-sanjiao' style="font-size:18rpx;color:#BFBFBF;margin:0 20rpx;line-height:18rpx"></text>
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class='btn-box'>
+      <ft-button text="查询" width="686rpx" height="94rpx" border-radius="4rpx" color="#67462B" bg="#F2E0CA" disabled="{{!(name && idcard && selectedMajor && selectedLevel) || submitting}}" disabled-color="#fff" disabled-bg="#CCCCCC" catchtap="btnTap" />
+    </view>
+  </view>
+  <image wx:if="{{admissionCard}}" class='admission-image' mode="widthFix" src="{{admissionCard}}" catchtap="viewAdmissionCard"></image>
+  <ft-iphone-bottom-adapter />
+</view>

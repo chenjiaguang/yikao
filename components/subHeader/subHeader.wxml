@@ -1,0 +1,5 @@
+<!--components/subHeader/subHeader.wxml-->
+<view class='wrapper'>
+<image class='image' src="/assets/images/sub_header_bg.png" mode="scaleToFill" />
+<text class='title'>{{title}}</text>
+</view>

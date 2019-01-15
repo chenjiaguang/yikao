@@ -1,1 +1,83 @@
 /* pages/queryhall/queryhall.wxss */
+@import '../../assets/styles/ft-icon.wxss';
+
+page{
+  background: #F4F4F4;
+}
+.query-box{
+  background: #fff;
+  padding: 20rpx 0 45rpx;
+}
+.header{
+  font-size: 40rpx;
+  line-height: 44rpx;
+  padding: 40rpx;
+  overflow: visible;
+  text-align: center;
+  font-weight: bold;
+}
+.form-box{
+  width: 100%;
+}
+.name, .idcard{
+  display: flex;
+  padding: 15rpx 32rpx;
+  justify-content: space-between;
+  align-items: center;
+}
+.name-image, .idcard-image{
+  display: block;
+  width: 60rpx;
+  height: 60rpx;
+}
+.name-input, .idcard-input{
+  display: block;
+  width: 596rpx;
+  height: 80rpx;
+  box-sizing: border-box;
+  padding-left: 20rpx;
+  border: 1px solid #999999;
+  border-radius: 4rpx;
+}
+
+.major-and-level{
+  padding: 15rpx 32rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.major, .level{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 332rpx;
+  height: 80rpx;
+  box-sizing: border-box;
+  padding-left: 20rpx;
+  border: 1px solid #999999;
+  border-radius: 4rpx;
+}
+.major-text, .level-text{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 30rpx;
+  line-height: 38rpx;
+  color: #333;
+}
+.major-text.unselected, .level-text.unselected{
+  color: #999;
+}
+
+.btn-box{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 45rpx 0 15rpx;
+}
+.admission-image{
+  display: block;
+  width: 100%;
+  margin: 16rpx 0 60rpx;
+  white-space: pre-wrap;
+}

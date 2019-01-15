@@ -13,7 +13,10 @@
     "pages/apply/apply",
     "pages/applycontacts/applycontacts",
     "pages/queryscore/queryscore",
-    "pages/queryhall/queryhall"
+    "pages/queryhall/queryhall",
+    "pages/pay/pay",
+    "pages/myenrolldetail/myenrolldetail",
+    "pages/successpage/successpage"
   ],
   "window": {
     "backgroundTextStyle": "light",

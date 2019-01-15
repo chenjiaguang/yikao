@@ -1,0 +1,28 @@
+/* components/subHeader/subHeader.wxss */
+
+.wrapper{
+  width: 540rpx;
+  height: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 34rpx;
+  line-height: 38rpx;
+  color: #67462B;
+  position: relative;
+  margin: 0 auto;
+}
+.image{
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  background: #FAF1E7;
+}
+.title{
+  position: relative;
+  z-index: 2;
+}

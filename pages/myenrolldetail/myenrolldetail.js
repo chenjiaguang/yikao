@@ -1,20 +1,18 @@
-// pages/usercenter/usercenter.js
+// pages/myenrolldetail/myenrolldetail.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    avatar: '',
-    name: '',
-    message: 5
+    formImage: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=259722020,584703296&fm=26&gp=0.jpg'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log('我的报名详情', options.id)
   },
 
   /**
@@ -64,26 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-
-  messageTap: function () {
-    console.log('点击了消息icon')
-    wx.navigateTo({
-      url: '/pages/message/message'
-    })
-  },
-
-  entryTap: function (e) {
-    let {ele} = e.currentTarget.dataset
-    if (ele === 'enroll') { // 点击了我的报名
-      console.log('点击了我的报名')
-      wx.navigateTo({
-        url: '/pages/myenroll/myenroll'
-      })
-    } else if (ele === 'wechat') { // 点击了加入微信群
-      console.log('点击了加入微信群')
-    } else if (ele === 'about') { // 点击了关于我们
-      console.log('点击了关于我们')
-    }
   }
 })

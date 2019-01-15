@@ -1,0 +1,7 @@
+<!--pages/myenrolldetail/myenrolldetail.wxml-->
+<view class='page-myenrolldetail'>
+  <view class='image-box'>
+    <image class='image' mode="widthFix" src="{{formImage}}" />
+  </view>
+  <ft-iphone-bottom-adapter />
+</view>

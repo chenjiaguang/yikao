@@ -6,6 +6,9 @@
   "navigationBarTextStyle": "white",
   "enablePullDownRefresh": false,
   "usingComponents": {
+    "ft-button": "../../components/ftButton/ftButton",
+    "sub-header": "../../components/subHeader/subHeader",
+    "ft-table-list": "../../components/ftTableList/ftTableList",
     "ft-iphone-bottom-adapter": "../../components/ftIphoneBottomAdapter/ftIphoneBottomAdapter"
   }
 }

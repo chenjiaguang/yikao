@@ -183,20 +183,20 @@ Page({
           books: [
             {
               id: 9,
-              title: '声乐声乐声乐11111声乐声乐声乐11111声乐声乐声乐11111',
-              p_house: '中国青年出版社',
+              name: '声乐声乐声乐11111声乐声乐声乐11111声乐声乐声乐11111',
+              p_house: '中国青年出版社上岛咖啡阿斯顿了风景阿市中国青年出版社上岛咖啡阿斯顿了风景阿市领导发的sf领导发的sf',
               image: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=259722020,584703296&fm=26&gp=0.jpg'
             },
             {
               id: 99,
-              title: '声乐声乐声乐2222',
+              name: '声乐声乐声乐2222',
               p_house: '中国青年出版社',
               image: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=259722020,584703296&fm=26&gp=0.jpg'
             },
             {
               id: 999,
-              title: '声乐声乐声乐3',
-              p_house: '中国青年出版社',
+              name: '声乐声乐声乐3',
+              p_house: '中国青年出版社速度快结束了对方sadly阿善良f',
               image: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2292207363,2248939181&fm=26&gp=0.jpg'
             }
           ],

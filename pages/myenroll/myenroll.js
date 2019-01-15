@@ -1,10 +1,12 @@
 // pages/myenroll/myenroll.js
 Page({
 
+  ftRouteName: 'myenroll',
   /**
    * 页面的初始数据
    */
   data: {
+    indexTab: 0,
     statusText: {
       1: '待缴费',
       2: '审核中',
@@ -26,46 +28,9 @@ Page({
     tabs: [
       {
         title: '全部',
-        list: [
-          {
-            id: 1,
-            title: '中国音乐学院社会艺术水平考级',
-            status: '1',
-            enroll_no: '103845763',
-            institution: '中国音乐学院本院',
-            examination_no: '20190119001',
-            enroll_time: '2019.01.04 10:39'
-          },
-          {
-            id: 2,
-            title: '中国音乐学院社会艺术水平考级',
-            status: '2',
-            enroll_no: '103845763',
-            institution: '中国音乐学院本院',
-            examination_no: '20190119001',
-            enroll_time: '2019.01.04 10:39'
-          },
-          {
-            id: 3,
-            title: '中国音乐学院社会艺术水平考级',
-            status: '3',
-            enroll_no: '103845763',
-            institution: '中国音乐学院本院',
-            examination_no: '20190119001',
-            enroll_time: '2019.01.04 10:39'
-          },
-          {
-            id: 4,
-            title: '中国音乐学院社会艺术水平考级',
-            status: '4',
-            enroll_no: '103845763',
-            institution: '中国音乐学院本院',
-            examination_no: '20190119001',
-            enroll_time: '2019.01.04 10:39'
-          }
-        ],
+        list: [],
         page: {},
-        loaded: true,
+        loaded: false,
         loading: false
       },
       {
@@ -88,6 +53,7 @@ Page({
       height: 6
     },
     modal: {
+      id: '',
       visible: false,
       title: '',
       buttons: [],
@@ -101,7 +67,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let default_tab = options.default_tab ? parseInt(options.default_tab) : 0
+    this.setData({
+      indexTab: default_tab
+    })
+    this.fetchMyEnrolls({
+      detail: {
+        idx: default_tab,
+        pn: 0,
+        isRefresh: true
+      }
+    })
   },
 
   /**
@@ -153,19 +129,136 @@ Page({
 
   },
 
+  refreshPage: function () {
+    let {indexTab} = this.data
+    this.fetchMyEnrolls({
+      detail: {
+        idx: indexTab,
+        pn: 0,
+        isRefresh: true
+      }
+    })
+  },
+
   tabChange: function (e) {
     console.log('tabChange', e)
   },
 
   fetchMyEnrolls: function (e) {
     console.log('fetchMyEnrolls', e)
+    let { idx, pn, isRefresh } = e.detail
+    if (idx === 0) {
+      this.setData({
+        'tabs[0].loading': true
+      })
+    } else if (idx === 1) {
+      this.setData({
+        'tabs[1].loading': true
+      })
+    } else if (idx === 2) {
+      this.setData({
+        'tabs[2].loading': true
+      })
+    }
+    // 模拟获取数据成功
+    setTimeout(() => {
+      if (idx === 0) { // 全部
+        this.setData({
+          'tabs[0].list': [
+            {
+              id: 1,
+              title: '中国音乐学院社会艺术水平考级',
+              status: '1',
+              enroll_no: '103845763',
+              institution: '中国音乐学院本院',
+              examination_no: '20190119001',
+              enroll_time: '2019.01.04 10:39'
+            },
+            {
+              id: 2,
+              title: '中国音乐学院社会艺术水平考级',
+              status: '2',
+              enroll_no: '103845763',
+              institution: '中国音乐学院本院',
+              examination_no: '20190119001',
+              enroll_time: '2019.01.04 10:39'
+            },
+            {
+              id: 3,
+              title: '中国音乐学院社会艺术水平考级',
+              status: '3',
+              enroll_no: '103845763',
+              institution: '中国音乐学院本院',
+              examination_no: '20190119001',
+              enroll_time: '2019.01.04 10:39'
+            },
+            {
+              id: 4,
+              title: '中国音乐学院社会艺术水平考级',
+              status: '4',
+              enroll_no: '103845763',
+              institution: '中国音乐学院本院',
+              examination_no: '20190119001',
+              enroll_time: '2019.01.04 10:39'
+            }
+          ],
+          'tabs[0].page': {
+            isend: true,
+            pn: 0
+          },
+          'tabs[0].loaded': true,
+          'tabs[0].loading': false
+        })
+      } else if (idx === 1) { // 待缴费
+        this.setData({
+          'tabs[1].list': [
+            {
+              id: 1,
+              title: '中国音乐学院社会艺术水平考级',
+              status: '1',
+              enroll_no: '103845763',
+              institution: '中国音乐学院本院',
+              examination_no: '20190119001',
+              enroll_time: '2019.01.04 10:39'
+            }
+          ],
+          'tabs[1].page': {
+            isend: true,
+            pn: 0
+          },
+          'tabs[1].loaded': true,
+          'tabs[1].loading': false
+        })
+      } else if (idx === 2) { // 审核中
+        this.setData({
+          'tabs[2].list': [
+            {
+              id: 2,
+              title: '中国音乐学院社会艺术水平考级',
+              status: '2',
+              enroll_no: '103845763',
+              institution: '中国音乐学院本院',
+              examination_no: '20190119001',
+              enroll_time: '2019.01.04 10:39'
+            }
+          ],
+          'tabs[2].page': {
+            isend: true,
+            pn: 0
+          },
+          'tabs[2].loaded': true,
+          'tabs[2].loading': false
+        })
+      }
+    }, 1000)
   },
 
   viewDetail: function (e) {
-    let { id, title, status, enroll_no, institution, examination_no, enroll_time, name, idcard, gender, profession, level, pay_time, expired_reson } = e.currentTarget.dataset.enroll
+    let { id, title, status, enroll_no, institution, examination_no, enroll_time, name, idcard, gender, major, level, pay_time, expired_reson } = e.currentTarget.dataset.enroll
     let { modal, statusText, modalStatusColor} = this.data
     let _obj = {}
     _obj.id = id
+    _obj.status = status
     _obj.title = title
     let content = []
     content[0] = { title: '报名单号', content: enroll_no }
@@ -175,7 +268,7 @@ Page({
     content[4] = { title: '考生姓名', content: name }
     content[5] = { title: '身份证号', content: idcard }
     content[6] = { title: '性别', content: gender }
-    content[7] = { title: '报考专业', content: profession }
+    content[7] = { title: '报考专业', content: major }
     content[8] = { title: '报考等级', content: level }
     content[9] = { title: '当前进度', content: statusText[status.toString()], c_color: modalStatusColor[status.toString()] }
     content[10] = { title: '缴费时间', content: pay_time }
@@ -200,14 +293,22 @@ Page({
   },
 
   modalTap: function (e) {
-    let {status} = e.currentTarget.dataset
+    let {status, id} = e.currentTarget.dataset
     let {ele} = e.detail
     if (ele === 'btn_close') { // 点击的是关闭按钮
       this.closeModal()
     } else if (ele === 'btn_bottom0' && status.toString() === '1') { // 待缴费
       console.log('点击了立即缴费，跳转待缴费详情')
+      this.closeModal()
+      wx.navigateTo({
+        url: '/pages/pay/pay?id=' + id
+      })
     } else if (ele === 'btn_bottom0' && status.toString() === '3') { // 已缴费
       console.log('点击了查看详情，跳转已缴费详情')
+      this.closeModal()
+      wx.navigateTo({
+        url: '/pages/myenrolldetail/myenrolldetail?id=' + id
+      })
     }
   },
 

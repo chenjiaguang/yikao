@@ -1,14 +1,11 @@
 {
   "navigationBarBackgroundColor": "#67462B",
-  "navigationBarTitleText": "消息通知",
+  "navigationBarTitleText": "已缴费",
   "backgroundColor": "#F4F4F4",
   "backgroundTextStyle": "dark",
   "navigationBarTextStyle": "white",
   "enablePullDownRefresh": false,
   "usingComponents": {
-    "ft-list-loader": "../../components/ftListLoader/ftListLoader",
-    "ft-list-footer": "../../components/ftListFooter/ftListFooter",
-    "message-box": "../../components/messageBox/messageBox",
     "ft-iphone-bottom-adapter": "../../components/ftIphoneBottomAdapter/ftIphoneBottomAdapter"
   }
 }

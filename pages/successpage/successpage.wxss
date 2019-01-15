@@ -1,0 +1,37 @@
+/* pages/successpage/successpage.wxss */
+@import '../../assets/styles/ft-icon.wxss';
+
+page{
+  background: #F4F4F4;
+}
+
+.page-successpage{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #F4F4F4;
+}
+
+.success-box{
+  background: #fff;
+  margin-bottom: 60rpx;
+  padding: 60rpx 32rpx;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title{
+  font-size: 40rpx;
+  line-height: 56rpx;
+  color: #333;
+  padding-top: 32rpx;
+}
+
+.tip{
+  font-size: 28rpx;
+  line-height: 40rpx;
+  color: #999;
+  padding-top: 16rpx;
+}

@@ -1,0 +1,11 @@
+<!--components/messageBox/messageBox.wxml-->
+<view class='wrapper'>
+  <view class='time'>{{message.time}}</view>
+  <view class='box'>
+    <view class='title'>{{message.title}}</view>
+    <view class='content'>{{message.content}}</view>
+    <view class='buttons' wx:if="{{btns && btns[0]}}">
+      <view wx:for="{{btns}}" wx:for-index="idx" wx:for-item="btn" wx:key="text" class='btn' catchtap="btnTap" data-ele="{{btn.ele}}">{{btn.text}}</view>
+    </view>
+  </view>
+</view>

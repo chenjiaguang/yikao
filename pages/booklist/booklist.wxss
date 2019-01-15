@@ -14,7 +14,7 @@ page{
 
 .book-box{
   width: 370rpx;
-  height: 548rpx;
+  min-height: 548rpx;
   background: #fff;
   margin-top: 10rpx;
 }
@@ -44,9 +44,10 @@ page{
 .book-p-house{
   font-size: 24rpx;
   line-height: 32rpx;
-  padding: 28rpx 32rpx 0;
-  white-space: nowrap;
+  padding: 28rpx 32rpx;
+  /* white-space: nowrap; */
   overflow: hidden;
-  text-overflow: ellipsis;
+  /* text-overflow: ellipsis; */
+  word-break: break-all;
   color: #999;
 }

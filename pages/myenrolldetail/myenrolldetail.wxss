@@ -1,0 +1,9 @@
+/* pages/myenrolldetail/myenrolldetail.wxss */
+.image-box{
+  margin: 0 32rpx;
+  padding: 32rpx 0;
+}
+.image{
+  display: block;
+  width: 100%;
+}
