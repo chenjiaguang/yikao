@@ -31,17 +31,23 @@
     </view>
   </view>
   <view wx:if="{{userInfo || examInfo}}" class='info-box'>
-  <view class='block-separator'></view>
+    <view class='block-separator'></view>
     <view wx:if="{{userInfo}}" class='user-info'>
       <sub-header title="考生信息" />
-      <view style="height:20rpx"></view>
-      <ft-table-list title-align="right" spacing="{{20}}" content-line="1px solid #D8D8D8" table-data="{{userInfo}}" />
+      <view class='user-body'>
+        <view style="height:20rpx"></view>
+        <ft-table-list title-align="right" font-size="{{32}}" spacing="{{24}}" content-line="1px solid #D8D8D8" table-data="{{userInfo}}" />
+      </view>
     </view>
     <view wx:if="{{examInfo}}" class='exam-info'>
       <sub-header title="考级信息" />
-      <view style="height:20rpx"></view>
-      <ft-table-list title-align="right" spacing="{{20}}" content-line="1px solid #D8D8D8" table-data="{{examInfo}}" />
+      <view class='exam-body'>
+        <view style="height:20rpx"></view>
+        <ft-table-list title-align="right" font-size="{{32}}" spacing="{{24}}" content-line="1px solid #D8D8D8" table-data="{{examInfo}}" />
+      </view>
     </view>
+    <image wx:if="{{pass}}" class='result-seal' mode="aspectFit" src="/assets/images/pass_seal.png"></image>
+    <image wx:else class='result-seal' mode="aspectFit" src="/assets/images/unpass_seal.png"></image>
   </view>
-  <ft-iphone-bottom-adapter />
+  <ft-iphone-bottom-adapter bg="{{(userInfo || examInfo) ? '#fff' : 'transparent'}}" />
 </view>

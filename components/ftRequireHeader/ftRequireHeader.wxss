@@ -1,0 +1,18 @@
+/* components/ftRequireHeader/ftRequireHeader.wxss */
+@import "../../assets/styles/ft-icon.wxss";
+
+.wrapper{
+  display: flex;
+  line-height: 1.3;
+  align-items: center;
+}
+.c-icon-xinghao{
+  font-size: 16rpx;
+  color: #F24724;
+  margin-right: 12rpx;
+}
+.header-text{
+  font-size: 34rpx;
+  color: #333;
+  font-weight: bold;
+}

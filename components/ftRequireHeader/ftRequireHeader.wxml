@@ -1,0 +1,5 @@
+<!--components/ftRequireHeader/ftRequireHeader.wxml-->
+<view class='wrapper'>
+  <text wx:if="{{required}}" style="font-size:{{fontSize * 16 / 34}}rpx" class='ft-icon c-icon-xinghao'></text>
+  <text class='header-text' style="font-size:{{fontSize}}rpx">{{text}}</text>
+</view>

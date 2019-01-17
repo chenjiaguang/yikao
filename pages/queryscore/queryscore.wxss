@@ -79,10 +79,22 @@ page{
 .info-box{
   background: #fff;
   padding-bottom: 80rpx;
+  position: relative;
 }
-.user-info{
-  padding: 60rpx 94rpx 0 108rpx;
+.user-info, .exam-info{
+  padding: 60rpx 0 0;
 }
-.exam-info{
-  padding: 60rpx 94rpx 0 40rpx;
+.user-body{
+  padding: 0 94rpx 0 108rpx;
+}
+.exam-body{
+  padding: 0 94rpx 0 40rpx;
+}
+.result-seal{
+  display: block;
+  width: 288rpx;
+  height: 321rpx;
+  position: absolute;
+  right: 0;
+  bottom: 88rpx;
 }

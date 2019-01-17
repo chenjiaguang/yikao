@@ -1,1 +1,127 @@
 /* pages/apply/apply.wxss */
+@import '../../assets/styles/ft-icon.wxss';
+
+.area{
+  padding: 20rpx 0;
+}
+.block{
+  padding: 10rpx 32rpx;
+}
+.avatar-image{
+  display: block;
+  width: 222rpx;
+  height: 264rpx;
+  margin: 25rpx auto 0;
+}
+.tip-header{
+  padding: 8rpx 0;
+}
+.tip-content{
+  padding: 24rpx 0 10rpx;
+}
+.tip{
+  font-size: 24rpx;
+  line-height: 28rpx;
+  color: #FF3A30;
+}
+.header-wrapper{
+  padding: 5rpx 0;
+}
+.full-input{
+  height: 80rpx;
+  border: 1px solid #999999;
+  padding: 0 20rpx;
+  border-radius: 4rpx;
+  margin: 10rpx 0;
+  box-sizing: border-box;
+}
+.placeholder{
+  font-size: 30rpx;
+  color: #999;
+}
+.pinyin-input-box{
+  height: 100rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.gender-group{
+  display: flex;
+  align-items: center;
+}
+.gender{
+  display: flex;
+  align-items: center;
+  font-size: 30rpx;
+  line-height: 34rpx;
+  font-weight: bold;
+  padding: 0 25rpx;
+}
+.check-view{
+  width: 28rpx;
+  height: 28rpx;
+  box-sizing: border-box;
+  border: 3rpx solid rgba(0,0,0,0.25);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 16rpx;
+}
+.check-view.checked{
+  border-color: #FF3B30;
+}
+.check-view-center{
+  width: 12rpx;
+  height: 12rpx;
+  background: transparent;
+  border-radius: 50%;
+}
+.check-view-center.checked{
+  background: #FF3B30;
+}
+
+.birthday, .nationality, .volk, .cardtype, .major, .level, .last-get-item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80rpx;
+  box-sizing: border-box;
+  padding: 0 20rpx;
+  border: 1px solid #999999;
+  border-radius: 4rpx;
+  margin: 10rpx 0;
+}
+.birthday-text, .nationality-text, .volk-text, .cardtype-text, .major-text, .level-text, .last-get-item-text{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 30rpx;
+  line-height: 38rpx;
+  color: #333;
+}
+.birthday-text.unselected, .nationality-text.unselected, .volk-text.unselected, .cardtype-text.unselected, .major-text.unselected, .level-text.unselected, .last-get-item-text.unselected{
+  color: #999;
+}
+.last-get-certificate-body{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.last-get-item{
+  width: 156rpx;
+}
+.last-get-item-text{
+  font-size: 24rpx;
+}
+.major-certificate-image-wrapper, .basicmusic-certificate-image-wrapper{
+  padding: 10rpx 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.major-certificate-image-box, .basicmusic-certificate-image-box{
+  width: 486rpx;
+  height: 320rpx;
+  background: #EBEBEB;
+}

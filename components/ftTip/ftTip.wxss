@@ -1,0 +1,11 @@
+/* components/ftTip/ftTip.wxss */
+@import "../../assets/styles/ft-icon.wxss";
+
+.tip{
+  line-height: 1.3;
+  display: flex;
+}
+
+.text{
+  word-break: break-all;
+}

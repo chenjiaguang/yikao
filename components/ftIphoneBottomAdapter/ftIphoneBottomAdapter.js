@@ -12,7 +12,10 @@ Component({
    * 组件的属性列表
    */
   properties: {
-
+    bg: {
+      type: String,
+      value: 'transparent'
+    }
   },
 
   /**

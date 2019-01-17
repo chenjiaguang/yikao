@@ -1,2 +1,231 @@
 <!--pages/apply/apply.wxml-->
-<view class='page-apply'>报名页面</view>
+<view class='page-apply'>
+  <view class='area'>
+    <view class='block'>
+      <view class='header-wrapper'>
+        <ft-require-header required="{{true}}" text="考生照片：" />
+      </view>
+      <image class='avatar-image' mode="aspectFit" src="{{form.avatar.url || '/assets/images/default_photo.png'}}"></image>
+      <view style="margin:20rpx auto 40rpx;width:222rpx;height:66rpx">
+        <ft-button text="上传" font-size="{{28}}" bg="#108EE9" border-radius="4rpx" />
+      </view>
+      <ft-tip text="上传头像注意事项：" />
+      <view class='tip-content'>
+        <view class='tip'>1. 上传二寸的电子证件照片，建议626*413，大小不超过2M；</view>
+        <view class='tip'>2. 头像的有效格式为png，jpg，jepg，bmp中的一种。</view>
+      </view>
+    </view>
+  </view>
+  <view class='line-separator-h' style="width:686rpx;margin:0 auto"></view>
+  <view class='area'>
+    <view class='block'>
+      <view class='header-wrapper'>
+        <ft-require-header required="{{true}}" text="考生姓名：" />
+      </view>
+      <input class='full-input' placeholder-class="placeholder" placeholder='请填写真实姓名' value="{{form.name.value}}" data-ele="name" bindinput="inputChange" />
+      <view class='tip-header'>
+        <ft-tip text="填写时前后不要出现空格：" />
+      </view>
+    </view>
+    <view class='block'>
+      <view class='header-wrapper'>
+        <ft-require-header required="{{true}}" text="拼音或英文：" />
+      </view>
+      <view class='pinyin-input-box'>
+        <input class='full-input' style="flex:1;margin-right:20rpx" disabled="{{!editPinyin}}" focus="{{editPinyin}}" placeholder-class="placeholder" placeholder='拼音将自动填写' value="{{form.pinyin.value}}" data-ele="pinyin" bindinput="inputChange" />
+        <ft-button text="{{editPinyin ? '确定' : '校正'}}" width="180rpx" height="80rpx" font-size="{{30}}" bg="#108EE9" border-radius="4rpx" catchtap="changeEditPinyin" />
+      </view>
+    </view>
+    <view class='block' style="display:flex;align-items:center">
+      <view class='header-wrapper'>
+        <ft-require-header required="{{true}}" text="性别：" />
+      </view>
+      <radio-group class="gender-group" bindchange="genderChange">
+        <label class="gender">
+          <radio value="1" checked="{{false}}" style="display:none" />
+          <view class="check-view {{form.gender.value == '1' ? 'checked' : ''}}">
+            <view class="check-view-center {{form.gender.value == '1' ? 'checked' : ''}}"></view>
+          </view>
+          <text class='gender-text'>男</text>
+        </label>
+        <label class="gender">
+          <radio value="2" checked="{{false}}" style="display:none" />
+          <view class="check-view {{form.gender.value == '2' ? 'checked' : ''}}">
+            <view class="check-view-center {{form.gender.value == '2' ? 'checked' : ''}}"></view>
+          </view>
+          <text class='gender-text'>女</text>
+        </label>
+      </radio-group>
+    </view>
+    <view class='block'>
+      <view class='header-wrapper'>
+        <ft-require-header required="{{true}}" text="出生日期：" />
+      </view>
+      <picker data-ele="birthday" bindchange="pickerChange" mode="date" value="{{form.birthday.value || 0}}" star="1900-01-01" fields="day">
+        <view class="birthday">
+          <view class="birthday-text {{form.birthday.value ? '' : 'unselected'}}">{{form.birthday.value || '年-月-日'}}</view>
+          <text class='ft-icon c-icon-sanjiao' style="font-size:18rpx;color:#BFBFBF;margin:0 0 0 20rpx;line-height:18rpx"></text>
+        </view>
+      </picker>
+    </view>
+    <view class='block'>
+      <view class='header-wrapper'>
+        <ft-require-header required="{{true}}" text="国籍：" />
+      </view>
+      <picker data-ele="nationality" bindchange="pickerChange" mode="selector" range="{{nationalitys}}" range-key="text" value="{{form.nationality.idx}}">
+        <view class="nationality">
+          <view class="nationality-text {{form.nationality.value ? '' : 'unselected'}}">{{nationalitys[form.nationality.idx].text || '请选择国籍'}}</view>
+          <text class='ft-icon c-icon-sanjiao' style="font-size:18rpx;color:#BFBFBF;margin:0 0 0 20rpx;line-height:18rpx"></text>
+        </view>
+      </picker>
+    </view>
+    <view class='block'>
+      <view class='header-wrapper'>
+        <ft-require-header required="{{true}}" text="民族：" />
+      </view>
+      <picker data-ele="volk" bindchange="pickerChange" mode="selector" range="{{volks}}" range-key="text" value="{{form.volk.idx}}">
+        <view class="volk">
+          <view class="volk-text {{form.volk.value ? '' : 'unselected'}}">{{volks[form.volk.idx].text || '请选择民族'}}</view>
+          <text class='ft-icon c-icon-sanjiao' style="font-size:18rpx;color:#BFBFBF;margin:0 0 0 20rpx;line-height:18rpx"></text>
+        </view>
+      </picker>
+    </view>
+    <view class='block'>
+      <view class='header-wrapper'>
+        <ft-require-header required="{{true}}" text="证件类型：" />
+      </view>
+      <picker data-ele="cardtype" bindchange="pickerChange" mode="selector" range="{{cardtypes}}" range-key="text" value="{{form.cardtype.idx}}">
+        <view class="cardtype">
+          <view class="cardtype-text {{form.cardtype.value ? '' : 'unselected'}}">{{cardtypes[form.cardtype.idx].text || '请选择证件类型'}}</view>
+          <text class='ft-icon c-icon-sanjiao' style="font-size:18rpx;color:#BFBFBF;margin:0 0 0 20rpx;line-height:18rpx"></text>
+        </view>
+      </picker>
+    </view>
+    <view class='block'>
+      <view class='header-wrapper'>
+        <ft-require-header required="{{true}}" text="证件号码：" />
+      </view>
+      <input class='full-input' placeholder-class="placeholder" placeholder='请输入证件号码' value="{{form.cardnumber.value}}" data-ele="cardnumber" bindinput="inputChange" />
+    </view>
+    <view class='block'>
+      <view class='header-wrapper'>
+        <ft-require-header required="{{true}}" text="联系电话：" />
+      </view>
+      <input class='full-input' placeholder-class="placeholder" placeholder='请输入联系电话' value="{{form.phone.value}}" data-ele="phone" bindinput="inputChange" />
+    </view>
+  </view>
+  <view class='line-separator-h' style="width:686rpx;margin:0 auto"></view>
+  <view class='area'>
+    <view class='block'>
+      <view class='header-wrapper'>
+        <ft-require-header required="{{true}}" text="报考专业：" />
+      </view>
+      <picker data-ele="major" bindchange="pickerChange" mode="selector" range="{{majors}}" range-key="text" value="{{form.major.idx}}">
+        <view class="major">
+          <view class="major-text {{form.major.value ? '' : 'unselected'}}">{{majors[form.major.idx].text || '请选择报考专业'}}</view>
+          <text class='ft-icon c-icon-sanjiao' style="font-size:18rpx;color:#BFBFBF;margin:0 0 0 20rpx;line-height:18rpx"></text>
+        </view>
+      </picker>
+      <view class='tip-header'>
+        <ft-tip text="报考音乐基础知识专业的考生，考试曲目1、2都填写“无”" />
+      </view>
+    </view>
+    <view class='block'>
+      <view class='header-wrapper'>
+        <ft-require-header required="{{true}}" text="报考级别：" />
+      </view>
+      <picker data-ele="level" bindchange="pickerChange" mode="selector" range="{{levels}}" range-key="text" value="{{form.level.idx}}">
+        <view class="level">
+          <view class="level-text {{form.level.value ? '' : 'unselected'}}">{{levels[form.level.idx].text || '请选择报考级别'}}</view>
+          <text class='ft-icon c-icon-sanjiao' style="font-size:18rpx;color:#BFBFBF;margin:0 0 0 20rpx;line-height:18rpx"></text>
+        </view>
+      </picker>
+    </view>
+    <view class='block'>
+      <view class='header-wrapper'>
+        <ft-require-header required="{{true}}" text="最近一次获得同专业考级证书是：" />
+      </view>
+      <view class='last-get-certificate-body'>
+        <picker data-ele="lastgetyear" bindchange="pickerChange" mode="selector" range="{{years}}" range-key="text" value="{{form.lastgetcertificate.year.idx || 100}}">
+          <view class="last-get-item">
+            <view class="last-get-item-text {{form.lastgetcertificate.year.value ? '' : 'unselected'}}">{{years[form.lastgetcertificate.year.idx].text || '年'}}</view>
+            <text class='ft-icon c-icon-sanjiao' style="font-size:14rpx;color:#BFBFBF;margin:0;line-height:18rpx"></text>
+          </view>
+        </picker>
+        <picker data-ele="lastgetmonth" bindchange="pickerChange" mode="selector" range="{{months}}" range-key="text" value="{{form.lastgetcertificate.month.idx}}">
+          <view class="last-get-item">
+            <view class="last-get-item-text {{form.lastgetcertificate.month.value ? '' : 'unselected'}}">{{months[form.lastgetcertificate.month.idx].text || '月'}}</view>
+            <text class='ft-icon c-icon-sanjiao' style="font-size:14rpx;color:#BFBFBF;margin:0;line-height:18rpx"></text>
+          </view>
+        </picker>
+        <view class="last-get-item">
+          <view class="last-get-item-text {{majors[form.major.idx].value ? '' : 'unselected'}}">{{majors[form.major.idx].text || '专业'}}</view>
+        </view>
+        <view class="last-get-item">
+          <view class="last-get-item-text {{form.level.value ? '' : 'unselected'}}">{{levels[form.level.idx].text || '等级'}}</view>
+        </view>
+      </view>
+    </view>
+    <view class='block'>
+      <view class='header-wrapper'>
+        <ft-require-header required="{{true}}" text="上传专业证书：" />
+      </view>
+      <view class='major-certificate-image-wrapper'>
+        <view class='major-certificate-image-box'>
+          <image wx:if="{{form.majorCertificate.url}}" class='major-certificate-image' src="{{form.majorCertificate.url}}" mode="aspectFit" />
+          <view class='major-certificate-image-tip'></view>
+        </view>
+        <ft-button text="上传" width="180rpx" height="80rpx" font-size="{{30}}" bg="#108EE9" border-radius="4rpx" catchtap="uploadMajorCertificate" />
+      </view>
+      <view class='tip-header'>
+        <ft-tip text="凡报考10级的必须上传本考级机构同专业9级证书，报考演奏 文凭级的必须上传本考级机构同专业10级证书，方可报考" />
+      </view>
+    </view>
+    <view class='block'>
+      <view class='header-wrapper'>
+        <ft-require-header required="{{true}}" text="上传基本乐科证书：" />
+      </view>
+      <view class='basicmusic-certificate-image-wrapper'>
+        <view class='basicmusic-certificate-image-box'>
+          <image wx:if="{{form.basicMusicCertificate.url}}" class='basicmusic-certificate-image' src="{{form.basicMusicCertificate.url}}" mode="aspectFit" />
+          <view class='basicmusic-certificate-image-tip'></view>
+        </view>
+        <ft-button text="上传" width="180rpx" height="80rpx" font-size="{{30}}" bg="#108EE9" border-radius="4rpx" catchtap="uploadBasicMusicCertificate" />
+      </view>
+      <view class='tip-header'>
+        <ft-tip text="演唱演奏3~5级必须上传一级基本乐科证书；6~9级必须上传 二级基本乐科证书；10级或以上必须上传三级基本乐科证书" />
+      </view>
+    </view>
+    <view class='block'>
+      <view class='header-wrapper'>
+        <ft-require-header required="{{true}}" text="考试曲目1：" />
+      </view>
+      <input class='full-input' value="{{form.bent1.value}}" data-ele="bent1" bindinput="inputChange" />
+    </view>
+    <view class='block'>
+      <view class='header-wrapper'>
+        <ft-require-header required="{{true}}" text="考试曲目2：" />
+      </view>
+      <input class='full-input' value="{{form.bent2.value}}" data-ele="bent2" bindinput="inputChange" />
+    </view>
+    <view class='block'>
+      <view class='header-wrapper'>
+        <ft-require-header required="{{false}}" text="考试曲目3：" />
+      </view>
+      <input class='full-input' value="{{form.bent3.value}}" data-ele="bent3" bindinput="inputChange" />
+    </view>
+    <view class='block'>
+      <view class='header-wrapper'>
+        <ft-require-header required="{{false}}" text="考试曲目4：" />
+      </view>
+      <input class='full-input' value="{{form.bent4.value}}" data-ele="bent4" bindinput="inputChange" />
+    </view>
+    <view class='block'>
+      <view class='header-wrapper'>
+        <ft-require-header required="{{false}}" text="考试曲目5：" />
+      </view>
+      <input class='full-input' value="{{form.bent5.value}}" data-ele="bent5" bindinput="inputChange" />
+    </view>
+  </view>
+  <view class='line-separator-h' style="width:686rpx;margin:0 auto"></view>
+</view>

@@ -1,2 +1,2 @@
 <!--components/iphoneBottomAdapter/iphoneBottomAdapter.wxml-->
-<view wx:if="{{extraBottom}}" class='iphone-extra-bottom'></view>
+<view wx:if="{{extraBottom}}" style="background:{{bg || 'transparent'}}" class='iphone-extra-bottom'></view>

@@ -82,9 +82,10 @@
 					"query": ""
 				},
 				{
-					"id": -1,
-					"name": "成绩查询",
-					"pathName": "pages/queryscore/queryscore"
+					"id": 7,
+					"name": "报名页面",
+					"pathName": "pages/apply/apply",
+					"query": ""
 				}
 			]
 		}

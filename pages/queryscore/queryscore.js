@@ -79,7 +79,8 @@ Page({
     selectedLevel: null,
     submitting: false,
     userInfo: null,
-    examInfo: null
+    examInfo: null,
+    pass: false
   },
 
   /**
@@ -207,6 +208,7 @@ Page({
         { title: '发证时间', content: certificate_time },
         { title: '证书编号', content: certification_number }
       ]
+      _obj.pass = true // 通过考试
       this.setData(_obj)
     }, 500)
     // 模拟获取不到考场信息
