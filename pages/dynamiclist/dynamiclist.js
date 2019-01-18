@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    type: '',
+    cateid: '',
     loaded: false,
     loading: false,
     page: {},
@@ -49,13 +49,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let {type, title} = options
-    console.log(type, title)
+    let {cateid, title} = options
+    console.log(cateid, title)
     if (title) {
       wx.setNavigationBarTitle({ title})
     }
-    this.setData({type})
-    this.fetchlist(type, 0)
+    this.setData({cateid})
+    this.fetchlist(cateid, 0)
   },
 
   /**
@@ -107,12 +107,12 @@ Page({
 
   },
 
-  fetchlist: function (type, pn) {
+  fetchlist: function (cateid, pn) {
     this.setData({
       loading: true
     })
     setTimeout(() => {
-      if (type === 'dynamic') { // 考级动态
+      if (cateid.toString() === '1') { // 考级动态
         this.setData({
           loaded: true,
           loading: false,
@@ -144,7 +144,7 @@ Page({
             pn: 0
           }
         })
-      } else if (type === 'course') { // 师资培训
+      } else if (cateid.toString() === '2') { // 师资培训
         this.setData({
           loaded: true,
           loading: false,
@@ -176,7 +176,7 @@ Page({
             pn: 0
           }
         })
-      } else if (type === 'perform') { // 艺术团表演
+      } else if (cateid.toString() === '3') { // 艺术团表演
         this.setData({
           loaded: true,
           loading: false,
@@ -208,7 +208,7 @@ Page({
             pn: 0
           }
         })
-      } else if (type === 'race') { // 大赛
+      } else if (cateid.toString() === '4') { // 大赛
         this.setData({
           loaded: true,
           loading: false,

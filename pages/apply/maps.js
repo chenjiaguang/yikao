@@ -113,6 +113,10 @@ const volks = [
   {
     value: '11',
     text: '满族'
+  },
+  {
+    value: 'none',
+    text: '无'
   }
 ]
 
@@ -145,12 +149,8 @@ const majors = [
         text: '3级'
       },
       {
-        value: '1',
+        value: '4',
         text: '4级'
-      },
-      {
-        value: '5',
-        text: '5级'
       },
       {
         value: '5',
@@ -179,12 +179,8 @@ const majors = [
         text: '3级'
       },
       {
-        value: '1',
+        value: '4',
         text: '4级'
-      },
-      {
-        value: '5',
-        text: '5级'
       },
       {
         value: '5',
@@ -225,12 +221,8 @@ const majors = [
         text: '3级'
       },
       {
-        value: '1',
+        value: '4',
         text: '4级'
-      },
-      {
-        value: '5',
-        text: '5级'
       },
       {
         value: '5',
@@ -271,12 +263,8 @@ const majors = [
         text: '3级'
       },
       {
-        value: '1',
+        value: '4',
         text: '4级'
-      },
-      {
-        value: '5',
-        text: '5级'
       },
       {
         value: '5',
@@ -317,12 +305,8 @@ const majors = [
         text: '3级'
       },
       {
-        value: '1',
+        value: '4',
         text: '4级'
-      },
-      {
-        value: '5',
-        text: '5级'
       },
       {
         value: '5',
@@ -363,12 +347,8 @@ const majors = [
         text: '3级'
       },
       {
-        value: '1',
+        value: '4',
         text: '4级'
-      },
-      {
-        value: '5',
-        text: '5级'
       },
       {
         value: '5',
@@ -409,12 +389,8 @@ const majors = [
         text: '3级'
       },
       {
-        value: '1',
+        value: '4',
         text: '4级'
-      },
-      {
-        value: '5',
-        text: '5级'
       },
       {
         value: '5',
@@ -455,12 +431,8 @@ const majors = [
         text: '3级'
       },
       {
-        value: '1',
+        value: '4',
         text: '4级'
-      },
-      {
-        value: '5',
-        text: '5级'
       },
       {
         value: '5',
@@ -501,12 +473,8 @@ const majors = [
         text: '3级'
       },
       {
-        value: '1',
+        value: '4',
         text: '4级'
-      },
-      {
-        value: '5',
-        text: '5级'
       },
       {
         value: '5',
@@ -551,12 +519,8 @@ const majors = [
         text: '3级'
       },
       {
-        value: '1',
+        value: '4',
         text: '4级'
-      },
-      {
-        value: '5',
-        text: '5级'
       },
       {
         value: '5',
@@ -601,12 +565,8 @@ const majors = [
         text: '3级'
       },
       {
-        value: '1',
+        value: '4',
         text: '4级'
-      },
-      {
-        value: '5',
-        text: '5级'
       },
       {
         value: '5',
@@ -655,12 +615,8 @@ const majors = [
         text: '3级'
       },
       {
-        value: '1',
+        value: '4',
         text: '4级'
-      },
-      {
-        value: '5',
-        text: '5级'
       },
       {
         value: '5',
@@ -709,12 +665,8 @@ const majors = [
         text: '3级'
       },
       {
-        value: '1',
+        value: '4',
         text: '4级'
-      },
-      {
-        value: '5',
-        text: '5级'
       },
       {
         value: '5',

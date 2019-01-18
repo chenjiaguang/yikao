@@ -14,170 +14,199 @@ Page({
     cardtypes: maps.cardtypes,
     majors: maps.majors,
     levels: [],
+    continuitys: [],
     years: maps.years,
     months: maps.months,
     editPinyin: false,
     form: {
       avatar: {
         value: '',
-        require: true,
+        required: true,
         valid: false,
         url: '',
-        id: ''
+        id: '',
+        tip: '请上传头像'
       },
       name: {
-        require: true,
+        required: true,
         value: '',
-        valid: false
+        valid: false,
+        tip: '请填写姓名'
       },
       pinyin: {
-        require: true,
+        required: true,
         value: '',
-        valid: false
+        valid: false,
+        tip: '请填写拼音或英文'
       },
       gender: {
-        require: true,
+        required: true,
         value: '',
-        valid: false
+        valid: false,
+        tip: '请选择性别'
       },
       birthday: {
-        require: true,
+        required: true,
         value: '',
         text: '',
-        valid: false
+        valid: false,
+        tip: '请选择出生日期'
       },
       nationality: { // 国籍
-        require: true,
+        required: true,
         idx: 0,
         value: '1',
         text: '中国',
-        valid: true
+        valid: true,
+        tip: '请选择国籍'
       },
       volk: { // 民族
-        require: true,
+        required: true,
         idx: 0,
         value: '1',
         text: '汉族',
-        valid: true
+        valid: true,
+        tip: '请选择民族'
       },
       cardtype: { // 证件类型
-        require: true,
+        required: true,
         idx: 0,
         value: '1',
         text: '身份证',
-        valid: true
+        valid: true,
+        tip: '请选择证件类型'
       },
       cardnumber: { // 证件号码
-        require: true,
+        required: true,
         value: '',
-        valid: false
+        valid: false,
+        tip: '请填写证件号码'
       },
       phone: {
-        require: true,
+        required: true,
         value: '',
-        valid: false
+        valid: false,
+        tip: '请填写联系电话'
       },
       major: {
-        require: true,
+        required: true,
         idx: '',
         value: '',
         text: '',
-        valid: false
+        valid: false,
+        tip: '请选择报考专业'
       },
       level: {
-        require: true,
+        required: true,
         idx: '',
         value: '',
         text: '',
-        valid: false
+        valid: false,
+        tip: '请选择报考级别'
       },
       continuity: { // 是否连考
-        require: false,
+        required: false,
+        idx: '',
         value: '',
         text: '',
-        valid: false
+        valid: false,
+        tip: '请选择是否连考'
       },
       lastgetcertificate: {
-        require: true,
+        required: true,
         year: {
-          require: true,
+          required: true,
           idx: '',
           value: '',
           text: '',
-          valid: false
+          valid: false,
+          tip: '请选择年份'
         },
         month: {
-          require: true,
+          required: true,
           idx: '',
           value: '',
           text: '',
-          valid: false
+          valid: false,
+          tip: '请选择月份'
         },
         valid: false
       },
-      majorCertificate: { // 专业证书
+      majorcertificate: { // 专业证书
         value: '',
-        require: true,
+        required: false,
         valid: false,
         url: '',
-        id: ''
+        id: '',
+        tip: '请上传专业证书'
       },
-      basicMusicCertificate: { // 基本乐科证书
+      basicmusiccertificate: { // 基本乐科证书
         value: '',
-        require: true,
+        required: false,
         valid: false,
         url: '',
-        id: ''
+        id: '',
+        tip: '请上传基本乐科证书'
       },
       bent1: { // 曲目1
-        require: true,
+        required: true,
         value: '',
-        valid: false
+        valid: false,
+        tip: '请填写考试曲目1'
       },
       bent2: {
-        require: true,
+        required: true,
         value: '',
-        valid: false
+        valid: false,
+        tip: '请填写考试曲目2'
       },
       bent3: {
-        require: false,
+        required: false,
         value: '',
-        valid: false
+        valid: false,
+        tip: '请填写考试曲目3'
       },
       bent4: {
-        require: false,
+        required: false,
         value: '',
-        valid: false
+        valid: false,
+        tip: '请填写考试曲目4'
       },
       bent5: {
-        require: false,
+        required: false,
         value: '',
-        valid: false
+        valid: false,
+        tip: '请填写考试曲目5'
       },
       contact: { // 联系人
-        require: true,
+        required: true,
         value: '',
-        valid: false
+        valid: false,
+        tip: '请填写联系人姓名'
       },
-      phone: { // 联系电话
-        require: true,
+      contactphone: { // 联系电话
+        required: true,
         value: '',
-        valid: false
+        valid: false,
+        tip: '请填写联系人电话'
       },
       fillter: { // 填表人
-        require: true,
+        required: true,
         value: '',
-        valid: false
+        valid: false,
+        tip: '请填写填表人姓名'
       },
       teacher: { // 指导老师
-        require: true,
+        required: true,
         value: '',
-        valid: false
+        valid: false,
+        tip: '请填写老师姓名'
       },
-      teacherPhone: { // 老师电话
-        require: true,
+      teacherphone: { // 老师电话
+        required: true,
         value: '',
-        valid: false
+        valid: false,
+        tip: '请填写老师电话'
       }
     }
   },
@@ -186,7 +215,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getForm()
   },
 
   /**
@@ -263,25 +292,10 @@ Page({
         'form.pinyin.value': pinyin,
         'form.pinyin.valid': pinyin ? true : false
       })
-    } else if (ele === 'pinyin') {
-      this.setData({
-        'form.pinyin.value': value,
-        'form.pinyin.valid': value ? true : false
-      })
-    } else if (ele === 'cardnumber') {
-      this.setData({
-        'form.cardnumber.value': value,
-        'form.cardnumber.valid': value ? true : false
-      })
-    } else if (ele === 'phone') {
-      this.setData({
-        'form.phone.value': value,
-        'form.phone.valid': value ? true : false
-      })
-    } else if (ele === 'bent1' || ele === 'bent2' || ele === 'bent3' || ele === 'bent4' || ele === 'bent5') { // 考试曲目
+    } else if (ele === 'pinyin' || ele === 'cardnumber' || ele === 'phone' || ele === 'bent1' || ele === 'bent2' || ele === 'bent3' || ele === 'bent4' || ele === 'bent5' || ele === 'contact' || ele === 'contactphone' || ele === 'fillter' || ele === 'teacher' || ele === 'teacherphone') { // 拼音、证件号码、手机号、考试曲目、联系人、联系人电话、填表人、指导老师、指导老师电话
       let obj = {}
-      obj['form[' + ele + ']value'] = value
-      obj['form[' + ele + ']valid'] = value ? true : false
+      obj['form.' + ele + '.value'] = value
+      obj['form.' + ele + '.valid'] = value ? true : false
       this.setData(obj)
     }
   },
@@ -358,14 +372,48 @@ Page({
       })
     } else if (ele === 'level') {
       let { levels} = this.data
-      if (!levels || !levels[0]) { // 等级信息不存在时
-        return false
+      let major = this.data.form.major
+      let continuitys = []
+      if (major.text === '基本乐科' && parseInt(value) !== (levels.length - 1)) { // 判断是否基本乐科、且不是最后一级
+        continuitys = [
+          {
+            value: '0',
+            text: '否'
+          },
+          {
+            value: parseInt(levels[value].value) + 1,
+            text: parseInt(levels[value].value) + 1 + '级'
+          }
+        ]
+      }
+      let needMajorCer = false
+      let needBasicMusicCer = false
+      if (major.text !== '基本乐科' && parseInt(value) !== 0) { // 演唱演奏、且2级以上，显示“上传专业证书”，“上传基本乐科证书”
+        needMajorCer = true
+      }
+      if ((major.text !== '基本乐科' && parseInt(value) > 1) || (major.text === '基本乐科' && parseInt(value) > 0)) { // 非基本乐科3级及以上、基本乐科2级及以上
+        needBasicMusicCer = true
       }
       this.setData({
+        continuitys,
+        'form.continuity.idx': '',
+        'form.continuity.value': '',
+        'form.continuity.text': '',
+        'form.continuity.valid': false,
         'form.level.idx': value,
         'form.level.value': levels[value].value,
         'form.level.text': levels[value].text,
-        'form.level.valid': levels[value].value ? true : false
+        'form.level.valid': levels[value].value ? true : false,
+        'form.majorcertificate.required': needMajorCer,
+        'form.basicmusiccertificate.required': needBasicMusicCer
+      })
+    } else if (ele === 'continuity') {
+      let { continuitys } = this.data
+      this.setData({
+        'form.continuity.idx': value,
+        'form.continuity.value': continuitys[value].value,
+        'form.continuity.text': continuitys[value].text,
+        'form.continuity.valid': continuitys[value].value ? true : false
       })
     } else if (ele === 'lastgetyear') { // 最近一次获得同专业考级证书年份
       let { years } = this.data
@@ -387,11 +435,89 @@ Page({
     
   },
 
+  scrollToBlock: function (id) {
+    const query = wx.createSelectorQuery()
+    let q = '#' + id
+    query.select(q).boundingClientRect()
+    query.selectViewport().scrollOffset()
+    query.exec(function (res) {
+      const top1 = res[0].top // q节点的上边界坐标
+      const top2 = res[1].scrollTop // 显示区域的竖直滚动位置
+      let scrollTop = top1 + top2
+      wx.pageScrollTo({ 
+        scrollTop
+      })
+    })
+  },
+
+  getFormData: function () {
+    let form = JSON.parse(JSON.stringify(this.data.form))
+    for (let key in form) {
+      console.log('key', key)
+      if (form[key].required && !form[key].valid) { // 必填且无效
+        this.scrollToBlock(key)
+        if (form[key].tip) {
+          wx.showToast({
+            title: form[key].tip,
+            icon: 'none'
+          })
+        }
+        break
+      }
+    }
+  },
+
+  uploadAvatar: function () {
+    console.log('uploadAvatar')
+  },
+
   uploadMajorCertificate: function () {
     console.log('uploadMajorCertificate')
   },
 
   uploadBasicMusicCertificate: function () {
     console.log('uploadBasicMusicCertificate')
+  },
+
+  saveTap: function () {
+    console.log('点击了保存')
+    this.saveForm()
+  },
+
+  saveForm: function () {
+    let { form } = this.data
+    let _form = JSON.parse(JSON.stringify(form))
+    let applyForm = {}
+    for (let key1 in _form) {
+      applyForm[key1] = {}
+      for (let key2 in _form[key1]) {
+        if (key2 === 'required' || key2 === 'valid' || key2 === 'value' || key2 === 'idx' || key2 === 'id' || key2 === 'text' || key2 === 'url' || key2 === 'month' || key2 === 'year') {
+          applyForm[key1][key2] = _form[key1][key2]
+        }
+      }
+    }
+    applyForm = JSON.stringify(applyForm)
+    wx.setStorageSync('applyForm', applyForm)
+  },
+
+  getForm: function () {
+    let applyForm = wx.getStorageSync('applyForm') ? JSON.parse(wx.getStorageSync('applyForm')) : {}
+    let {form} = this.data
+    let _form = JSON.parse(JSON.stringify(form))
+    let newForm = {}
+    for (let key in _form) {
+      newForm[key] = Object.assign({}, _form[key], applyForm[key])
+    }
+    console.log('getForm', _form, newForm)
+    if (applyForm) {
+      this.setData({
+        form: newForm
+      })
+    }
+  },
+
+  submitTap: function () {
+    console.log('点击了提交')
+    this.getFormData()
   }
 })

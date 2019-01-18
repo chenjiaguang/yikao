@@ -16,7 +16,7 @@
     </view>
     <view class='tip'>
     <text class='ft-icon c-icon-tip' style="font-size:30rpx;color:#FF3B30;line-height:32rpx;margin-right:10rpx;"></text>
-    <text class='tip-text'>进行缴费后，考试费用不再退回，报名信息不再修改</text>
+    <text class='tip-text'>进行缴费后，考试费用不再退回</text>
     </view>
   </view>
   <view class='pay-btn-wrapper'>

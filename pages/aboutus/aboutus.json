@@ -1,0 +1,11 @@
+{
+  "navigationBarBackgroundColor": "#67462B",
+  "navigationBarTitleText": "关于我们",
+  "backgroundColor": "#F4F4F4",
+  "backgroundTextStyle": "dark",
+  "navigationBarTextStyle": "white",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "ft-iphone-bottom-adapter": "../../components/ftIphoneBottomAdapter/ftIphoneBottomAdapter"
+  }
+}

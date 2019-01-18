@@ -11,7 +11,7 @@
         <view class='enroll-content-text'>报名单号：{{enroll.enroll_no}}</view>
         <view class='enroll-content-text'>承办机构：{{enroll.institution}}</view>
         <view class='enroll-content-text'>考试编号：{{enroll.examination_no}}</view>
-        <view class='enroll-content-text'>申请时间：{{enroll.enroll_time}}</view>
+        <view class='enroll-content-text'>报名时间：{{enroll.enroll_time}}</view>
         <view class='line-separator-h' style="width:686rpx;margin:28rpx 32rpx 0"></view>
         <ft-entrance title="查看详情" title-style="font-size:28rpx;color:#67462B" data-enroll="{{enroll}}" catchtap="viewDetail" />
       </view>

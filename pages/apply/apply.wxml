@@ -1,13 +1,13 @@
 <!--pages/apply/apply.wxml-->
 <view class='page-apply'>
   <view class='area'>
-    <view class='block'>
+    <view class='block' id="avatar">
       <view class='header-wrapper'>
-        <ft-require-header required="{{true}}" text="考生照片：" />
+        <ft-require-header required="{{form.avatar.required}}" text="考生照片：" />
       </view>
       <image class='avatar-image' mode="aspectFit" src="{{form.avatar.url || '/assets/images/default_photo.png'}}"></image>
       <view style="margin:20rpx auto 40rpx;width:222rpx;height:66rpx">
-        <ft-button text="上传" font-size="{{28}}" bg="#108EE9" border-radius="4rpx" />
+        <ft-button text="上传" font-size="{{28}}" bg="#108EE9" border-radius="4rpx" catchtap="uploadAvatar" />
       </view>
       <ft-tip text="上传头像注意事项：" />
       <view class='tip-content'>
@@ -18,27 +18,27 @@
   </view>
   <view class='line-separator-h' style="width:686rpx;margin:0 auto"></view>
   <view class='area'>
-    <view class='block'>
+    <view class='block' id="name">
       <view class='header-wrapper'>
-        <ft-require-header required="{{true}}" text="考生姓名：" />
+        <ft-require-header required="{{form.name.required}}" text="考生姓名：" />
       </view>
       <input class='full-input' placeholder-class="placeholder" placeholder='请填写真实姓名' value="{{form.name.value}}" data-ele="name" bindinput="inputChange" />
       <view class='tip-header'>
-        <ft-tip text="填写时前后不要出现空格：" />
+        <ft-tip text="填写时前后不要出现空格" />
       </view>
     </view>
-    <view class='block'>
+    <view class='block' id="pinyin">
       <view class='header-wrapper'>
-        <ft-require-header required="{{true}}" text="拼音或英文：" />
+        <ft-require-header required="{{form.pinyin.required}}" text="拼音或英文：" />
       </view>
       <view class='pinyin-input-box'>
         <input class='full-input' style="flex:1;margin-right:20rpx" disabled="{{!editPinyin}}" focus="{{editPinyin}}" placeholder-class="placeholder" placeholder='拼音将自动填写' value="{{form.pinyin.value}}" data-ele="pinyin" bindinput="inputChange" />
         <ft-button text="{{editPinyin ? '确定' : '校正'}}" width="180rpx" height="80rpx" font-size="{{30}}" bg="#108EE9" border-radius="4rpx" catchtap="changeEditPinyin" />
       </view>
     </view>
-    <view class='block' style="display:flex;align-items:center">
+    <view class='block' id="gender" style="display:flex;align-items:center">
       <view class='header-wrapper'>
-        <ft-require-header required="{{true}}" text="性别：" />
+        <ft-require-header required="{{form.gender.required}}" text="性别：" />
       </view>
       <radio-group class="gender-group" bindchange="genderChange">
         <label class="gender">
@@ -57,9 +57,9 @@
         </label>
       </radio-group>
     </view>
-    <view class='block'>
+    <view class='block' id="birthday">
       <view class='header-wrapper'>
-        <ft-require-header required="{{true}}" text="出生日期：" />
+        <ft-require-header required="{{form.birthday.required}}" text="出生日期：" />
       </view>
       <picker data-ele="birthday" bindchange="pickerChange" mode="date" value="{{form.birthday.value || 0}}" star="1900-01-01" fields="day">
         <view class="birthday">
@@ -68,9 +68,9 @@
         </view>
       </picker>
     </view>
-    <view class='block'>
+    <view class='block' id="nationality">
       <view class='header-wrapper'>
-        <ft-require-header required="{{true}}" text="国籍：" />
+        <ft-require-header required="{{form.nationality.required}}" text="国籍：" />
       </view>
       <picker data-ele="nationality" bindchange="pickerChange" mode="selector" range="{{nationalitys}}" range-key="text" value="{{form.nationality.idx}}">
         <view class="nationality">
@@ -79,9 +79,9 @@
         </view>
       </picker>
     </view>
-    <view class='block'>
+    <view class='block' id="volk">
       <view class='header-wrapper'>
-        <ft-require-header required="{{true}}" text="民族：" />
+        <ft-require-header required="{{form.volk.required}}" text="民族：" />
       </view>
       <picker data-ele="volk" bindchange="pickerChange" mode="selector" range="{{volks}}" range-key="text" value="{{form.volk.idx}}">
         <view class="volk">
@@ -90,9 +90,9 @@
         </view>
       </picker>
     </view>
-    <view class='block'>
+    <view class='block' id="cardtype">
       <view class='header-wrapper'>
-        <ft-require-header required="{{true}}" text="证件类型：" />
+        <ft-require-header required="{{form.cardtype.required}}" text="证件类型：" />
       </view>
       <picker data-ele="cardtype" bindchange="pickerChange" mode="selector" range="{{cardtypes}}" range-key="text" value="{{form.cardtype.idx}}">
         <view class="cardtype">
@@ -101,13 +101,13 @@
         </view>
       </picker>
     </view>
-    <view class='block'>
+    <view class='block' id="cardnumber">
       <view class='header-wrapper'>
-        <ft-require-header required="{{true}}" text="证件号码：" />
+        <ft-require-header required="{{form.cardnumber.required}}" text="证件号码：" />
       </view>
       <input class='full-input' placeholder-class="placeholder" placeholder='请输入证件号码' value="{{form.cardnumber.value}}" data-ele="cardnumber" bindinput="inputChange" />
     </view>
-    <view class='block'>
+    <view class='block' id="phone">
       <view class='header-wrapper'>
         <ft-require-header required="{{true}}" text="联系电话：" />
       </view>
@@ -116,9 +116,9 @@
   </view>
   <view class='line-separator-h' style="width:686rpx;margin:0 auto"></view>
   <view class='area'>
-    <view class='block'>
+    <view class='block' id="major">
       <view class='header-wrapper'>
-        <ft-require-header required="{{true}}" text="报考专业：" />
+        <ft-require-header required="{{form.major.required}}" text="报考专业：" />
       </view>
       <picker data-ele="major" bindchange="pickerChange" mode="selector" range="{{majors}}" range-key="text" value="{{form.major.idx}}">
         <view class="major">
@@ -130,20 +130,36 @@
         <ft-tip text="报考音乐基础知识专业的考生，考试曲目1、2都填写“无”" />
       </view>
     </view>
-    <view class='block'>
+    <view class='block' id="level">
       <view class='header-wrapper'>
-        <ft-require-header required="{{true}}" text="报考级别：" />
+        <ft-require-header required="{{form.level.required}}" text="报考级别：" />
       </view>
-      <picker data-ele="level" bindchange="pickerChange" mode="selector" range="{{levels}}" range-key="text" value="{{form.level.idx}}">
+      <picker data-ele="level" disabled="{{!levels || !levels[0]}}" bindchange="pickerChange" mode="selector" range="{{levels}}" range-key="text" value="{{form.level.idx}}">
         <view class="level">
           <view class="level-text {{form.level.value ? '' : 'unselected'}}">{{levels[form.level.idx].text || '请选择报考级别'}}</view>
           <text class='ft-icon c-icon-sanjiao' style="font-size:18rpx;color:#BFBFBF;margin:0 0 0 20rpx;line-height:18rpx"></text>
         </view>
       </picker>
     </view>
-    <view class='block'>
+    <view hidden="{{!continuitys || !continuitys[0]}}" class='block' id="continuity">
+      <view style="display:flex;align-items:center">
+        <view class='header-wrapper'>
+          <ft-require-header required="{{form.continuity.required}}" text="是否连考：" />
+        </view>
+        <picker style="flex:1" data-ele="continuity" disabled="{{!continuitys || !continuitys[0]}}" bindchange="pickerChange" mode="selector" range="{{continuitys}}" range-key="text" value="{{form.continuity.idx}}">
+          <view class="continuity">
+            <view class="continuity-text {{form.continuity.value ? '' : 'unselected'}}">{{continuitys[form.continuity.idx].text || '请选择是否连考'}}</view>
+            <text class='ft-icon c-icon-sanjiao' style="font-size:18rpx;color:#BFBFBF;margin:0 0 0 20rpx;line-height:18rpx"></text>
+          </view>
+        </picker>
+      </view>
+      <view class='tip-header'>
+        <ft-tip text="连考表示同时报考两个连续级别" />
+      </view>
+    </view>
+    <view class='block' id="lastgetcertificate">
       <view class='header-wrapper'>
-        <ft-require-header required="{{true}}" text="最近一次获得同专业考级证书是：" />
+        <ft-require-header required="{{form.lastgetcertificate.required}}" text="最近一次获得同专业考级证书是：" />
       </view>
       <view class='last-get-certificate-body'>
         <picker data-ele="lastgetyear" bindchange="pickerChange" mode="selector" range="{{years}}" range-key="text" value="{{form.lastgetcertificate.year.idx || 100}}">
@@ -152,7 +168,7 @@
             <text class='ft-icon c-icon-sanjiao' style="font-size:14rpx;color:#BFBFBF;margin:0;line-height:18rpx"></text>
           </view>
         </picker>
-        <picker data-ele="lastgetmonth" bindchange="pickerChange" mode="selector" range="{{months}}" range-key="text" value="{{form.lastgetcertificate.month.idx}}">
+        <picker data-ele="lastgetmonth" bindchange="pickerChange" mode="selector" range="{{months}}" range-key="text" value="{{form.lastgetcertificate.month.idx || 12}}">
           <view class="last-get-item">
             <view class="last-get-item-text {{form.lastgetcertificate.month.value ? '' : 'unselected'}}">{{months[form.lastgetcertificate.month.idx].text || '月'}}</view>
             <text class='ft-icon c-icon-sanjiao' style="font-size:14rpx;color:#BFBFBF;margin:0;line-height:18rpx"></text>
@@ -166,28 +182,28 @@
         </view>
       </view>
     </view>
-    <view class='block'>
+    <view hidden="{{!form.majorcertificate.required}}" class='block' id="majorcertificate">
       <view class='header-wrapper'>
-        <ft-require-header required="{{true}}" text="上传专业证书：" />
+        <ft-require-header required="{{form.majorcertificate.required}}" text="上传专业证书：" />
       </view>
       <view class='major-certificate-image-wrapper'>
         <view class='major-certificate-image-box'>
-          <image wx:if="{{form.majorCertificate.url}}" class='major-certificate-image' src="{{form.majorCertificate.url}}" mode="aspectFit" />
+          <image wx:if="{{form.majorcertificate.url}}" class='major-certificate-image' src="{{form.majorcertificate.url}}" mode="aspectFit" />
           <view class='major-certificate-image-tip'></view>
         </view>
         <ft-button text="上传" width="180rpx" height="80rpx" font-size="{{30}}" bg="#108EE9" border-radius="4rpx" catchtap="uploadMajorCertificate" />
       </view>
       <view class='tip-header'>
-        <ft-tip text="凡报考10级的必须上传本考级机构同专业9级证书，报考演奏 文凭级的必须上传本考级机构同专业10级证书，方可报考" />
+        <ft-tip text="凡报考演唱演奏2级或以上的，均需上传同专业上一级别证书" />
       </view>
     </view>
-    <view class='block'>
+    <view hidden="{{!form.basicmusiccertificate.required}}" class='block'>
       <view class='header-wrapper'>
-        <ft-require-header required="{{true}}" text="上传基本乐科证书：" />
+        <ft-require-header required="{{form.basicmusiccertificate.required}}" text="上传基本乐科证书：" />
       </view>
       <view class='basicmusic-certificate-image-wrapper'>
         <view class='basicmusic-certificate-image-box'>
-          <image wx:if="{{form.basicMusicCertificate.url}}" class='basicmusic-certificate-image' src="{{form.basicMusicCertificate.url}}" mode="aspectFit" />
+          <image wx:if="{{form.basicmusiccertificate.url}}" class='basicmusic-certificate-image' src="{{form.basicmusiccertificate.url}}" mode="aspectFit" />
           <view class='basicmusic-certificate-image-tip'></view>
         </view>
         <ft-button text="上传" width="180rpx" height="80rpx" font-size="{{30}}" bg="#108EE9" border-radius="4rpx" catchtap="uploadBasicMusicCertificate" />
@@ -198,34 +214,88 @@
     </view>
     <view class='block'>
       <view class='header-wrapper'>
-        <ft-require-header required="{{true}}" text="考试曲目1：" />
+        <ft-require-header required="{{form.bent1.required}}" text="考试曲目1：" />
       </view>
       <input class='full-input' value="{{form.bent1.value}}" data-ele="bent1" bindinput="inputChange" />
     </view>
     <view class='block'>
       <view class='header-wrapper'>
-        <ft-require-header required="{{true}}" text="考试曲目2：" />
+        <ft-require-header required="{{form.bent2.required}}" text="考试曲目2：" />
       </view>
       <input class='full-input' value="{{form.bent2.value}}" data-ele="bent2" bindinput="inputChange" />
     </view>
     <view class='block'>
       <view class='header-wrapper'>
-        <ft-require-header required="{{false}}" text="考试曲目3：" />
+        <ft-require-header required="{{form.bent3.required}}" text="考试曲目3：" />
       </view>
       <input class='full-input' value="{{form.bent3.value}}" data-ele="bent3" bindinput="inputChange" />
     </view>
     <view class='block'>
       <view class='header-wrapper'>
-        <ft-require-header required="{{false}}" text="考试曲目4：" />
+        <ft-require-header required="{{form.bent4.required}}" text="考试曲目4：" />
       </view>
       <input class='full-input' value="{{form.bent4.value}}" data-ele="bent4" bindinput="inputChange" />
     </view>
     <view class='block'>
       <view class='header-wrapper'>
-        <ft-require-header required="{{false}}" text="考试曲目5：" />
+        <ft-require-header required="{{form.bent5.required}}" text="考试曲目5：" />
       </view>
       <input class='full-input' value="{{form.bent5.value}}" data-ele="bent5" bindinput="inputChange" />
     </view>
   </view>
   <view class='line-separator-h' style="width:686rpx;margin:0 auto"></view>
+  <view class='area'>
+    <view class='block'>
+      <view class='header-wrapper'>
+        <ft-require-header required="{{form.contact.required}}" text="联系人：" />
+      </view>
+      <input class='full-input' value="{{form.contact.value}}" placeholder-class="placeholder" placeholder='联系人姓名' data-ele="contact" bindinput="inputChange" />
+    </view>
+    <view class='block'>
+      <view class='header-wrapper'>
+        <ft-require-header required="{{form.contactphone.required}}" text="联系电话：" />
+      </view>
+      <input class='full-input' value="{{form.contactphone.value}}" placeholder-class="placeholder" placeholder='联系人电话' data-ele="contactphone" bindinput="inputChange" />
+    </view>
+    <view class='block'>
+      <view class='header-wrapper'>
+        <ft-require-header required="{{form.fillter.required}}" text="填表人：" />
+      </view>
+      <input class='full-input' value="{{form.fillter.value}}" placeholder-class="placeholder" placeholder='填表人姓名' data-ele="fillter" bindinput="inputChange" />
+    </view>
+    <view class='block'>
+      <view class='header-wrapper'>
+        <ft-require-header required="{{form.teacher.required}}" text="指导老师：" />
+      </view>
+      <input class='full-input' value="{{form.teacher.value}}" placeholder-class="placeholder" placeholder='老师的姓名' data-ele="teacher" bindinput="inputChange" />
+    </view>
+    <view class='block'>
+      <view class='header-wrapper'>
+        <ft-require-header required="{{form.teacherphone.required}}" text="老师电话：" />
+      </view>
+      <input class='full-input' value="{{form.teacherphone.value}}" placeholder-class="placeholder" placeholder='老师的电话' data-ele="teacherphone" bindinput="inputChange" />
+    </view>
+  </view>
+  <view class='line-separator-h' style="width:686rpx;margin:0 auto"></view>
+  <view class='area'>
+    <view class='block'>
+      <view class='tip-header'>
+        <ft-tip text="报名信息一旦提交，不可再进行修改" />
+      </view>
+    </view>
+  </view>
+  <view class='btn-wrapper'>
+    <view class="btn-content">
+      <view class='btn-box'>
+        <view class="save-btn">
+          <ft-button text="保存" width="325rpx" height="80rpx" color="#67462B" bg="#F2E0CA" border-radius="4rpx" catchtap="saveTap" />
+        </view>
+        <view class="submit-btn">
+          <ft-button text="提交" width="325rpx" height="80rpx" color="#fff" bg="#108EE9" border-radius="4rpx" catchtap="submitTap" />
+        </view>
+      </view>
+      <ft-iphone-bottom-adapter />
+    </view>
+    <ft-iphone-bottom-adapter />
+  </view>
 </view>

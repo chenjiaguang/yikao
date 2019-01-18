@@ -16,7 +16,9 @@
     "pages/queryhall/queryhall",
     "pages/pay/pay",
     "pages/myenrolldetail/myenrolldetail",
-    "pages/successpage/successpage"
+    "pages/successpage/successpage",
+    "pages/wechatgroup/wechatgroup",
+    "pages/aboutus/aboutus"
   ],
   "window": {
     "backgroundTextStyle": "light",

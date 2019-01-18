@@ -33,6 +33,8 @@
   flex: 1;
   overflow: hidden;
   align-self: stretch;
+  display: flex;
+  flex-direction: column;
 }
 
 .title {
@@ -65,9 +67,10 @@
 }
 
 .state {
+  flex: 1;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   line-height: 1.3;
   overflow: hidden;
   padding-top: 24rpx;

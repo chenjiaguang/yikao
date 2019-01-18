@@ -1,0 +1,22 @@
+<!--pages/wechatgroup/wechatgroup.wxml-->
+<view class='page-wechatgroup'>
+  <ft-list-loader visible="{{!loaded}}" />
+  <view wx:if="{{groups && groups[0]}}" class='group-list'>
+    <view class='statement'>1.点击图片浏览</view>
+    <view class='statement'>2.在浏览界面长按二维码保存二维码</view>
+    <view class='statement'>3.微信扫一扫</view>
+    <view class='statement'>4.从相册中选取保存的二维码</view>
+    <view wx:for="{{groups}}" wx:for-index="idx" wx:for-item="group" wx:key="id" class='group-box'>
+    <view class='line-separator-h' style="margin-bottom:30rpx;"></view>
+      <view wx:if="{{group.title}}" class='group-item-text'>群名：<text style="color:#333;font-weight:bold">{{group.title}}</text></view>
+      <view wx:if="{{group.intro}}" class='group-item-text'>简介：<text style="color:#666">{{group.intro}}</text></view>
+      <view wx:if="{{group.number}}" class='group-item-text'>群号：<text style="color:#108EE9" data-text="{{group.number}}" catchtap="copyText">{{group.number}}</text></view>
+      <view wx:if="{{group.teacher}}" class='group-item-text'>负责老师微信：<text style="color:#108EE9" data-text="{{group.teacher}}" catchtap="copyText">{{group.teacher}}</text></view>
+      <view wx:if="{{group.qrcode}}" class='group-qrcode'>
+      <view class='group-item-text'>二维码：</view>
+      <image class='group-qrcode-image' src="{{group.qrcode}}" mode="aspectFit" data-qrcode="{{group.qrcode}}" catchtap="preview"></image>
+      </view>
+    </view>
+  </view>
+  <ft-iphone-bottom-adapter wx:if="{{groups && groups[0]}}" />
+</view>

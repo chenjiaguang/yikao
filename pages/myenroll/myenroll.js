@@ -263,8 +263,8 @@ Page({
     let content = []
     content[0] = { title: '报名单号', content: enroll_no }
     content[1] = { title: '负责机构', content: institution }
-    content[2] = { title: '考试代码', content: examination_no }
-    content[3] = { title: '申请时间', content: enroll_time }
+    content[2] = { title: '考试编号', content: examination_no }
+    content[3] = { title: '报名时间', content: enroll_time }
     content[4] = { title: '考生姓名', content: name }
     content[5] = { title: '身份证号', content: idcard }
     content[6] = { title: '性别', content: gender }

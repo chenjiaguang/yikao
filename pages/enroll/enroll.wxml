@@ -19,7 +19,7 @@
       <view class='modal-content-text'>承办机构：</view>
       <view class='modal-content-text'>报名起止日期：2018年12月10日~2018年12月20日</view>
       <view class='modal-content-text'>考试起止日期：2019年01月19日~2019年01月25日</view>
-      <view class='regulations-entry' catchtap="regulationsEntryTap">其他详细事宜请参加简章</view>
+      <view class='regulations-entry' catchtap="regulationsEntryTap">其他详细事宜请参见简章</view>
     </view>
   </ft-custom-modal>
 </view>

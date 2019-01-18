@@ -1,13 +1,11 @@
-// pages/usercenter/usercenter.js
+// pages/aboutus/aboutus.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    avatar: '',
-    name: '',
-    message: 5
+
   },
 
   /**
@@ -64,32 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-
-  messageTap: function () {
-    console.log('点击了消息icon')
-    wx.navigateTo({
-      url: '/pages/message/message'
-    })
-  },
-
-  entryTap: function (e) {
-    let {ele} = e.currentTarget.dataset
-    if (ele === 'enroll') { // 点击了我的报名
-      console.log('点击了我的报名')
-      wx.navigateTo({
-        url: '/pages/myenroll/myenroll'
-      })
-    } else if (ele === 'wechat') { // 点击了加入微信群
-      console.log('点击了加入微信群')
-      wx.navigateTo({
-        url: '/pages/wechatgroup/wechatgroup'
-      })
-    } else if (ele === 'about') { // 点击了关于我们
-      console.log('点击了关于我们')
-      wx.navigateTo({
-        url: '/pages/aboutus/aboutus'
-      })
-    }
   }
 })

@@ -81,7 +81,7 @@
   background: #FF3B30;
 }
 
-.birthday, .nationality, .volk, .cardtype, .major, .level, .last-get-item{
+.birthday, .nationality, .volk, .cardtype, .major, .level, .continuity, .last-get-item{
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -92,7 +92,7 @@
   border-radius: 4rpx;
   margin: 10rpx 0;
 }
-.birthday-text, .nationality-text, .volk-text, .cardtype-text, .major-text, .level-text, .last-get-item-text{
+.birthday-text, .nationality-text, .volk-text, .cardtype-text, .major-text, .level-text, .continuity-text, .last-get-item-text{
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -100,13 +100,16 @@
   line-height: 38rpx;
   color: #333;
 }
-.birthday-text.unselected, .nationality-text.unselected, .volk-text.unselected, .cardtype-text.unselected, .major-text.unselected, .level-text.unselected, .last-get-item-text.unselected{
+.birthday-text.unselected, .nationality-text.unselected, .volk-text.unselected, .cardtype-text.unselected, .major-text.unselected, .level-text.unselected, .continuity-text.unselected, .last-get-item-text.unselected{
   color: #999;
 }
 .last-get-certificate-body{
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.continuity{
+  flex: 1;
 }
 .last-get-item{
   width: 156rpx;
@@ -124,4 +127,26 @@
   width: 486rpx;
   height: 320rpx;
   background: #EBEBEB;
+}
+
+/* 底部按钮 */
+.btn-wrapper{
+  padding-top: 160rpx;
+  position: relative;
+  width: 100%;
+}
+.btn-content{
+  position: fixed;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  z-index: 999;
+  background: #fff;
+}
+.btn-box{
+  display: flex;
+  height: 160rpx;
+  padding: 0 32rpx;
+  justify-content: space-between;
+  align-items: center;
 }

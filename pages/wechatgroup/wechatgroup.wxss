@@ -1,0 +1,36 @@
+/* pages/wechatgroup/wechatgroup.wxss */
+
+page{
+  background: #F4F4F4;
+}
+.page-wechatgroup{
+  background: #fff;
+}
+.group-list{
+  padding: 40rpx 0;
+}
+.statement{
+  font-size: 30rpx;
+  line-height: 46rpx;
+  color: #FF3B30;
+  padding: 0 32rpx;
+  /* text-align: center; */
+}
+.group-box{
+  padding: 0 32rpx;
+  margin-top: 30rpx;
+}
+.group-item-text{
+  font-size: 28rpx;
+  line-height: 36rpx;
+  color: #333;
+  padding: 10rpx 0;
+}
+.group-qrcode{
+  display: flex;
+}
+.group-qrcode-image{
+  display: block;
+  width: 400rpx;
+  height: 400rpx;
+}
