@@ -1,38 +1,52 @@
 /* components/messageBox/messageBox.wxss */
+@import "../../app.wxss";
 
-.wrapper{
+.wrapper {
   width: 100%;
 }
-.time{
+
+.time {
   font-size: 24rpx;
   line-height: 56rpx;
   color: #838383;
-  background: #F4F4F4;
+  background: #f4f4f4;
   text-align: center;
 }
-.box{
-  padding: 24rpx 32rpx;
+
+.box {
+  padding: 24rpx 0;
   background: #fff;
 }
-.title{
+
+.title {
+  padding: 0 32rpx;
   font-size: 34rpx;
   line-height: 46rpx;
   font-weight: bold;
   color: #333;
 }
-.content{
+
+.content {
   font-size: 28rpx;
   line-height: 40rpx;
   color: #333;
-  padding-top: 4rpx;
+  padding: 4rpx 32rpx 0;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
-.buttons{
-  padding-top: 10rpx;
+
+.buttons {
+  margin-top: 18rpx;
 }
-.btn{
+
+.btn {
+  padding: 24rpx 32rpx 0;
   font-size: 28rpx;
   line-height: 40rpx;
-  color: #108EE9;
+  color: #108ee9;
   text-decoration: underline;
   text-align: right;
 }

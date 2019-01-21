@@ -4,7 +4,8 @@
   <view class='success-box'>
     <view class='ft-icon c-icon-success' style="font-size:130rpx;color:#4CD964"></view>
     <view class='title'>{{successText[type]}}</view>
-    <view class='tip'>{{tipText[type]}}</view>
+    <view wx:if="{{tipText[type]}}" class='tip'>{{tipText[type]}}</view>
+    <view wx:if="{{tipText2[type]}}" class='tip2'>{{tipText2[type]}}</view>
   </view>
   <ft-button text="完成" width="686rpx" height="94rpx" color="#67462B" bg="#F2E0CA" border-radius="4rpx" catchtap="btnTap" />
 </view>

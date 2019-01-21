@@ -79,6 +79,9 @@ Component({
           url: '/pages/apply/apply'
         })
       }
+    },
+    goDetail: function () {
+      console.log('goDetail 跳转通知详情')
     }
   }
 })

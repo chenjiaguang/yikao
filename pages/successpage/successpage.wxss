@@ -35,3 +35,10 @@ page{
   color: #999;
   padding-top: 16rpx;
 }
+
+.tip2{
+  font-size: 28rpx;
+  line-height: 40rpx;
+  color: #FF473D;
+  padding-top: 16rpx;
+}

@@ -7,6 +7,7 @@ const app = getApp()
 
 Page({
   data: {
+    refreshText: '下拉刷新页面',
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
@@ -266,5 +267,72 @@ Page({
       subStrArr[i] = subStrArr[i].slice(0, 1).toUpperCase() + subStrArr[i].slice(1)
     }
     return subStrArr.join(' ')
+  },
+
+  end: function (e) {
+    console.log('end')
+    if (this.distance >= 120) { // 到达刷新临界点
+      this.distance = 120
+      this.setData({
+        distance: this.distance,
+        duration: 0.3
+      })
+      setTimeout(() => {
+        this.resetPos()
+      }, 1000)
+    } else {
+      this.y = null
+      this.start = null
+      this.distance = 0
+      this.setData({
+        distance: this.distance,
+        duration: 0.3
+      })
+    }
+  },
+
+  resetPos: function () {
+    this.y = null
+    this.start = null
+    this.distance = 0
+    this.setData({
+      distance: 0,
+      duration: 0.3
+    })
+  },
+
+  move: function (e) {
+    console.log('move', this.start)
+    if (!this.y) {
+      this.y = e.changedTouches[0].clientY
+    } else {
+      if (!this.start && (e.changedTouches[0].clientY - this.y) > 0) {
+        this.start = e.changedTouches[0].clientY
+      } else if (this.start && (e.changedTouches[0].clientY - this.start) > 0) {
+        let distance = e.changedTouches[0].clientY - this.start
+        console.log('this.distance', this.distance)
+        if (this.distance === 120) {
+          if (distance < 120) {
+            this.distance = 120 + 1
+            this.setData({
+              distance: this.distance,
+              duration: 0
+            })
+          } else {
+            this.distance = distance
+            this.setData({
+              distance: distance,
+              duration: 0
+            })
+          }
+        } else {
+          this.distance = distance
+          this.setData({
+            distance: distance,
+            duration: 0
+          })
+        }
+      }
+    }
   }
 })

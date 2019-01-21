@@ -6,13 +6,20 @@ Page({
    */
   data: {
     titleText: { // type:1(缴费成功)
-      1: '缴费成功'
+      1: '缴费成功',
+      2: '提交成功'
     },
     successText: {
-      1: '缴费成功'
+      1: '缴费成功',
+      2: '报名提交成功，请等待审核'
     },
     tipText: {
-      1: '关注微信公众号“xxx”及时获取考试相关信息'
+      1: '关注微信公众号“xxx”及时获取考试相关信息',
+      2: '审核通过并进行缴费后完成报名'
+    },
+    tipText2: {
+      1: '',
+      2: '关注微信公众号“XXX”及时获取更多考试相关信息'
     }
   },
 
@@ -101,6 +108,16 @@ Page({
       if (id) {
         wx.redirectTo({
           url: '/pages/myenrolldetail/myenrolldetail?id=' + id
+        })
+      } else {
+        wx.navigateBack({
+          delta: 1
+        })
+      }
+    } else if (type.toString() === '2') { // 提交成功，审核中...
+      if (id) {
+        wx.redirectTo({
+          url: '/pages/myenroll/myenroll'
         })
       } else {
         wx.navigateBack({

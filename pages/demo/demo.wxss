@@ -19,3 +19,37 @@
 .usermotto {
   margin-top: 200px;
 }
+
+.demo-scroll-wrapper{
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: yellow;
+  z-index: 999;
+}
+
+.demo-scroll-body{
+  width: 100%;
+  height: 1500rpx;
+  background: red;
+  position: relative;
+  z-index: 2;
+}
+
+.refresh-box{
+  display: flex;
+  width: 100%;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 3;
+}
+
+.refresh-text{
+  font-size: 28rpx;
+  color: green;
+  margin: 0 15rpx;
+}

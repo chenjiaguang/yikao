@@ -25,7 +25,9 @@ Page({
         valid: false,
         url: '',
         id: '',
-        tip: '请上传头像'
+        tip: '请上传头像',
+        uploading: false,
+        uploadingText: ''
       },
       name: {
         required: true,
@@ -129,8 +131,7 @@ Page({
           text: '',
           valid: false,
           tip: '请选择月份'
-        },
-        valid: false
+        }
       },
       majorcertificate: { // 专业证书
         value: '',
@@ -138,7 +139,9 @@ Page({
         valid: false,
         url: '',
         id: '',
-        tip: '请上传专业证书'
+        tip: '请上传专业证书',
+        uploading: false,
+        uploadingText: ''
       },
       basicmusiccertificate: { // 基本乐科证书
         value: '',
@@ -146,7 +149,9 @@ Page({
         valid: false,
         url: '',
         id: '',
-        tip: '请上传基本乐科证书'
+        tip: '请上传基本乐科证书',
+        uploading: false,
+        uploadingText: ''
       },
       bent1: { // 曲目1
         required: true,
@@ -454,29 +459,51 @@ Page({
     let form = JSON.parse(JSON.stringify(this.data.form))
     for (let key in form) {
       console.log('key', key)
-      if (form[key].required && !form[key].valid) { // 必填且无效
-        this.scrollToBlock(key)
-        if (form[key].tip) {
-          wx.showToast({
-            title: form[key].tip,
-            icon: 'none'
-          })
+      if (key === 'lastgetcertificate') { // 最近一次获得同专业考级证书
+        if (!form.lastgetcertificate.year.valid) {
+          this.scrollToBlock(key)
+          if (form.lastgetcertificate.year.tip) {
+            wx.showToast({
+              title: form.lastgetcertificate.year.tip,
+              icon: 'none'
+            })
+          }
+          break
+        } else if (!form.lastgetcertificate.month.valid) {
+          this.scrollToBlock(key)
+          if (form.lastgetcertificate.month.tip) {
+            wx.showToast({
+              title: form.lastgetcertificate.month.tip,
+              icon: 'none'
+            })
+          }
+          break
         }
-        break
+      } else {
+        if (form[key].required && !form[key].valid) { // 必填且无效
+          this.scrollToBlock(key)
+          if (form[key].tip) {
+            wx.showToast({
+              title: form[key].tip,
+              icon: 'none'
+            })
+          }
+          break
+        }
       }
     }
   },
 
-  uploadAvatar: function () {
-    console.log('uploadAvatar')
-  },
-
-  uploadMajorCertificate: function () {
-    console.log('uploadMajorCertificate')
-  },
-
-  uploadBasicMusicCertificate: function () {
-    console.log('uploadBasicMusicCertificate')
+  submitSuccess: function (code, enrollid) {
+    if (code.toString() === '305') { // 跳转缴费页面
+      wx.redirectTo({
+        url: '/pages/pay/pay?id=' + enrollid,
+      })
+    } else if (code.toString() === '306') { // 跳转提交成功页面（需审核）
+      wx.redirectTo({
+        url: '/pages/successpage/successpage?type=2&id=' + enrollid,
+      })
+    }
   },
 
   saveTap: function () {
@@ -498,6 +525,10 @@ Page({
     }
     applyForm = JSON.stringify(applyForm)
     wx.setStorageSync('applyForm', applyForm)
+    wx.showToast({
+      title: '保存成功',
+      icon: 'none'
+    })
   },
 
   getForm: function () {
@@ -519,5 +550,88 @@ Page({
   submitTap: function () {
     console.log('点击了提交')
     this.getFormData()
-  }
+    this.submitSuccess(306, 998) // 需要审核跳转提交成功页面(需审核)，不需要审核跳转缴费页面
+  },
+
+  uploadTask: { // 上传图片队列
+    avatar: null,
+    majorcertificate: null,
+    basicmusiccertificate: null
+  },
+
+  chooseImage: function (e) {
+    let {ele} = e.currentTarget.dataset
+    // 选择图片
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['compressed', 'original'],
+      sourceType: ['album', 'camera'],
+      success: res => {
+        console.log('tempFilePaths', res.tempFilePaths[0])
+        if (res && res.tempFilePaths && res.tempFilePaths[0]) {
+          let obj = {}
+          obj['form.' + ele + '.url'] = res.tempFilePaths[0]
+          obj['form.' + ele + '.uploading'] = true
+          obj['form.' + ele + '.uploadingText'] = '正在上传...'
+          this.setData(obj)
+          const app = getApp()
+          if (this.uploadTask[ele] && this.uploadTask[ele].abort) { // 如果有正在上传的队列，则取消正在上传的队列，然后开始新的队列
+            this.uploadTask[ele].abort()
+          }
+          console.log('res.tempFilePaths[0]', res)
+          this.uploadTask[ele] = wx.uploadFile({
+            url: app.config.baseUrl + app.config.apiVersion + '/user/uploadavatar',
+            filePath: res.tempFilePaths[0],
+            name: 'image',
+            header: {
+              "content-type": 'multipart/form-data',
+              "token": wx.getStorageSync('token')
+            },
+            formData: {
+              "token": wx.getStorageSync('token')
+            },
+            success: res => {
+              console.log('上传成功', res)
+              let uploadRes = JSON.parse(res.data)
+              let _obj = {}
+              if (uploadRes && uploadRes.msg && uploadRes.error) {
+                wx.showToast({
+                  title: res.msg,
+                  icon: 'none'
+                })
+              }
+              if (uploadRes && uploadRes.data && !uploadRes.error) {
+                let { avatar, id } = uploadRes.data
+                _obj['form.' + ele + '.id'] = id
+                _obj['form.' + ele + '.originUrl'] = avatar
+                _obj['form.' + ele + '.valid'] = true
+                _obj['form.' + ele + '.uploadingText'] = ''
+              } else {
+                _obj['form.' + ele + '.id'] = ''
+                _obj['form.' + ele + '.originUrl'] = ''
+                _obj['form.' + ele + '.valid'] = false
+                _obj['form.' + ele + '.uploadingText'] = '上传失败!'
+              }
+              this.setData(_obj)
+            },
+            fail: res => {
+              console.log('上传失败', res)
+              let _obj = {}
+              _obj['form.' + ele + '.id'] = ''
+              _obj['form.' + ele + '.originUrl'] = ''
+              _obj['form.' + ele + '.valid'] = false
+              _obj['form.' + ele + '.uploadingText'] = '上传失败!'
+              this.setData(_obj)
+            },
+            complete: res => {
+              this.uploadTask[ele] = null
+              let obj = {}
+              obj['form.' + ele + '.uploading'] = false
+              this.setData(obj)
+            }
+          })
+        }
+      }
+    })
+  },
 })

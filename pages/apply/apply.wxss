@@ -7,11 +7,33 @@
 .block{
   padding: 10rpx 32rpx;
 }
-.avatar-image{
+.avatar-box{
   display: block;
   width: 222rpx;
   height: 264rpx;
   margin: 25rpx auto 0;
+  position: relative;
+}
+.avatar-image{
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+}
+.avatar-loader{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28rpx;
+  color: #fff;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  background: rgba(0,0,0,0.5);
 }
 .tip-header{
   padding: 8rpx 0;
@@ -127,6 +149,28 @@
   width: 486rpx;
   height: 320rpx;
   background: #EBEBEB;
+  position: relative;
+}
+.major-certificate-image, .basicmusic-certificate-image{
+  display: block;
+  width :100%;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+}
+.major-certificate-image-loader, .basicmusic-certificate-image-loader{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28rpx;
+  color: #fff;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  background: rgba(0,0,0,0.5);
 }
 
 /* 底部按钮 */

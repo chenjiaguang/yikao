@@ -30,4 +30,10 @@
   <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
   </view>
+  <scroll-view class='demo-scroll-wrapper' scroll-y bindscroll="resetPos" bindtouchend="end" catchtouchmove="move">
+  <view class='refresh-box'>
+    <text class='refresh-text' wx:for="{{refreshText}}" wx:key="*this" style="opacity:{{((distance - 60 - 6 * index) / 40) / ((index + 1) / refreshText.length)}}">{{item}}</text>
+  </view>
+    <view class='demo-scroll-body' style="transform:translateY({{distance / 2}}px);transition:transform {{duration}}s"></view>
+  </scroll-view>
 </view>

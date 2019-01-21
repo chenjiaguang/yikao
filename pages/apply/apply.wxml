@@ -5,9 +5,12 @@
       <view class='header-wrapper'>
         <ft-require-header required="{{form.avatar.required}}" text="考生照片：" />
       </view>
+      <view class='avatar-box'>
       <image class='avatar-image' mode="aspectFit" src="{{form.avatar.url || '/assets/images/default_photo.png'}}"></image>
+      <view wx:if="{{form.avatar.uploading || form.avatar.uploadingText}}" class='avatar-loader'><text>{{form.avatar.uploadingText}}</text></view>
+      </view>
       <view style="margin:20rpx auto 40rpx;width:222rpx;height:66rpx">
-        <ft-button text="上传" font-size="{{28}}" bg="#108EE9" border-radius="4rpx" catchtap="uploadAvatar" />
+        <ft-button text="上传" font-size="{{28}}" bg="#108EE9" border-radius="4rpx" data-ele="avatar" disabled="{{form.avatar.uploading}}" disabled-bg="#CCCCCC" catchtap="chooseImage" />
       </view>
       <ft-tip text="上传头像注意事项：" />
       <view class='tip-content'>
@@ -189,54 +192,54 @@
       <view class='major-certificate-image-wrapper'>
         <view class='major-certificate-image-box'>
           <image wx:if="{{form.majorcertificate.url}}" class='major-certificate-image' src="{{form.majorcertificate.url}}" mode="aspectFit" />
-          <view class='major-certificate-image-tip'></view>
+          <view wx:if="{{form.majorcertificate.uploading || form.majorcertificate.uploadingText}}" class='major-certificate-image-loader'><text>{{form.majorcertificate.uploadingText}}</text></view>
         </view>
-        <ft-button text="上传" width="180rpx" height="80rpx" font-size="{{30}}" bg="#108EE9" border-radius="4rpx" catchtap="uploadMajorCertificate" />
+        <ft-button text="上传" width="180rpx" height="80rpx" font-size="{{30}}" bg="#108EE9" border-radius="4rpx" data-ele="majorcertificate" disabled="{{form.majorcertificate.uploading}}" disabled-bg="#CCCCCC" catchtap="chooseImage" />
       </view>
       <view class='tip-header'>
         <ft-tip text="凡报考演唱演奏2级或以上的，均需上传同专业上一级别证书" />
       </view>
     </view>
-    <view hidden="{{!form.basicmusiccertificate.required}}" class='block'>
+    <view hidden="{{!form.basicmusiccertificate.required}}" class='block' id="basicmusiccertificate">
       <view class='header-wrapper'>
         <ft-require-header required="{{form.basicmusiccertificate.required}}" text="上传基本乐科证书：" />
       </view>
       <view class='basicmusic-certificate-image-wrapper'>
         <view class='basicmusic-certificate-image-box'>
           <image wx:if="{{form.basicmusiccertificate.url}}" class='basicmusic-certificate-image' src="{{form.basicmusiccertificate.url}}" mode="aspectFit" />
-          <view class='basicmusic-certificate-image-tip'></view>
+          <view wx:if="{{form.basicmusiccertificate.uploading || form.basicmusiccertificate.uploadingText}}" class='basicmusic-certificate-image-loader'><text>{{form.basicmusiccertificate.uploadingText}}</text></view>
         </view>
-        <ft-button text="上传" width="180rpx" height="80rpx" font-size="{{30}}" bg="#108EE9" border-radius="4rpx" catchtap="uploadBasicMusicCertificate" />
+        <ft-button text="上传" width="180rpx" height="80rpx" font-size="{{30}}" bg="#108EE9" border-radius="4rpx" data-ele="basicmusiccertificate" disabled="{{form.basicmusiccertificate.uploading}}" disabled-bg="#CCCCCC" catchtap="chooseImage" />
       </view>
       <view class='tip-header'>
         <ft-tip text="演唱演奏3~5级必须上传一级基本乐科证书；6~9级必须上传 二级基本乐科证书；10级或以上必须上传三级基本乐科证书" />
       </view>
     </view>
-    <view class='block'>
+    <view class='block' id="bent1">
       <view class='header-wrapper'>
         <ft-require-header required="{{form.bent1.required}}" text="考试曲目1：" />
       </view>
       <input class='full-input' value="{{form.bent1.value}}" data-ele="bent1" bindinput="inputChange" />
     </view>
-    <view class='block'>
+    <view class='block' id="bent2">
       <view class='header-wrapper'>
         <ft-require-header required="{{form.bent2.required}}" text="考试曲目2：" />
       </view>
       <input class='full-input' value="{{form.bent2.value}}" data-ele="bent2" bindinput="inputChange" />
     </view>
-    <view class='block'>
+    <view class='block' id="bent3">
       <view class='header-wrapper'>
         <ft-require-header required="{{form.bent3.required}}" text="考试曲目3：" />
       </view>
       <input class='full-input' value="{{form.bent3.value}}" data-ele="bent3" bindinput="inputChange" />
     </view>
-    <view class='block'>
+    <view class='block' id="bent14">
       <view class='header-wrapper'>
         <ft-require-header required="{{form.bent4.required}}" text="考试曲目4：" />
       </view>
       <input class='full-input' value="{{form.bent4.value}}" data-ele="bent4" bindinput="inputChange" />
     </view>
-    <view class='block'>
+    <view class='block' id="bent5">
       <view class='header-wrapper'>
         <ft-require-header required="{{form.bent5.required}}" text="考试曲目5：" />
       </view>
@@ -245,31 +248,31 @@
   </view>
   <view class='line-separator-h' style="width:686rpx;margin:0 auto"></view>
   <view class='area'>
-    <view class='block'>
+    <view class='block' id="contact">
       <view class='header-wrapper'>
         <ft-require-header required="{{form.contact.required}}" text="联系人：" />
       </view>
       <input class='full-input' value="{{form.contact.value}}" placeholder-class="placeholder" placeholder='联系人姓名' data-ele="contact" bindinput="inputChange" />
     </view>
-    <view class='block'>
+    <view class='block' id="contactphone">
       <view class='header-wrapper'>
         <ft-require-header required="{{form.contactphone.required}}" text="联系电话：" />
       </view>
       <input class='full-input' value="{{form.contactphone.value}}" placeholder-class="placeholder" placeholder='联系人电话' data-ele="contactphone" bindinput="inputChange" />
     </view>
-    <view class='block'>
+    <view class='block' id="fillter">
       <view class='header-wrapper'>
         <ft-require-header required="{{form.fillter.required}}" text="填表人：" />
       </view>
       <input class='full-input' value="{{form.fillter.value}}" placeholder-class="placeholder" placeholder='填表人姓名' data-ele="fillter" bindinput="inputChange" />
     </view>
-    <view class='block'>
+    <view class='block' id="teacher">
       <view class='header-wrapper'>
         <ft-require-header required="{{form.teacher.required}}" text="指导老师：" />
       </view>
       <input class='full-input' value="{{form.teacher.value}}" placeholder-class="placeholder" placeholder='老师的姓名' data-ele="teacher" bindinput="inputChange" />
     </view>
-    <view class='block'>
+    <view class='block' id="teacherphone">
       <view class='header-wrapper'>
         <ft-require-header required="{{form.teacherphone.required}}" text="老师电话：" />
       </view>
