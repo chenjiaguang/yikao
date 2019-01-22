@@ -31,9 +31,18 @@
     <text class="user-motto">{{motto}}</text>
   </view>
   <scroll-view class='demo-scroll-wrapper' scroll-y bindscroll="resetPos" bindtouchend="end" catchtouchmove="move">
-  <view class='refresh-box'>
-    <text class='refresh-text' wx:for="{{refreshText}}" wx:key="*this" style="opacity:{{((distance - 60 - 6 * index) / 40) / ((index + 1) / refreshText.length)}}">{{item}}</text>
-  </view>
-    <view class='demo-scroll-body' style="transform:translateY({{distance / 2}}px);transition:transform {{duration}}s"></view>
+    <view class='refresh-box'>
+      <text class='refresh-text' wx:for="{{refreshText}}" wx:key="*this" style="opacity:{{((distance - 60 - 6 * index) / 40) / ((index + 1) / refreshText.length)}}">{{item}}</text>
+    </view>
+    <view class='demo-scroll-body' style="transform:translateY({{distance / 2}}px);transition:transform {{duration}}s">
+      <view class='t-wrapper'>
+        <view class='t-float'>
+          <text class='t-name' style="color: yellow">盗墓笔记</text>
+          <image src="/assets/images/p_enroll_able.png" class='t-image' mode="aspectFit"></image>
+        </view>
+        <text class='text' style="color: blue">发布于专辑</text>
+        <text class='text' style="color: green">公开可以哈哈哈哈哈哈哈哈哈</text>
+      </view>
+    </view>
   </scroll-view>
 </view>
