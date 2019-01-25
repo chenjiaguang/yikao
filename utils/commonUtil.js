@@ -45,7 +45,7 @@ const formatSecondToTime = seconds => { // 把秒转为 '时:分:秒' 的格式
 
 const request = (url, data, config = {}) => {
   const app = getApp()
-  const apiVersion = (config && config.apiVersion) ? config.apiVersion : (app.config.apiVersion || '/v1')
+  const apiVersion = (config && config.apiVersion) ? config.apiVersion : (app.config.apiVersion || '')
   const token = (config && config.token) || storageUtil.getStorage('token') || ''
   let _data = Object.assign({}, data, {token: token})
   console.log('apiVersion', apiVersion)
@@ -250,15 +250,37 @@ const checkLogin = (options) => {
   const page = pages[pages.length - 1]
   if (page) {
     wx.setStorageSync('loginBack', '/' + getUrl(page.route, page.options))
-    wx.reLaunch({
-      url: '/pages/login/login'
-    })
+    // wx.reLaunch({
+    //   url: '/pages/login/login'
+    // })
   } else {
     wx.setStorageSync('loginBack', '/' + getUrl(options.path, options.query))
-    wx.reLaunch({
-      url: '/pages/login/login'
-    })
+    // wx.reLaunch({
+    //   url: '/pages/login/login'
+    // })
   }
+  wx.login({
+    success: res => {
+      // 发送 res.code 到后台换取 openId, sessionKey, unionId
+      let rData = {
+        code: res.code
+      }
+      console.log('rData', rData)
+      request('/login', rData).then(res => {
+        if (res.data && !res.error) { // 登录成功
+          let { avatar, token, union_id, username } = res.data
+          let obj = { avatar, token, union_id, username }
+          for (let key in obj) {
+            wx.setStorageSync(key, obj[key])
+          }
+          let url = wx.getStorageSync('loginBack') || '/pages/index/index'
+          wx.reLaunch({
+            url
+          })
+        }
+      })
+    }
+  })
   return false
 }
 

@@ -8,6 +8,8 @@ const app = getApp()
 Page({
   data: {
     refreshText: '下拉刷新页面',
+    distance: 0,
+    refreshing: false,
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
@@ -273,8 +275,10 @@ Page({
     console.log('end')
     if (this.distance >= 120) { // 到达刷新临界点
       this.distance = 120
+      this.refreshing = true
       this.setData({
         distance: this.distance,
+        refreshing: this.refreshing,
         duration: 0.3
       })
       setTimeout(() => {
@@ -284,8 +288,10 @@ Page({
       this.y = null
       this.start = null
       this.distance = 0
+      this.refreshing = false
       this.setData({
         distance: this.distance,
+        refreshing: this.refreshing,
         duration: 0.3
       })
     }
@@ -295,8 +301,10 @@ Page({
     this.y = null
     this.start = null
     this.distance = 0
+    this.refreshing = false
     this.setData({
       distance: 0,
+      refreshing: this.refreshing,
       duration: 0.3
     })
   },

@@ -32,7 +32,9 @@
   </view>
   <scroll-view class='demo-scroll-wrapper' scroll-y bindscroll="resetPos" bindtouchend="end" catchtouchmove="move">
     <view class='refresh-box'>
-      <text class='refresh-text' wx:for="{{refreshText}}" wx:key="*this" style="opacity:{{((distance - 60 - 6 * index) / 40) / ((index + 1) / refreshText.length)}}">{{item}}</text>
+      <text class='refresh-text' hidden="{{refreshing}}" wx:for="{{refreshText}}" wx:key="*this" style="opacity:{{((distance - 60 - 6 * index) / 40) / ((index + 1) / refreshText.length)}}">{{item}}</text>
+      <!-- <view wx:if="{{refreshing}}">正在刷新...</view> -->
+      <ft-refreshing-icon hidden="{{!refreshing}}" />
     </view>
     <view class='demo-scroll-body' style="transform:translateY({{distance / 2}}px);transition:transform {{duration}}s">
       <view class='t-wrapper'>

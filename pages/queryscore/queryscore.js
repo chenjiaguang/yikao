@@ -186,12 +186,11 @@ Page({
         card_number: '460027201912315566',
         institution: '中国音乐学院考级委员会',
         major: '钢琴',
-        range: '1~10级',
         level: '1级',
         certificate_time: '2019年01月23日',
         certification_number: '00222256529888'
       }
-      let { name, nationality, volk, card_number, institution, major, range, level, certificate_time, certification_number} = info
+      let { name, nationality, volk, card_number, institution, major, level, certificate_time, certification_number} = info
       let _obj = {}
       _obj.submitting = false
       _obj.userInfo = [
@@ -202,9 +201,8 @@ Page({
       ]
       _obj.examInfo = [
         { title: '报考机构单位', content: institution },
-        { title: '考级专业', content: major },
-        { title: '起止级', content: range },
-        { title: '等级', content: level },
+        { title: '报考专业', content: major },
+        { title: '报考等级', content: level },
         { title: '发证时间', content: certificate_time },
         { title: '证书编号', content: certification_number }
       ]

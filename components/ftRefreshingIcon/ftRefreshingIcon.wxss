@@ -1,0 +1,7 @@
+/* components/ftRefreshingIcon/ftRefreshingIcon.wxss */
+@import "../../assets/styles/ft-icon.wxss";
+
+.c-icon-yezi{
+  font-size: 50rpx;
+  color: green;
+}

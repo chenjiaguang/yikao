@@ -1,3 +1,3 @@
 module.exports = {
-  apiVersion: '/v1',
+  apiVersion: '',
 }

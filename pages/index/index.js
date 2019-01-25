@@ -37,21 +37,24 @@ Page({
             title: '2019年寒假考级',
             content: '最多展示一行，超出截断展示最多展示一行，超出截断展示最多展示1行',
             sign1: '2019-01-07',
-            sign2: '中国音乐学院考级委员会海南考区'
+            sign2: '中国音乐学院考级委员会海南考区',
+            image: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1819776845,1128606894&fm=26&gp=0.jpg'
           },
           {
             id: 22,
             title: '2019年暑假考级',
             content: '最多展示一行，超出截断展示最多展',
             sign1: '2019-01-07',
-            sign2: '中国音乐学院考级委员会海南考区'
+            sign2: '中国音乐学院考级委员会海南考区',
+            image: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1819776845,1128606894&fm=26&gp=0.jpg'
           },
           {
             id: 33,
             title: '2019年长期考级',
             content: '最多展示一行，超出截断展示最多展示一行，超出截断展示最多展示1行',
             sign1: '2019-01-07',
-            sign2: '中国音乐学院考级委员会海南考区'
+            sign2: '中国音乐学院考级委员会海南考区',
+            image: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1819776845,1128606894&fm=26&gp=0.jpg'
           }
         ]
       },
@@ -135,136 +138,35 @@ Page({
             image: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3390961998,1154407883&fm=200&gp=0.jpg'
           }
         ]
+      },
+      {
+        id: '5',
+        name: '考级教材',
+        list: [
+          {
+            id: 9,
+            title: '考级教材111',
+            content: '2行的内容是镂空的肌肤脸上的肌肤',
+            sign1: '2019-01-07',
+            image: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1819776845,1128606894&fm=26&gp=0.jpg'
+          },
+          {
+            id: 99,
+            title: '考级教材22222222222',
+            content: '2行的内容是镂空的肌肤脸上的肌肤离开善良的风收到了饭就阿善良分家连撒娇阿了三分景拉丝分',
+            sign1: '2019-01-07',
+            image: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=877288732,706910501&fm=200&gp=0.jpg'
+          },
+          {
+            id: 999,
+            title: '考级教材33333',
+            content: '2行的内容是镂空的肌肤脸上的肌肤离开善良的风景拉丝分',
+            sign1: '2019-01-07',
+            image: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3390961998,1154407883&fm=200&gp=0.jpg'
+          }
+        ]
       }
     ],
-    dynamics: [
-      {
-        id: 11,
-        title: '2019年寒假考级',
-        content: '最多展示一行，超出截断展示最多展示一行，超出截断展示最多展示1行',
-        sign1: '2019-01-07',
-        sign2: '中国音乐学院考级委员会海南考区'
-      },
-      {
-        id: 22,
-        title: '2019年暑假考级',
-        content: '最多展示一行，超出截断展示最多展',
-        sign1: '2019-01-07',
-        sign2: '中国音乐学院考级委员会海南考区'
-      },
-      {
-        id: 33,
-        title: '2019年长期考级',
-        content: '最多展示一行，超出截断展示最多展示一行，超出截断展示最多展示1行',
-        sign1: '2019-01-07',
-        sign2: '中国音乐学院考级委员会海南考区'
-      }
-    ],
-    dynamicFontSize: {
-      title: 30,
-      content: 26,
-      sign1: 24,
-      sign2: 24
-    },
-    dynamicColor: {
-      title: '#333',
-      content: '#999',
-      sign1: '#16689A',
-      sign2: '#666'
-    },
-    dynamicMaxLine: {
-      title: 1,
-      content: 1,
-      sign1: 1,
-      sign2: 1
-    },
-    courses: [
-      {
-        id: 1,
-        title: '师资培训11111',
-        content: '2行的内容是镂空的肌肤脸上的肌肤',
-        sign1: '2019-01-07',
-        image: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1819776845,1128606894&fm=26&gp=0.jpg'
-      },
-      {
-        id: 2,
-        title: '师资培训222222',
-        content: '2行的内容是镂空的肌肤脸上的肌肤离开善良的风收到了饭就阿善良分家连撒娇阿了三分景拉丝分',
-        sign1: '2019-01-07',
-        image: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=877288732,706910501&fm=200&gp=0.jpg'
-      },
-      {
-        id: 3,
-        title: '师资培训33333',
-        content: '2行的内容是镂空的肌肤脸上的肌肤离开善良的风景拉丝分',
-        sign1: '2019-01-07',
-        image: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3390961998,1154407883&fm=200&gp=0.jpg'
-      }
-    ],
-    courseMaxLine: {
-      title: 1,
-      content: 2,
-      sign1: 1,
-      sign2: 1
-    },
-    performs: [
-      {
-        id: 6,
-        title: '艺术团表演11111',
-        content: '2行的内容是镂空的肌肤脸上的肌肤',
-        sign1: '2019-01-07',
-        image: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1819776845,1128606894&fm=26&gp=0.jpg'
-      },
-      {
-        id: 7,
-        title: '艺术团表演222222',
-        content: '2行的内容是镂空的肌肤脸上的肌肤离开善良的风收到了饭就阿善良分家连撒娇阿了三分景拉丝分',
-        sign1: '2019-01-07',
-        image: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=877288732,706910501&fm=200&gp=0.jpg'
-      },
-      {
-        id: 8,
-        title: '艺术团表演33333',
-        content: '2行的内容是镂空的肌肤脸上的肌肤离开善良的风景拉丝分',
-        sign1: '2019-01-07',
-        image: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3390961998,1154407883&fm=200&gp=0.jpg'
-      }
-    ],
-    performMaxLine: {
-      title: 1,
-      content: 2,
-      sign1: 1,
-      sign2: 1
-    },
-    races: [
-      {
-        id: 9,
-        title: '大赛大赛11111',
-        content: '2行的内容是镂空的肌肤脸上的肌肤',
-        sign1: '2019-01-07',
-        image: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1819776845,1128606894&fm=26&gp=0.jpg'
-      },
-      {
-        id: 99,
-        title: '大赛大赛222222',
-        content: '2行的内容是镂空的肌肤脸上的肌肤离开善良的风收到了饭就阿善良分家连撒娇阿了三分景拉丝分',
-        sign1: '2019-01-07',
-        image: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=877288732,706910501&fm=200&gp=0.jpg'
-      },
-      {
-        id: 999,
-        title: '大赛大赛33333',
-        content: '2行的内容是镂空的肌肤脸上的肌肤离开善良的风景拉丝分',
-        sign1: '2019-01-07',
-        image: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3390961998,1154407883&fm=200&gp=0.jpg'
-      }
-    ],
-    raceMaxLine: {
-      title: 1,
-      content: 2,
-      sign1: 1,
-      sign2: 1
-    },
     books: [
       {
         id: 1,
@@ -360,6 +262,9 @@ Page({
       this.setData({
         'modal.visible': true
       })
+      // wx.navigateTo({
+      //   url: '/pages/login/login'
+      // })
     } else if (ele === 'queryscore') { // 点击了成绩查询
       console.log('点击了成绩查询')
       wx.navigateTo({

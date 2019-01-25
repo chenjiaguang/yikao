@@ -240,6 +240,38 @@ Page({
             pn: 0
           }
         })
+      } else if (cateid.toString() === '5') { // 考级教材
+        this.setData({
+          loaded: true,
+          loading: false,
+          dynamics: [
+            {
+              id: 9,
+              title: '考级教材11111',
+              content: '2行的内容是镂空的肌肤脸上的肌肤',
+              sign1: '2019-01-07',
+              image: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1819776845,1128606894&fm=26&gp=0.jpg'
+            },
+            {
+              id: 99,
+              title: '考级教材222222',
+              content: '2行的内容是镂空的肌肤脸上的肌肤离开善良的风收到了饭就阿善良分家连撒娇阿了三分景拉丝分',
+              sign1: '2019-01-07',
+              image: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=877288732,706910501&fm=200&gp=0.jpg'
+            },
+            {
+              id: 999,
+              title: '考级教材33333',
+              content: '2行的内容是镂空的肌肤脸上的肌肤离开善良的风景拉丝分',
+              sign1: '2019-01-07',
+              image: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3390961998,1154407883&fm=200&gp=0.jpg'
+            }
+          ],
+          page: {
+            isend: true,
+            pn: 0
+          }
+        })
       }
     }, 1000)
   },

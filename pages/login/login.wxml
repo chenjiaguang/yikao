@@ -1,0 +1,4 @@
+<!--pages/login/login.wxml-->
+<view class='page-login'>
+  <ft-button text="微信授权登录" open-type="getUserInfo" bindgetuserinfo="getUserInfo" />
+</view>

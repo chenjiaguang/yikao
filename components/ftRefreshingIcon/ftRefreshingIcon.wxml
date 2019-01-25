@@ -1,0 +1,6 @@
+<!--components/ftRefreshingIcon/ftRefreshingIcon.wxml-->
+<view class='wrapper'>
+  <view class='refreshing-box'>
+    <text class='ft-icon c-icon-yezi'></text>
+  </view>
+</view>

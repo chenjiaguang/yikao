@@ -516,6 +516,9 @@ Page({
     let _form = JSON.parse(JSON.stringify(form))
     let applyForm = {}
     for (let key1 in _form) {
+      if (key1 === 'avatar' || key1 === 'majorcertificate' || key1 === 'basicmusiccertificate') {
+        continue
+      }
       applyForm[key1] = {}
       for (let key2 in _form[key1]) {
         if (key2 === 'required' || key2 === 'valid' || key2 === 'value' || key2 === 'idx' || key2 === 'id' || key2 === 'text' || key2 === 'url' || key2 === 'month' || key2 === 'year') {
@@ -580,7 +583,7 @@ Page({
           }
           console.log('res.tempFilePaths[0]', res)
           this.uploadTask[ele] = wx.uploadFile({
-            url: app.config.baseUrl + app.config.apiVersion + '/user/uploadavatar',
+            url: app.config.baseUrl + app.config.apiVersion + '/upload',
             filePath: res.tempFilePaths[0],
             name: 'image',
             header: {
@@ -588,7 +591,8 @@ Page({
               "token": wx.getStorageSync('token')
             },
             formData: {
-              "token": wx.getStorageSync('token')
+              "token": wx.getStorageSync('token'),
+              "url": true
             },
             success: res => {
               console.log('上传成功', res)
@@ -601,9 +605,9 @@ Page({
                 })
               }
               if (uploadRes && uploadRes.data && !uploadRes.error) {
-                let { avatar, id } = uploadRes.data
+                let { url, id } = uploadRes.data
                 _obj['form.' + ele + '.id'] = id
-                _obj['form.' + ele + '.originUrl'] = avatar
+                _obj['form.' + ele + '.originUrl'] = url
                 _obj['form.' + ele + '.valid'] = true
                 _obj['form.' + ele + '.uploadingText'] = ''
               } else {

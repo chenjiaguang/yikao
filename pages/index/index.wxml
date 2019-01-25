@@ -33,7 +33,7 @@
     </view>
   </view>
   <!-- 考级教材 -->
-  <view class='books'>
+  <!-- <view class='books'>
     <view class='block-separator' style="margin-bottom:30rpx"></view>
     <big-header title="考级教材" />
     <view style="margin-bottom:10rpx"></view>
@@ -43,7 +43,7 @@
         <view class='book-title'>{{book.title}}</view>
       </view>
     </view>
-  </view>
+  </view> -->
   <!-- 报名弹窗 -->
   <ft-custom-modal visible="{{modal.visible}}" buttons="{{['确定']}}" button-font-size="{{36}}" button-color="#108EE9" button-bg="transparent" title="中国音乐学院社会艺术水平考级" title-style="text-align:left" bindtap="modalTap">
     <view class="modal-content">
