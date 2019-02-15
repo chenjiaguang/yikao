@@ -7,6 +7,10 @@ Component({
     refreshing: {
       type: Boolean,
       value: false
+    },
+    color: {
+      type: String,
+      value: 'inherit'
     }
   },
 

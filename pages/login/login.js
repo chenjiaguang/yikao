@@ -1,11 +1,13 @@
 // pages/login/login.js
+import util from '../../utils/util.js'
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    logining: false
   },
 
   /**
@@ -66,5 +68,22 @@ Page({
 
   getUserInfo: function (e) {
     console.log('getUserInfo', e)
+    let { encryptedData, iv, signature} = e.detail
+    if (encryptedData && iv) {
+      this.setData({ logining: true })
+      util.request('/user/savemes', { encryptedData, iv}).then(res => {
+        this.setData({ logining: false })
+        console.log('/user/savemes', res)
+        if (!res.error) { // 授权登录成功
+          wx.setStorageSync('union_id', true)
+          let url = wx.getStorageSync('loginBack') || '/pages/index/index'
+          wx.reLaunch({
+            url
+          })
+        }
+      }).catch(err => {
+        this.setData({ logining: false })
+      })
+    }
   }
 })

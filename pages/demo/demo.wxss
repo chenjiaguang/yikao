@@ -40,6 +40,7 @@
 
 .refresh-box{
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
   height: 40px;
   justify-content: center;
@@ -76,4 +77,75 @@
   display: block;
   width: 50rpx;
   height: 50rpx;
+}
+.refreshing-icon-box{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  padding-top:40rpx;
+}
+.refreshing-icon-content{
+  transform: translateY(0) scale(1, 1);
+  transform-origin: 50% 50%;
+  color: transparent;
+}
+.refreshing-icon-content.refreshing{
+  animation: refreshing 1.5s infinite linear;
+}
+@keyframes refreshing {
+  0% {
+    transform: translateY(0) scale(1, 1);
+    transform-origin: 50% 50%;
+  }
+  12.5% {
+    transform: translateY(-15%) scale(0.9, 0.9);
+    transform-origin: 50% 50%;
+    color: #f19f08;
+  }
+  25% {
+    transform: translateY(0) scale(1, 1);
+    transform-origin: 50% 50%;
+  }
+  37.5% {
+    transform-: translateY(15%) scale(0.9, 0.9);
+    transform-origin: 50% 50%;
+    color: #03a8f5;
+  }
+  50% {
+    transform: translateY(0) scale(1, 1);
+    transform-origin: 50% 50%;
+  }
+  62.5% {
+    transform-: translateY(-15%) scale(0.9, 0.9);
+    transform-origin: 50% 50%;
+    color: #03a8f5;
+  }
+  75% {
+    transform: translateY(0) scale(1, 1);
+    transform-origin: 50% 50%;
+  }
+  87.5% {
+    transform: translateY(15%) scale(0.9, 0.9);
+    transform-origin: 50% 50%;
+    color: #f19f08;
+  }
+  100% {
+    transform: translateY(0) scale(1, 1);
+    transform-origin: 50% 50%;
+  }
+}
+
+.image-box{
+  display: block;
+  flex-wrap: wrap;
+  border-radius: 50rpx;
+  overflow: hidden;
+  position: relative;
+}
+.image-item{
+  width: 30%;
+  height: 200rpx;
+  float: left;
 }

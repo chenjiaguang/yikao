@@ -32,26 +32,5 @@
       <text>查看更多</text><text class='ft-icon c-icon-next' style="display:block;font-size:20rpx;color:#666;margin-left:12rpx"></text>
     </view>
   </view>
-  <!-- 考级教材 -->
-  <!-- <view class='books'>
-    <view class='block-separator' style="margin-bottom:30rpx"></view>
-    <big-header title="考级教材" />
-    <view style="margin-bottom:10rpx"></view>
-    <view class='books-body'>
-      <view class='book-box' catchtap="bookTap" data-id="{{book.id}}" data-title="{{book.title}}" wx:for="{{books}}" wx:for-item="book" wx:for-index="idx" wx:key="title">
-        <image class='book-image' src="{{book.image}}" mode="aspectFit" />
-        <view class='book-title'>{{book.title}}</view>
-      </view>
-    </view>
-  </view> -->
-  <!-- 报名弹窗 -->
-  <ft-custom-modal visible="{{modal.visible}}" buttons="{{['确定']}}" button-font-size="{{36}}" button-color="#108EE9" button-bg="transparent" title="中国音乐学院社会艺术水平考级" title-style="text-align:left" bindtap="modalTap">
-    <view class="modal-content">
-      <view class='modal-content-text'>中国音乐学院社会艺术水平考级——海南考区</view>
-      <view class='modal-content-text'>承办机构：</view>
-      <view class='modal-content-text'>报名起止日期：2018年12月10日~2018年12月20日</view>
-      <view class='modal-content-text'>考试起止日期：2019年01月19日~2019年01月25日</view>
-      <view class='regulations-entry' catchtap="regulationsEntryTap">其他详细事宜请参见简章</view>
-    </view>
-  </ft-custom-modal>
+  <check-apply-modal id="checkapplymodal" />
 </view>

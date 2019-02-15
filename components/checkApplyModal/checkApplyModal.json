@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ft-custom-modal": "../../components/ftCustomModal/ftCustomModal"
+  }
+}

@@ -120,6 +120,39 @@ toast.hide = function (selector = '#toast') {
   ctx.handleHide()
 }
 
+const checkUnionId = (successFn, failFn) => {
+  let unionId = wx.getStorageSync('union_id')
+  if (unionId) {
+    successFn && successFn()
+  } else {
+    if (failFn) {
+      failFn()
+    } else {
+      const pages = getCurrentPages()
+      const page = pages[pages.length - 1]
+      if (page) {
+        wx.setStorageSync('loginBack', '/' + getUrl(page.route, page.options))
+      } else {
+        wx.setStorageSync('loginBack', '/' + getUrl(options.path, options.query))
+      }
+      wx.navigateTo({
+        url: '/pages/login/login'
+      })
+    }
+  }
+  return unionId
+}
+
+const checkExaming = (selector = '#checkapplymodal') => {
+  const ctx = getCtx(selector)
+  ctx.handleShow()
+}
+
+checkExaming.hide = function (selector = '#checkapplymodal') {
+  const ctx = getCtx(selector)
+  ctx.handleHide()
+}
+
 const dialog = (options) => {
   const {
     selector = '#dialog'
@@ -318,7 +351,9 @@ module.exports = {
   formatSecondToTime: formatSecondToTime, // 把秒转为 '时:分:秒' 的格式
   request: request, // 封装api请求
   toast: toast, // 自定义toast
+  checkExaming: checkExaming,
   dialog: dialog, // 自定义弹窗
+  checkUnionId: checkUnionId,
   showRechargeModal: showRechargeModal,
   showRedpacketModal: showRedpacketModal,
   actionSheet: actionSheet, // 自定义actionSheet

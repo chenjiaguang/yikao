@@ -1,4 +1,6 @@
 // pages/enroll/enroll.js
+import util from '../../utils/util.js'
+
 Page({
 
   /**
@@ -69,10 +71,12 @@ Page({
   tapEntry: function (e) {
     let {ele} = e.currentTarget.dataset
     console.log('tapEntry', ele)
+    let unionId = util.checkUnionId()
+    if (!unionId) {
+      return false
+    }
     if (ele === 'online') { // 点击了线上报名
-      this.setData({
-        'modal.visible': true
-      })
+      util.checkExaming()
     } else if (ele === 'offline') { // 点击了线下报名
       wx.navigateTo({
         url: '/pages/applycontacts/applycontacts'
@@ -86,26 +90,5 @@ Page({
         url: '/pages/queryhall/queryhall'
       })
     }
-  },
-
-  modalTap: function (e) {
-    let { ele } = e.detail
-    if (ele === 'btn_close') { // 关闭按钮
-      this.setData({
-        'modal.visible': false
-      })
-    } else if (ele === 'btn_bottom0') { // 确定按钮
-      console.log('点击了确定按钮')
-      this.setData({
-        'modal.visible': false
-      })
-      wx.navigateTo({
-        url: '/pages/apply/apply'
-      })
-    }
-  },
-
-  regulationsEntryTap: function () {
-    console.log('点击了查看简章')
   }
 })

@@ -8,7 +8,7 @@ Component({
       type: Object,
       value: {
         title: '',
-        content: '',
+        intro: '',
         sign1: '',
         sign2: '',
         image: ''

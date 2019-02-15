@@ -1,4 +1,6 @@
 <!--pages/login/login.wxml-->
 <view class='page-login'>
-  <ft-button text="微信授权登录" open-type="getUserInfo" bindgetuserinfo="getUserInfo" />
+  <view class='btn-box'>
+    <ft-button text="微信授权登录" width="686rpx" height="94rpx" border-radius="4rpx" color="#67462B" bg="#F2E0CA" disabled="{{logining}}" disabled-color="#fff" disabled-bg="#CCCCCC" open-type="getUserInfo" bindgetuserinfo="getUserInfo" />
+  </view>
 </view>

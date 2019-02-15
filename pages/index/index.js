@@ -1,4 +1,6 @@
 // pages/index/index.js
+import util from '../../utils/util.js'
+
 Page({
 
   /**
@@ -203,7 +205,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.fetchData()
   },
 
   /**
@@ -255,16 +257,29 @@ Page({
 
   },
 
+  fetchData: function () {
+    util.request('/home').then(res => {
+      if (res && !res.error) { // 获取数据成功
+        let banners = res.data.banner ? res.data.banner.map((item, i) => { return { idx: i, url: item}}) : []
+        let cates = res.data.list
+        this.setData({
+          banners: banners,
+          cates: cates
+        })
+      }
+    }).catch(err => {
+      console.log('获取数据失败')
+    })
+  },
+
   pageEntryTap: function (e) {
     let {ele} = e.currentTarget.dataset
+    let unionId = util.checkUnionId()
+    if (!unionId) {
+      return false
+    }
     if (ele === 'enroll') { // 点击了考级报名
-      console.log('点击了考级报名')
-      this.setData({
-        'modal.visible': true
-      })
-      // wx.navigateTo({
-      //   url: '/pages/login/login'
-      // })
+      util.checkExaming()
     } else if (ele === 'queryscore') { // 点击了成绩查询
       console.log('点击了成绩查询')
       wx.navigateTo({
@@ -314,9 +329,5 @@ Page({
         url: '/pages/apply/apply'
       })
     }
-  },
-
-  regulationsEntryTap: function () {
-    console.log('点击了查看简章')
   }
 })

@@ -49,14 +49,14 @@
           <view class="check-view {{form.gender.value == '1' ? 'checked' : ''}}">
             <view class="check-view-center {{form.gender.value == '1' ? 'checked' : ''}}"></view>
           </view>
-          <text class='gender-text'>男</text>
+          <text class='gender-text'>{{genderText['1']}}</text>
         </label>
         <label class="gender">
           <radio value="2" checked="{{false}}" style="display:none" />
           <view class="check-view {{form.gender.value == '2' ? 'checked' : ''}}">
             <view class="check-view-center {{form.gender.value == '2' ? 'checked' : ''}}"></view>
           </view>
-          <text class='gender-text'>女</text>
+          <text class='gender-text'>{{genderText['2']}}</text>
         </label>
       </radio-group>
     </view>
@@ -75,9 +75,9 @@
       <view class='header-wrapper'>
         <ft-require-header required="{{form.nationality.required}}" text="国籍：" />
       </view>
-      <picker data-ele="nationality" bindchange="pickerChange" mode="selector" range="{{nationalitys}}" range-key="text" value="{{form.nationality.idx}}">
+      <picker data-ele="nationality" bindchange="pickerChange" mode="selector" range="{{nationalitys}}" value="{{form.nationality.idx}}">
         <view class="nationality">
-          <view class="nationality-text {{form.nationality.value ? '' : 'unselected'}}">{{nationalitys[form.nationality.idx].text || '请选择国籍'}}</view>
+          <view class="nationality-text {{form.nationality.value ? '' : 'unselected'}}">{{nationalitys[form.nationality.idx] || '请选择国籍'}}</view>
           <text class='ft-icon c-icon-sanjiao' style="font-size:18rpx;color:#BFBFBF;margin:0 0 0 20rpx;line-height:18rpx"></text>
         </view>
       </picker>
@@ -86,9 +86,9 @@
       <view class='header-wrapper'>
         <ft-require-header required="{{form.volk.required}}" text="民族：" />
       </view>
-      <picker data-ele="volk" bindchange="pickerChange" mode="selector" range="{{volks}}" range-key="text" value="{{form.volk.idx}}">
+      <picker data-ele="volk" bindchange="pickerChange" mode="selector" range="{{volks}}" value="{{form.volk.idx}}">
         <view class="volk">
-          <view class="volk-text {{form.volk.value ? '' : 'unselected'}}">{{volks[form.volk.idx].text || '请选择民族'}}</view>
+          <view class="volk-text {{form.volk.value ? '' : 'unselected'}}">{{volks[form.volk.idx] || '请选择民族'}}</view>
           <text class='ft-icon c-icon-sanjiao' style="font-size:18rpx;color:#BFBFBF;margin:0 0 0 20rpx;line-height:18rpx"></text>
         </view>
       </picker>
@@ -97,9 +97,9 @@
       <view class='header-wrapper'>
         <ft-require-header required="{{form.cardtype.required}}" text="证件类型：" />
       </view>
-      <picker data-ele="cardtype" bindchange="pickerChange" mode="selector" range="{{cardtypes}}" range-key="text" value="{{form.cardtype.idx}}">
+      <picker data-ele="cardtype" bindchange="pickerChange" mode="selector" range="{{cardtypes}}" value="{{form.cardtype.idx}}">
         <view class="cardtype">
-          <view class="cardtype-text {{form.cardtype.value ? '' : 'unselected'}}">{{cardtypes[form.cardtype.idx].text || '请选择证件类型'}}</view>
+          <view class="cardtype-text {{form.cardtype.value ? '' : 'unselected'}}">{{cardtypes[form.cardtype.idx] || '请选择证件类型'}}</view>
           <text class='ft-icon c-icon-sanjiao' style="font-size:18rpx;color:#BFBFBF;margin:0 0 0 20rpx;line-height:18rpx"></text>
         </view>
       </picker>
@@ -137,9 +137,9 @@
       <view class='header-wrapper'>
         <ft-require-header required="{{form.level.required}}" text="报考级别：" />
       </view>
-      <picker data-ele="level" disabled="{{!levels || !levels[0]}}" bindchange="pickerChange" mode="selector" range="{{levels}}" range-key="text" value="{{form.level.idx}}">
+      <picker data-ele="level" disabled="{{!levels || !levels[0]}}" bindchange="pickerChange" mode="selector" range="{{levels}}" value="{{form.level.idx}}">
         <view class="level">
-          <view class="level-text {{form.level.value ? '' : 'unselected'}}">{{levels[form.level.idx].text || '请选择报考级别'}}</view>
+          <view class="level-text {{form.level.value ? '' : 'unselected'}}">{{levels[form.level.idx] || '请选择报考级别'}}</view>
           <text class='ft-icon c-icon-sanjiao' style="font-size:18rpx;color:#BFBFBF;margin:0 0 0 20rpx;line-height:18rpx"></text>
         </view>
       </picker>
@@ -181,7 +181,7 @@
           <view class="last-get-item-text {{majors[form.major.idx].value ? '' : 'unselected'}}">{{majors[form.major.idx].text || '专业'}}</view>
         </view>
         <view class="last-get-item">
-          <view class="last-get-item-text {{form.level.value ? '' : 'unselected'}}">{{levels[form.level.idx].text || '等级'}}</view>
+          <view class="last-get-item-text {{form.level.value ? '' : 'unselected'}}">{{levels[form.level.idx - 1] || '等级'}}</view>
         </view>
       </view>
     </view>
@@ -197,7 +197,7 @@
         <ft-button text="上传" width="180rpx" height="80rpx" font-size="{{30}}" bg="#108EE9" border-radius="4rpx" data-ele="majorcertificate" disabled="{{form.majorcertificate.uploading}}" disabled-bg="#CCCCCC" catchtap="chooseImage" />
       </view>
       <view class='tip-header'>
-        <ft-tip text="凡报考演唱演奏2级或以上的，均需上传同专业上一级别证书" />
+        <ft-tip text="报考演唱演奏10级，需上传本考级机构同专业9级证书；报考表演文凭级，需上传本考级机构同专业10级证书" />
       </view>
     </view>
     <view hidden="{{!form.basicmusiccertificate.required}}" class='block' id="basicmusiccertificate">
@@ -248,7 +248,7 @@
   </view>
   <view class='line-separator-h' style="width:686rpx;margin:0 auto"></view>
   <view class='area'>
-    <view class='block' id="contact">
+    <!-- <view class='block' id="contact">
       <view class='header-wrapper'>
         <ft-require-header required="{{form.contact.required}}" text="联系人：" />
       </view>
@@ -259,7 +259,7 @@
         <ft-require-header required="{{form.contactphone.required}}" text="联系电话：" />
       </view>
       <input class='full-input' value="{{form.contactphone.value}}" placeholder-class="placeholder" placeholder='联系人电话' data-ele="contactphone" bindinput="inputChange" />
-    </view>
+    </view> -->
     <view class='block' id="fillter">
       <view class='header-wrapper'>
         <ft-require-header required="{{form.fillter.required}}" text="填表人：" />
@@ -294,7 +294,7 @@
           <ft-button text="保存" width="325rpx" height="80rpx" color="#67462B" bg="#F2E0CA" border-radius="4rpx" catchtap="saveTap" />
         </view>
         <view class="submit-btn">
-          <ft-button text="提交" width="325rpx" height="80rpx" color="#fff" bg="#108EE9" border-radius="4rpx" catchtap="submitTap" />
+          <ft-button text="提交" width="325rpx" height="80rpx" color="#fff" bg="#108EE9" border-radius="4rpx" catchtap="submitTap" disabled="{{submitting}}" />
         </view>
       </view>
       <ft-iphone-bottom-adapter />

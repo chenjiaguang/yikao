@@ -10,6 +10,6 @@
     "big-header": "../../components/bigHeader/bigHeader",
     "ft-button": "../../components/ftButton/ftButton",
     "visiting-card": "../../components/visitingCard/visitingCard",
-    "ft-custom-modal": "../../components/ftCustomModal/ftCustomModal"
+    "check-apply-modal": "../../components/checkApplyModal/checkApplyModal"
   }
 }

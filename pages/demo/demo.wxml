@@ -32,11 +32,15 @@
   </view>
   <scroll-view class='demo-scroll-wrapper' scroll-y bindscroll="resetPos" bindtouchend="end" catchtouchmove="move">
     <view class='refresh-box'>
-      <text class='refresh-text' hidden="{{refreshing}}" wx:for="{{refreshText}}" wx:key="*this" style="opacity:{{((distance - 60 - 6 * index) / 40) / ((index + 1) / refreshText.length)}}">{{item}}</text>
+      <text class='refresh-text' hidden="{{refreshing}}" wx:for="{{refreshText}}" wx:key="*this" style="opacity:{{((distance - 90 - 6 * index) / 60) / ((index + 1) / refreshText.length)}}">{{item}}</text>
       <!-- <view wx:if="{{refreshing}}">正在刷新...</view> -->
-      <ft-refreshing-icon hidden="{{!refreshing}}" />
+      <view class='refreshing-icon-box'>
+        <view class="refreshing-icon-content {{refreshing ? 'refreshing' : ''}}">
+          <ft-refreshing-icon style="opacity:{{refreshing ? 1 : 0}}" />
+        </view>
+      </view>
     </view>
-    <view class='demo-scroll-body' style="transform:translateY({{distance / 2}}px);transition:transform {{duration}}s">
+    <view class='demo-scroll-body' style="transform:translateY({{distance / 3}}px);transition:transform {{duration}}s">
       <view class='t-wrapper'>
         <view class='t-float'>
           <text class='t-name' style="color: yellow">盗墓笔记</text>
@@ -44,6 +48,12 @@
         </view>
         <text class='text' style="color: blue">发布于专辑</text>
         <text class='text' style="color: green">公开可以哈哈哈哈哈哈哈哈哈</text>
+      </view>
+      <view class="image-box">
+        <image wx:if="{{imageUrl}}" class='image-item' src="{{imageUrl}}" />
+        <image wx:if="{{imageUrl}}" class='image-item' src="{{imageUrl}}" />
+        <image wx:if="{{imageUrl}}" class='image-item' src="{{imageUrl}}" />
+        <image wx:if="{{imageUrl}}" class='image-item' src="{{imageUrl}}" />
       </view>
     </view>
   </scroll-view>

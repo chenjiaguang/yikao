@@ -1,1 +1,8 @@
 /* pages/login/login.wxss */
+
+.btn-box{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 45rpx 0 15rpx;
+}

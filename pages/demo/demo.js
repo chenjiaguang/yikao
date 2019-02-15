@@ -7,6 +7,7 @@ const app = getApp()
 
 Page({
   data: {
+    imageUrl: '',
     refreshText: '下拉刷新页面',
     distance: 0,
     refreshing: false,
@@ -118,6 +119,11 @@ Page({
     })
   },
   onLoad: function() {
+    setTimeout(() => {
+      this.setData({
+        imageUrl: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1451698316,2699404580&fm=26&gp=0.jpg'
+      })
+    }, 5000)
     console.log('Mtils', Mtils, Mtils.utils.makePy('真的'))
     if (app.globalData.userInfo) {
       this.setData({
@@ -273,8 +279,8 @@ Page({
 
   end: function (e) {
     console.log('end')
-    if (this.distance >= 120) { // 到达刷新临界点
-      this.distance = 120
+    if (this.distance >= 180) { // 到达刷新临界点
+      this.distance = 180
       this.refreshing = true
       this.setData({
         distance: this.distance,
@@ -319,9 +325,9 @@ Page({
       } else if (this.start && (e.changedTouches[0].clientY - this.start) > 0) {
         let distance = e.changedTouches[0].clientY - this.start
         console.log('this.distance', this.distance)
-        if (this.distance === 120) {
-          if (distance < 120) {
-            this.distance = 120 + 1
+        if (this.distance === 180) {
+          if (distance < 180) {
+            this.distance = 180 + 1
             this.setData({
               distance: this.distance,
               duration: 0

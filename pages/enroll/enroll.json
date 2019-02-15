@@ -7,6 +7,6 @@
   "enablePullDownRefresh": false,
   "usingComponents": {
     "big-header": "../../components/bigHeader/bigHeader",
-    "ft-custom-modal": "../../components/ftCustomModal/ftCustomModal"
+    "check-apply-modal": "../../components/checkApplyModal/checkApplyModal"
   }
 }

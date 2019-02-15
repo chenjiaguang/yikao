@@ -69,6 +69,10 @@ Page({
 
   messageTap: function () {
     console.log('点击了消息icon')
+    let unionId = util.checkUnionId()
+    if (!unionId) {
+      return false
+    }
     wx.navigateTo({
       url: '/pages/message/message'
     })
@@ -76,6 +80,10 @@ Page({
 
   entryTap: function (e) {
     let {ele} = e.currentTarget.dataset
+    let unionId = util.checkUnionId()
+    if (!unionId) {
+      return false
+    }
     if (ele === 'enroll') { // 点击了我的报名
       console.log('点击了我的报名')
       wx.navigateTo({

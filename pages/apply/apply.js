@@ -9,10 +9,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    nationalitys: maps.nationalitys,
-    volks: maps.volks,
-    cardtypes: maps.cardtypes,
-    majors: maps.majors,
+    exam_id: '',
+    nationalitys: [],
+    volks: [],
+    genderText: {
+      1: '男',
+      2: '女'
+    },
+    cardtypes: [],
+    majors: [],
     levels: [],
     continuitys: [],
     years: maps.years,
@@ -57,7 +62,7 @@ Page({
       nationality: { // 国籍
         required: true,
         idx: 0,
-        value: '1',
+        value: '中国',
         text: '中国',
         valid: true,
         tip: '请选择国籍'
@@ -65,7 +70,7 @@ Page({
       volk: { // 民族
         required: true,
         idx: 0,
-        value: '1',
+        value: '汉族',
         text: '汉族',
         valid: true,
         tip: '请选择民族'
@@ -73,7 +78,7 @@ Page({
       cardtype: { // 证件类型
         required: true,
         idx: 0,
-        value: '1',
+        value: '身份证',
         text: '身份证',
         valid: true,
         tip: '请选择证件类型'
@@ -183,18 +188,18 @@ Page({
         valid: false,
         tip: '请填写考试曲目5'
       },
-      contact: { // 联系人
-        required: true,
-        value: '',
-        valid: false,
-        tip: '请填写联系人姓名'
-      },
-      contactphone: { // 联系电话
-        required: true,
-        value: '',
-        valid: false,
-        tip: '请填写联系人电话'
-      },
+      // contact: { // 联系人
+      //   required: true,
+      //   value: '',
+      //   valid: false,
+      //   tip: '请填写联系人姓名'
+      // },
+      // contactphone: { // 联系电话
+      //   required: true,
+      //   value: '',
+      //   valid: false,
+      //   tip: '请填写联系人电话'
+      // },
       fillter: { // 填表人
         required: true,
         value: '',
@@ -213,68 +218,78 @@ Page({
         valid: false,
         tip: '请填写老师电话'
       }
-    }
+    },
+    submitting: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     this.getForm()
+    this.getOptions()
+    this.setData({
+      exam_id: options.examId
+    })
+    console.log('exam_id', options.examId)
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   },
 
-  inputChange: function (e) {
-    let {ele} = e.currentTarget.dataset
-    let {value} = e.detail
+  inputChange: function(e) {
+    let {
+      ele
+    } = e.currentTarget.dataset
+    let {
+      value
+    } = e.detail
     console.log(ele, value)
     if (ele === 'name') { // 姓名
       let pinyin = ''
@@ -305,7 +320,7 @@ Page({
     }
   },
 
-  titleCase: function (str) {
+  titleCase: function(str) {
     let subStrArr = str.toLowerCase().split(/\s+/)
     for (let i = 0; i < subStrArr.length; i++) {
       subStrArr[i] = subStrArr[i].slice(0, 1).toUpperCase() + subStrArr[i].slice(1)
@@ -313,25 +328,31 @@ Page({
     return subStrArr.join(' ')
   },
 
-  changeEditPinyin: function () {
+  changeEditPinyin: function() {
     this.setData({
       editPinyin: !this.data.editPinyin
     })
   },
 
-  genderChange: function (e) {
+  genderChange: function(e) {
     console.log('genderChange', e)
-    let {value} = e.detail
+    let {
+      value
+    } = e.detail
     this.setData({
       'form.gender.value': value,
       'form.gender.valid': value ? true : false
     })
   },
 
-  pickerChange: function (e) {
+  pickerChange: function(e) {
     console.log('pickerChange', e)
-    let {ele} = e.currentTarget.dataset
-    let {value} = e.detail
+    let {
+      ele
+    } = e.currentTarget.dataset
+    let {
+      value
+    } = e.detail
     if (ele === 'birthday') { // 生日
       this.setData({
         'form.birthday.value': value,
@@ -339,33 +360,44 @@ Page({
         'form.birthday.valid': value ? true : false
       })
     } else if (ele === 'nationality') { // 国籍
-      let { nationalitys} = this.data
+      let {
+        nationalitys
+      } = this.data
       this.setData({
         'form.nationality.idx': value,
-        'form.nationality.value': nationalitys[value].value,
-        'form.nationality.text': nationalitys[value].text,
-        'form.nationality.valid': nationalitys[value].value ? true : false
+        'form.nationality.value': nationalitys[value],
+        'form.nationality.text': nationalitys[value],
+        'form.nationality.valid': nationalitys[value] ? true : false
       })
-    } else if (ele === 'volk') {
-      let { volks } = this.data
+    } else if (ele === 'volk') { // 民族
+      let {
+        volks
+      } = this.data
       this.setData({
         'form.volk.idx': value,
-        'form.volk.value': volks[value].value,
-        'form.volk.text': volks[value].text,
-        'form.volk.valid': volks[value].value ? true : false
+        'form.volk.value': volks[value],
+        'form.volk.text': volks[value],
+        'form.volk.valid': volks[value] ? true : false
       })
-    } else if (ele === 'cardtype') {
-      let { cardtypes } = this.data
+    } else if (ele === 'cardtype') { // 证件类型
+      let {
+        cardtypes
+      } = this.data
       this.setData({
         'form.cardtype.idx': value,
-        'form.cardtype.value': cardtypes[value].value,
-        'form.cardtype.text': cardtypes[value].text,
-        'form.cardtype.valid': cardtypes[value].value ? true : false
+        'form.cardtype.value': cardtypes[value],
+        'form.cardtype.text': cardtypes[value],
+        'form.cardtype.valid': cardtypes[value] ? true : false
       })
-    } else if (ele === 'major') {
-      let { majors } = this.data
+    } else if (ele === 'major') { // 报考专业
+      let {
+        majors
+      } = this.data
+      let levels = majors[value].levels
+      let continuitys = []
       this.setData({
-        levels: majors[value].levels,
+        levels: levels,
+        continuitys,
         'form.major.idx': value,
         'form.major.value': majors[value].value,
         'form.major.text': majors[value].text,
@@ -373,47 +405,57 @@ Page({
         'form.level.idx': '',
         'form.level.value': '',
         'form.level.text': '',
-        'form.level.valid': false
+        'form.level.valid': false,
+        'form.continuity.idx': '',
+        'form.continuity.value': '',
+        'form.continuity.text': '',
+        'form.continuity.valid': false,
+        'form.majorcertificate.required': false,
+        'form.basicmusiccertificate.required': false
       })
-    } else if (ele === 'level') {
-      let { levels} = this.data
+    } else if (ele === 'level') { // 报考级别
+      let {
+        levels
+      } = this.data
       let major = this.data.form.major
       let continuitys = []
       if (major.text === '基本乐科' && parseInt(value) !== (levels.length - 1)) { // 判断是否基本乐科、且不是最后一级
-        continuitys = [
-          {
+        continuitys = [{
             value: '0',
             text: '否'
           },
           {
-            value: parseInt(levels[value].value) + 1,
-            text: parseInt(levels[value].value) + 1 + '级'
+            value: levels[parseInt(value) + 1],
+            text: levels[parseInt(value) + 1]
           }
         ]
       }
       let needMajorCer = false
       let needBasicMusicCer = false
-      if (major.text !== '基本乐科' && parseInt(value) !== 0) { // 演唱演奏、且2级以上，显示“上传专业证书”，“上传基本乐科证书”
+      if (major.value !== '基本乐科' && parseInt(value) > 8) { // 报考演唱演奏10级，需上传本考级机构同专业9级证书；报考表演文凭级，需上传本考级机构同专业10级证书
         needMajorCer = true
       }
-      if ((major.text !== '基本乐科' && parseInt(value) > 1) || (major.text === '基本乐科' && parseInt(value) > 0)) { // 非基本乐科3级及以上、基本乐科2级及以上
+      if ((major.value !== '基本乐科' && parseInt(value) > 1) || (major.value === '基本乐科' && parseInt(value) > 0)) { // 非基本乐科3级及以上、基本乐科2级及以上
         needBasicMusicCer = true
       }
       this.setData({
         continuitys,
+        'form.continuity.required': (continuitys && continuitys[0]) ? true : false,
         'form.continuity.idx': '',
         'form.continuity.value': '',
         'form.continuity.text': '',
         'form.continuity.valid': false,
         'form.level.idx': value,
-        'form.level.value': levels[value].value,
-        'form.level.text': levels[value].text,
-        'form.level.valid': levels[value].value ? true : false,
+        'form.level.value': levels[value],
+        'form.level.text': levels[value],
+        'form.level.valid': levels[value] ? true : false,
         'form.majorcertificate.required': needMajorCer,
         'form.basicmusiccertificate.required': needBasicMusicCer
       })
     } else if (ele === 'continuity') {
-      let { continuitys } = this.data
+      let {
+        continuitys
+      } = this.data
       this.setData({
         'form.continuity.idx': value,
         'form.continuity.value': continuitys[value].value,
@@ -421,7 +463,9 @@ Page({
         'form.continuity.valid': continuitys[value].value ? true : false
       })
     } else if (ele === 'lastgetyear') { // 最近一次获得同专业考级证书年份
-      let { years } = this.data
+      let {
+        years
+      } = this.data
       this.setData({
         'form.lastgetcertificate.year.idx': value,
         'form.lastgetcertificate.year.value': years[value].value,
@@ -429,7 +473,9 @@ Page({
         'form.lastgetcertificate.year.valid': years[value].value ? true : false
       })
     } else if (ele === 'lastgetmonth') { // 最近一次获得同专业考级证书月份
-      let { months } = this.data
+      let {
+        months
+      } = this.data
       this.setData({
         'form.lastgetcertificate.month.idx': value,
         'form.lastgetcertificate.month.value': months[value].value,
@@ -437,26 +483,27 @@ Page({
         'form.lastgetcertificate.month.valid': months[value].value ? true : false
       })
     }
-    
+
   },
 
-  scrollToBlock: function (id) {
+  scrollToBlock: function(id) {
     const query = wx.createSelectorQuery()
     let q = '#' + id
     query.select(q).boundingClientRect()
     query.selectViewport().scrollOffset()
-    query.exec(function (res) {
+    query.exec(function(res) {
       const top1 = res[0].top // q节点的上边界坐标
       const top2 = res[1].scrollTop // 显示区域的竖直滚动位置
       let scrollTop = top1 + top2
-      wx.pageScrollTo({ 
+      wx.pageScrollTo({
         scrollTop
       })
     })
   },
 
-  getFormData: function () {
+  getFormData: function() {
     let form = JSON.parse(JSON.stringify(this.data.form))
+    let valid = true
     for (let key in form) {
       console.log('key', key)
       if (key === 'lastgetcertificate') { // 最近一次获得同专业考级证书
@@ -468,6 +515,7 @@ Page({
               icon: 'none'
             })
           }
+          valid = false
           break
         } else if (!form.lastgetcertificate.month.valid) {
           this.scrollToBlock(key)
@@ -477,6 +525,7 @@ Page({
               icon: 'none'
             })
           }
+          valid = false
           break
         }
       } else {
@@ -488,35 +537,78 @@ Page({
               icon: 'none'
             })
           }
+          valid = false
           break
         }
       }
     }
-  },
-
-  submitSuccess: function (code, enrollid) {
-    if (code.toString() === '305') { // 跳转缴费页面
-      wx.redirectTo({
-        url: '/pages/pay/pay?id=' + enrollid,
-      })
-    } else if (code.toString() === '306') { // 跳转提交成功页面（需审核）
-      wx.redirectTo({
-        url: '/pages/successpage/successpage?type=2&id=' + enrollid,
-      })
+    if (valid) {
+      let formData = {}
+      formData.exam_id = this.data.exam_id
+      formData.picture_id = this.data.form.avatar.id
+      formData.name = this.data.form.name.value
+      formData.pinyin = this.data.form.pinyin.value
+      formData.sex = this.data.genderText[this.data.form.gender.value]
+      formData.birth = this.data.form.birthday.value
+      formData.nationality = this.data.form.nationality.value
+      formData.nation = this.data.form.volk.value
+      formData.id_type = this.data.form.cardtype.value
+      formData.id_number = this.data.form.cardnumber.value
+      formData.phone = this.data.form.phone.value
+      formData.domain = this.data.form.major.value
+      formData.level = this.data.form.level.value
+      formData.continuous_level = this.data.form.continuity.text
+      formData.lately_credential = this.data.form.lastgetcertificate.year.value + ',' + this.data.form.lastgetcertificate.month.value + ',' + this.data.form.major.value + this.data.form.level.value.replace('级', '')
+      formData.pro_certificate_id = this.data.form.majorcertificate.id
+      formData.basic_certificate_id = this.data.form.basicmusiccertificate.id
+      formData.track_one = this.data.form.bent1.value
+      formData.track_two = this.data.form.bent2.value
+      formData.track_three = this.data.form.bent3.value
+      formData.track_four = this.data.form.bent4.value
+      formData.track_five = this.data.form.bent5.value
+      formData.preparer = this.data.form.fillter.value
+      formData.adviser = this.data.form.teacher.value
+      formData.adviser_phone = this.data.form.teacherphone.value
+      return formData
+    } else {
+      return valid
     }
   },
 
-  saveTap: function () {
+  submitSuccess: function (enrollid, code) {
+    // if (code.toString() === '305') { // 跳转缴费页面
+    //   wx.redirectTo({
+    //     url: '/pages/pay/pay?id=' + enrollid,
+    //   })
+    // } else if (code.toString() === '306') { // 跳转提交成功页面（需审核）
+    //   wx.redirectTo({
+    //     url: '/pages/successpage/successpage?type=2&id=' + enrollid,
+    //   })
+    // }
+    wx.removeStorageSync('applyForm')
+    wx.removeStorageSync('applyFormOptions')
+    wx.redirectTo({
+      url: '/pages/successpage/successpage?type=2&id=' + enrollid,
+    })
+  },
+
+  saveTap: function() {
     console.log('点击了保存')
     this.saveForm()
   },
 
-  saveForm: function () {
-    let { form } = this.data
+  saveForm: function() {
+    let {
+      form,
+      levels,
+      continuitys
+    } = this.data
     let _form = JSON.parse(JSON.stringify(form))
+    let _levels = JSON.parse(JSON.stringify(levels))
+    let _continuitys = JSON.parse(JSON.stringify(continuitys))
     let applyForm = {}
     for (let key1 in _form) {
-      if (key1 === 'avatar' || key1 === 'majorcertificate' || key1 === 'basicmusiccertificate') {
+      if (key1 === 'avatar' || key1 === 'majorcertificate' || key1 === 'basicmusiccertificate' || key1 === 'major' || key1 === 'level' || key1 === 'lastgetcertificate' || key1 === 'continuity') {
         continue
       }
       applyForm[key1] = {}
@@ -528,16 +620,27 @@ Page({
     }
     applyForm = JSON.stringify(applyForm)
     wx.setStorageSync('applyForm', applyForm)
+    wx.setStorageSync('applyFormOptions', JSON.stringify({
+      levels: _levels,
+      continuitys: _continuitys
+    }))
     wx.showToast({
       title: '保存成功',
       icon: 'none'
     })
   },
 
-  getForm: function () {
+  getForm: function() {
     let applyForm = wx.getStorageSync('applyForm') ? JSON.parse(wx.getStorageSync('applyForm')) : {}
-    let {form} = this.data
+    let applyFormOptions = wx.getStorageSync('applyFormOptions') ? JSON.parse(wx.getStorageSync('applyFormOptions')) : {}
+    let {
+      form
+    } = this.data
     let _form = JSON.parse(JSON.stringify(form))
+    let {
+      levels,
+      continuitys
+    } = applyFormOptions
     let newForm = {}
     for (let key in _form) {
       newForm[key] = Object.assign({}, _form[key], applyForm[key])
@@ -545,15 +648,37 @@ Page({
     console.log('getForm', _form, newForm)
     if (applyForm) {
       this.setData({
-        form: newForm
+        form: newForm,
+        levels: levels || [],
+        continuitys: continuitys || []
       })
     }
   },
 
-  submitTap: function () {
+  submitTap: function() {
     console.log('点击了提交')
-    this.getFormData()
-    this.submitSuccess(306, 998) // 需要审核跳转提交成功页面(需审核)，不需要审核跳转缴费页面
+    let formData = this.getFormData()
+    if (formData) {
+      if (this.data.submitting) { // 正在提交表单
+        return false
+      }
+      this.setData({
+        submitting: true
+      })
+      util.request('/apply/add', formData).then(res => {
+        this.setData({
+          submitting: false
+        })
+        console.log('/apply/add', res)
+        if (res && res.data && !res.error) { // 提交表单成功
+          this.submitSuccess(formData.exam_id)
+        }
+      }).catch(err => {
+        this.setState({
+          submitting: false
+        })
+      })
+    }
   },
 
   uploadTask: { // 上传图片队列
@@ -562,8 +687,10 @@ Page({
     basicmusiccertificate: null
   },
 
-  chooseImage: function (e) {
-    let {ele} = e.currentTarget.dataset
+  chooseImage: function(e) {
+    let {
+      ele
+    } = e.currentTarget.dataset
     // 选择图片
     wx.chooseImage({
       count: 1,
@@ -595,7 +722,6 @@ Page({
               "url": true
             },
             success: res => {
-              console.log('上传成功', res)
               let uploadRes = JSON.parse(res.data)
               let _obj = {}
               if (uploadRes && uploadRes.msg && uploadRes.error) {
@@ -605,7 +731,10 @@ Page({
                 })
               }
               if (uploadRes && uploadRes.data && !uploadRes.error) {
-                let { url, id } = uploadRes.data
+                let {
+                  url,
+                  id
+                } = uploadRes.data
                 _obj['form.' + ele + '.id'] = id
                 _obj['form.' + ele + '.originUrl'] = url
                 _obj['form.' + ele + '.valid'] = true
@@ -638,4 +767,60 @@ Page({
       }
     })
   },
+  getOptions: function() {
+    util.request('/option').then(res => {
+      console.log('getOptions', res)
+      if (!res.error && res.data) { // 获取信息成功
+        let {
+          nationality,
+          nation,
+          major,
+          certificate
+        } = res.data
+        let majors = []
+        for (let mj in major) {
+          majors.push({
+            value: mj,
+            text: mj,
+            levels: major[mj]
+          })
+        }
+        let formNationality = {
+          required: true,
+          idx: 0,
+          value: nationality[0],
+          text: nationality[0],
+          valid: true,
+          tip: '请选择国籍'
+        }
+        let formVolk = {
+          required: true,
+          idx: 0,
+          value: nation[0],
+          text: nation[0],
+          valid: true,
+          tip: '请选择民族'
+        }
+        let formCardtype = { // 证件类型
+          required: true,
+          idx: 0,
+          value: certificate[0],
+          text: certificate[0],
+          valid: true,
+          tip: '请选择证件类型'
+        }
+        this.setData({
+          nationalitys: nationality,
+          volks: nation,
+          majors: majors,
+          cardtypes: certificate,
+          'form.nationality': formNationality,
+          'form.volk': formVolk,
+          'form.cardtype': formCardtype
+        })
+      }
+    }).catch(err => {
+
+    })
+  }
 })

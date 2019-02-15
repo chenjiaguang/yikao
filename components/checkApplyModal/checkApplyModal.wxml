@@ -1,0 +1,10 @@
+<!--components/checkApplyModal/checkApplyModal.wxml-->
+<ft-custom-modal visible="{{modal.is_exam}}" buttons="{{['确定']}}" button-font-size="{{36}}" button-color="#108EE9" button-bg="transparent" title="中国音乐学院社会艺术水平考级" title-style="text-align:left" bindtap="modalTap">
+  <view class="modal-content">
+    <view class='modal-content-text'>中国音乐学院社会艺术水平考级——海南考区</view>
+    <view class='modal-content-text'><text class='modal-item'>承办机构：</text><text>{{modal.exam.name}}</text></view>
+    <view class='modal-content-text'><text class='modal-item'>报名起止日期：</text><text>{{modal.exam.apply_time_start}}～{{modal.exam.apply_time_end}}</text></view>
+    <view class='modal-content-text'><text class='modal-item'>考试起止日期：</text><text>{{modal.exam.exam_time_start}}～{{modal.exam.exam_time_end}}</text></view>
+    <view class='regulations-entry' catchtap="regulationsEntryTap">其他详细事宜请参见简章</view>
+  </view>
+</ft-custom-modal>

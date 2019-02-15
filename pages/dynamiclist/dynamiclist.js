@@ -1,4 +1,6 @@
 // pages/dynamiclist/dynamiclist.js
+import util from '../../utils/util.js'
+
 Page({
 
   /**
@@ -55,7 +57,7 @@ Page({
       wx.setNavigationBarTitle({ title})
     }
     this.setData({cateid})
-    this.fetchlist(cateid, 0)
+    this.fetchlist(cateid, 1)
   },
 
   /**
@@ -90,14 +92,21 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    if (this.data.loading) {
+      return false
+    }
+    this.fetchlist(this.data.cateid, 1)
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    if (this.data.loading) {
+      return false
+    }
+    let pn = parseInt(this.data.page.pn) + 1
+    this.fetchlist(this.data.cateid, pn)
   },
 
   /**
@@ -108,172 +117,45 @@ Page({
   },
 
   fetchlist: function (cateid, pn) {
+    if (this.data.loading) { // 正在请求则终止
+      if (pn.toString() === '1') {
+        wx.stopPullDownRefresh()
+      }
+      return false
+    }
     this.setData({
       loading: true
     })
-    setTimeout(() => {
-      if (cateid.toString() === '1') { // 考级动态
-        this.setData({
-          loaded: true,
-          loading: false,
-          dynamics: [
-            {
-              id: 11,
-              title: '2019年寒假考级',
-              content: '最多展示一行，超出截断展示最多展示一行，超出截断展示最多展示1行',
-              sign1: '2019-01-07',
-              sign2: '中国音乐学院考级委员会海南考区'
-            },
-            {
-              id: 22,
-              title: '2019年暑假考级',
-              content: '最多展示一行，超出截断展示最多展',
-              sign1: '2019-01-07',
-              sign2: '中国音乐学院考级委员会海南考区'
-            },
-            {
-              id: 33,
-              title: '2019年长期考级',
-              content: '最多展示一行，超出截断展示最多展示一行，超出截断展示最多展示1行',
-              sign1: '2019-01-07',
-              sign2: '中国音乐学院考级委员会海南考区'
-            }
-          ],
-          page: {
-            isend: true,
-            pn: 0
-          }
-        })
-      } else if (cateid.toString() === '2') { // 师资培训
-        this.setData({
-          loaded: true,
-          loading: false,
-          dynamics: [
-            {
-              id: 1,
-              title: '师资培训11111',
-              content: '2行的内容是镂空的肌肤脸上的肌肤',
-              sign1: '2019-01-07',
-              image: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1819776845,1128606894&fm=26&gp=0.jpg'
-            },
-            {
-              id: 2,
-              title: '师资培训222222',
-              content: '2行的内容是镂空的肌肤脸上的肌肤离开善良的风收到了饭就阿善良分家连撒娇阿了三分景拉丝分',
-              sign1: '2019-01-07',
-              image: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=877288732,706910501&fm=200&gp=0.jpg'
-            },
-            {
-              id: 3,
-              title: '师资培训33333',
-              content: '2行的内容是镂空的肌肤脸上的肌肤离开善良的风景拉丝分',
-              sign1: '2019-01-07',
-              image: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3390961998,1154407883&fm=200&gp=0.jpg'
-            }
-          ],
-          page: {
-            isend: true,
-            pn: 0
-          }
-        })
-      } else if (cateid.toString() === '3') { // 艺术团表演
-        this.setData({
-          loaded: true,
-          loading: false,
-          dynamics: [
-            {
-              id: 6,
-              title: '艺术团表演11111',
-              content: '2行的内容是镂空的肌肤脸上的肌肤',
-              sign1: '2019-01-07',
-              image: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1819776845,1128606894&fm=26&gp=0.jpg'
-            },
-            {
-              id: 7,
-              title: '艺术团表演222222',
-              content: '2行的内容是镂空的肌肤脸上的肌肤离开善良的风收到了饭就阿善良分家连撒娇阿了三分景拉丝分',
-              sign1: '2019-01-07',
-              image: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=877288732,706910501&fm=200&gp=0.jpg'
-            },
-            {
-              id: 8,
-              title: '艺术团表演33333',
-              content: '2行的内容是镂空的肌肤脸上的肌肤离开善良的风景拉丝分',
-              sign1: '2019-01-07',
-              image: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3390961998,1154407883&fm=200&gp=0.jpg'
-            }
-          ],
-          page: {
-            isend: true,
-            pn: 0
-          }
-        })
-      } else if (cateid.toString() === '4') { // 大赛
-        this.setData({
-          loaded: true,
-          loading: false,
-          dynamics: [
-            {
-              id: 9,
-              title: '大赛大赛11111',
-              content: '2行的内容是镂空的肌肤脸上的肌肤',
-              sign1: '2019-01-07',
-              image: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1819776845,1128606894&fm=26&gp=0.jpg'
-            },
-            {
-              id: 99,
-              title: '大赛大赛222222',
-              content: '2行的内容是镂空的肌肤脸上的肌肤离开善良的风收到了饭就阿善良分家连撒娇阿了三分景拉丝分',
-              sign1: '2019-01-07',
-              image: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=877288732,706910501&fm=200&gp=0.jpg'
-            },
-            {
-              id: 999,
-              title: '大赛大赛33333',
-              content: '2行的内容是镂空的肌肤脸上的肌肤离开善良的风景拉丝分',
-              sign1: '2019-01-07',
-              image: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3390961998,1154407883&fm=200&gp=0.jpg'
-            }
-          ],
-          page: {
-            isend: true,
-            pn: 0
-          }
-        })
-      } else if (cateid.toString() === '5') { // 考级教材
-        this.setData({
-          loaded: true,
-          loading: false,
-          dynamics: [
-            {
-              id: 9,
-              title: '考级教材11111',
-              content: '2行的内容是镂空的肌肤脸上的肌肤',
-              sign1: '2019-01-07',
-              image: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1819776845,1128606894&fm=26&gp=0.jpg'
-            },
-            {
-              id: 99,
-              title: '考级教材222222',
-              content: '2行的内容是镂空的肌肤脸上的肌肤离开善良的风收到了饭就阿善良分家连撒娇阿了三分景拉丝分',
-              sign1: '2019-01-07',
-              image: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=877288732,706910501&fm=200&gp=0.jpg'
-            },
-            {
-              id: 999,
-              title: '考级教材33333',
-              content: '2行的内容是镂空的肌肤脸上的肌肤离开善良的风景拉丝分',
-              sign1: '2019-01-07',
-              image: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3390961998,1154407883&fm=200&gp=0.jpg'
-            }
-          ],
-          page: {
-            isend: true,
-            pn: 0
-          }
-        })
+    util.request('/msg/list',{cid: cateid, pn: pn}).then(res => {
+      if (pn.toString() === '1') {
+        wx.stopPullDownRefresh()
       }
-    }, 1000)
+      let obj = {}
+      if (res && !res.error) { // 获取数据成功
+        obj.loaded = true
+        if (pn.toString() === '1') {
+          obj.dynamics = res.data.list
+        } else {
+          let len = this.data.dynamics.length
+          let resLen = res.data.list.length
+          if (resLen) {
+            for (let i = 0; i < resLen; i++) {
+              obj['dynamics[' + (len + i) + ']'] = res.data.list[i]
+            }
+          }
+        }
+        obj.page = res.data.page
+      }
+      obj.loading = false
+      this.setData(obj)
+    }).catch(err => {
+      if (pn.toString() === '1') {
+        wx.stopPullDownRefresh()
+      }
+      this.setData({
+        loading: false
+      })
+    })
   },
 
   cardTap: function (e) {
