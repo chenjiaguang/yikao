@@ -30,7 +30,8 @@
       <scroll-view class='body-wrapper' scroll-y data-idx="{{idx}}" bindscrolltolower="scrollToEnd">
         <ft-list-loader visible="{{!tab.loaded}}" />
         <slot name="tab{{idx}}"></slot>
-        <ft-list-footer loaded="{{tab.loaded}}" loading="{{tab.loading}}" page="{{tab.page}}" show-no-more="{{tab.page && tab.page.pn && tab.page.pn !== '0'}}" no-more-text="{{noMoreText}}" />
+        <view wx:if="{{tab.loaded && tab.list && !tab.list[0]}}" class='empty-tip'>暂无数据~</view>
+        <ft-list-footer loaded="{{tab.loaded}}" loading="{{tab.loading}}" page="{{tab.page}}" show-no-more="{{tab.page && tab.page.pn && tab.list && tab.list[0]}}" no-more-text="{{noMoreText}}" />
         <ft-iphone-bottom-adapter wx:if="{{tab.list && tab.list[0]}}" />
       </scroll-view>
     </swiper-item>

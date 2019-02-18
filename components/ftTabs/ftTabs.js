@@ -109,12 +109,15 @@ Component({
       let {firstPage} = this.data
       let {list, page, loading, loaded} = this.data.tabs[idx]
       if (loading) { // 正在加载
+        if (pn.toString() === firstPage.toString()) {
+          wx.stopPullDownRefresh()
+        }
         return false
       }
       if (list && list[0] && pn.toString() === firstPage.toString() && !isRefresh) { // 已有数据 且 是请求第一页数据 且 不是刷新
         return false
       }
-      if (page && page.isend && !isRefresh) { // 最后一页 且 不是刷新
+      if (page && page.is_end && !isRefresh) { // 最后一页 且 不是刷新
         return false
       } // 触发加载fatchlist事件
       this.triggerEvent('fetchlist', { idx, pn, isRefresh})

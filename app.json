@@ -19,7 +19,8 @@
     "pages/successpage/successpage",
     "pages/wechatgroup/wechatgroup",
     "pages/aboutus/aboutus",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/scoreresult/scoreresult"
   ],
   "window": {
     "backgroundTextStyle": "light",

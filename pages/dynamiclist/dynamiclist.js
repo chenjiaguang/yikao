@@ -117,7 +117,8 @@ Page({
   },
 
   fetchlist: function (cateid, pn) {
-    if (this.data.loading) { // 正在请求则终止
+    let { page} = this.data
+    if (this.data.loading || (page && page.is_end && pn.toString() !== '1')) { // (正在请求 或 最后一页且并非请求第一页)则终止
       if (pn.toString() === '1') {
         wx.stopPullDownRefresh()
       }

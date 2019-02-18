@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 8,
+			"current": 9,
 			"list": [
 				{
 					"id": -1,
@@ -91,6 +91,12 @@
 					"id": -1,
 					"name": "报名页面",
 					"pathName": "pages/wechatgroup/wechatgroup",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "成绩详情页",
+					"pathName": "pages/scoreresult/scoreresult",
 					"query": ""
 				}
 			]

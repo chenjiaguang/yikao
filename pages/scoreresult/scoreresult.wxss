@@ -1,4 +1,4 @@
-/* pages/queryscore/queryscore.wxss */
+/* pages/scoreresult/scoreresult.wxss */
 @import '../../assets/styles/ft-icon.wxss';
 
 page{
@@ -88,7 +88,7 @@ page{
   padding: 0 94rpx 0 108rpx;
 }
 .exam-body{
-  padding: 0 32rpx 80rpx 32rpx;
+  padding: 0 94rpx 80rpx 40rpx;
 }
 .result-seal{
   display: block;

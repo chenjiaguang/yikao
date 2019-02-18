@@ -11,43 +11,29 @@
         <image class='idcard-image' mode="aspectFit" src="/assets/images/icon_idcard2.png"></image>
         <input class='idcard-input' placeholder-style="font-size:30rpx;color:#999;font-weight:normal" value="{{idcard}}" placeholder='身份证号' type="idcard" bindinput='inputChange' data-ele="idcard" />
       </view>
-      <view class='major-and-level'>
-        <picker bindchange="pickerChange" value="{{selectedMajor || 0}}" range="{{major}}" range-key="text" data-ele="major">
-          <view class="major">
-            <view class="major-text {{(selectedMajor || selectedMajor === 0) ? '' : 'unselected'}}">{{major[selectedMajor].text || '请选择专业'}}</view>
-            <text class='ft-icon c-icon-sanjiao' style="font-size:18rpx;color:#BFBFBF;margin:0 20rpx;line-height:18rpx"></text>
-          </view>
-        </picker>
-        <picker bindchange="pickerChange" value="{{selectedLevel || 0}}" range="{{level}}" range-key="text" data-ele="level">
-          <view class="level">
-            <view class="level-text {{(selectedLevel || selectedLevel === 0) ? '' : 'unselected'}}">{{level[selectedLevel].text || '请选择级别'}}</view>
-            <text class='ft-icon c-icon-sanjiao' style="font-size:18rpx;color:#BFBFBF;margin:0 20rpx;line-height:18rpx"></text>
-          </view>
-        </picker>
-      </view>
     </view>
     <view class='btn-box'>
-      <ft-button text="查询" width="686rpx" height="94rpx" border-radius="4rpx" color="#67462B" bg="#F2E0CA" disabled="{{!(name && idcard && selectedMajor && selectedLevel) || submitting}}" disabled-color="#fff" disabled-bg="#CCCCCC" catchtap="btnTap" />
+      <ft-button text="查询" width="686rpx" height="94rpx" border-radius="4rpx" color="#67462B" bg="#F2E0CA" disabled="{{!(name && idcard) || submitting}}" disabled-color="#fff" disabled-bg="#CCCCCC" catchtap="btnTap" />
     </view>
   </view>
-  <view wx:if="{{userInfo || examInfo}}" class='info-box'>
+  <view wx:if="{{examInfo && examInfo[0]}}" class='info-box'>
     <view class='block-separator'></view>
-    <view wx:if="{{userInfo}}" class='user-info'>
-      <sub-header title="考生信息" />
-      <view class='user-body'>
-        <view style="height:20rpx"></view>
-        <ft-table-list title-align="right" font-size="{{32}}" spacing="{{24}}" content-line="1px solid #D8D8D8" table-data="{{userInfo}}" />
-      </view>
-    </view>
-    <view wx:if="{{examInfo}}" class='exam-info'>
+    <view class='exam-info'>
       <sub-header title="考级信息" />
       <view class='exam-body'>
         <view style="height:20rpx"></view>
-        <ft-table-list title-align="right" font-size="{{32}}" spacing="{{24}}" content-line="1px solid #D8D8D8" table-data="{{examInfo}}" />
+        <!-- <ft-table-list title-align="right" font-size="{{32}}" spacing="{{24}}" content-line="1px solid #D8D8D8" table-data="{{examInfo}}" /> -->
+        <view wx:for="{{examInfo}}" wx:for-index="idx" wx:for-item="exam" wx:key="idx">
+          <view class='exam-item'>
+            <view class='exam-name'>{{exam.domain}}{{exam.class}}级</view>
+            <view class='see-more' catchtap="seeMore" data-result="{{exam}}">查看</view>
+          </view>
+          <view class='line-separator-h'></view>
+        </view>
       </view>
     </view>
-    <image wx:if="{{pass}}" class='result-seal' mode="aspectFit" src="/assets/images/pass_seal.png"></image>
-    <image wx:else class='result-seal' mode="aspectFit" src="/assets/images/unpass_seal.png"></image>
+    <!-- <image wx:if="{{pass}}" class='result-seal' mode="aspectFit" src="/assets/images/pass_seal.png"></image> -->
+    <!-- <image wx:else class='result-seal' mode="aspectFit" src="/assets/images/unpass_seal.png"></image> -->
   </view>
   <ft-iphone-bottom-adapter bg="{{(userInfo || examInfo) ? '#fff' : 'transparent'}}" />
 </view>

@@ -1,4 +1,6 @@
 // pages/myenroll/myenroll.js
+import util from '../../utils/util.js'
+
 Page({
 
   ftRouteName: 'myenroll',
@@ -7,17 +9,22 @@ Page({
    */
   data: {
     indexTab: 0,
+    planType: {
+      0: '',
+      1: '2',
+      2: '1'
+    },
     statusText: {
-      1: '待缴费',
-      2: '审核中',
-      3: '已缴费',
-      4: '已失效'
+      1: '审核中',
+      2: '待缴费',
+      3: '已失效',
+      4: '已缴费'
     },
     statusColor: {
-      1: '#108EE9',
-      2: '#FF3B30',
-      3: '#333',
-      4: '#999'
+      1: '#FF3B30',
+      2: '#108EE9',
+      3: '#999',
+      4: '#333'
     },
     modalStatusColor: {
       1: '#FF3B30',
@@ -71,13 +78,13 @@ Page({
     this.setData({
       indexTab: default_tab
     })
-    this.fetchMyEnrolls({
-      detail: {
-        idx: default_tab,
-        pn: 0,
-        isRefresh: true
-      }
-    })
+    // this.fetchMyEnrolls({
+    //   detail: {
+    //     idx: default_tab,
+    //     pn: 1,
+    //     isRefresh: true
+    //   }
+    // })
   },
 
   /**
@@ -130,11 +137,11 @@ Page({
   },
 
   refreshPage: function () {
-    let {indexTab} = this.data
+    let { indexTab} = this.data
     this.fetchMyEnrolls({
       detail: {
         idx: indexTab,
-        pn: 0,
+        pn: 1,
         isRefresh: true
       }
     })
@@ -146,143 +153,83 @@ Page({
 
   fetchMyEnrolls: function (e) {
     console.log('fetchMyEnrolls', e)
+    let { planType } = this.data
     let { idx, pn, isRefresh } = e.detail
-    if (idx === 0) {
-      this.setData({
-        'tabs[0].loading': true
-      })
-    } else if (idx === 1) {
-      this.setData({
-        'tabs[1].loading': true
-      })
-    } else if (idx === 2) {
-      this.setData({
-        'tabs[2].loading': true
-      })
-    }
-    // 模拟获取数据成功
-    setTimeout(() => {
-      if (idx === 0) { // 全部
-        this.setData({
-          'tabs[0].list': [
-            {
-              id: 1,
-              title: '中国音乐学院社会艺术水平考级',
-              status: '1',
-              enroll_no: '103845763',
-              institution: '中国音乐学院本院',
-              examination_no: '20190119001',
-              enroll_time: '2019.01.04 10:39'
-            },
-            {
-              id: 2,
-              title: '中国音乐学院社会艺术水平考级',
-              status: '2',
-              enroll_no: '103845763',
-              institution: '中国音乐学院本院',
-              examination_no: '20190119001',
-              enroll_time: '2019.01.04 10:39'
-            },
-            {
-              id: 3,
-              title: '中国音乐学院社会艺术水平考级',
-              status: '3',
-              enroll_no: '103845763',
-              institution: '中国音乐学院本院',
-              examination_no: '20190119001',
-              enroll_time: '2019.01.04 10:39'
-            },
-            {
-              id: 4,
-              title: '中国音乐学院社会艺术水平考级',
-              status: '4',
-              enroll_no: '103845763',
-              institution: '中国音乐学院本院',
-              examination_no: '20190119001',
-              enroll_time: '2019.01.04 10:39'
-            }
-          ],
-          'tabs[0].page': {
-            isend: true,
-            pn: 0
-          },
-          'tabs[0].loaded': true,
-          'tabs[0].loading': false
-        })
-      } else if (idx === 1) { // 待缴费
-        this.setData({
-          'tabs[1].list': [
-            {
-              id: 1,
-              title: '中国音乐学院社会艺术水平考级',
-              status: '1',
-              enroll_no: '103845763',
-              institution: '中国音乐学院本院',
-              examination_no: '20190119001',
-              enroll_time: '2019.01.04 10:39'
-            }
-          ],
-          'tabs[1].page': {
-            isend: true,
-            pn: 0
-          },
-          'tabs[1].loaded': true,
-          'tabs[1].loading': false
-        })
-      } else if (idx === 2) { // 审核中
-        this.setData({
-          'tabs[2].list': [
-            {
-              id: 2,
-              title: '中国音乐学院社会艺术水平考级',
-              status: '2',
-              enroll_no: '103845763',
-              institution: '中国音乐学院本院',
-              examination_no: '20190119001',
-              enroll_time: '2019.01.04 10:39'
-            }
-          ],
-          'tabs[2].page': {
-            isend: true,
-            pn: 0
-          },
-          'tabs[2].loaded': true,
-          'tabs[2].loading': false
-        })
+    let plan = planType[idx.toString()]
+
+    if (this.data.tabs[idx].loading) { // 正在加载数据时return
+      if (pn.toString() === '1') { // 停止下拉刷新动画
+        wx.stopPullDownRefresh()
       }
-    }, 1000)
+      return false
+    }
+    let rData = {
+      plan,
+      pn
+    }
+    util.request('/apply/list', rData).then(res => {
+      let obj = {}
+      obj['tabs[' + idx + ']loading'] = false
+      if (res && res.data && !res.error) { // 获取数据成功
+        console.log('/apply/list', res)
+        obj['tabs[' + idx + ']loaded'] = true
+        obj['tabs[' + idx + ']page'] = res.data.page
+        res.data.list.forEach(item => {
+          item.year = item.create_at.substr(0, 4) + '年'
+        })
+        if (pn.toString() === '1') { // 第一页
+          obj['tabs[' + idx + ']list'] = res.data.list
+        } else {
+          let len = res.data.list.length
+          let dataLen = this.data.tabs[idx].list.length
+          if (len) {
+            for (let i = 0; i < len; i++) {
+              obj['tabs[' + idx + '].list[' + (dataLen + i) + ']'] = res.data.list[i]
+            }
+          }
+        }
+      }
+      this.setData(obj)
+    }).catch(err => {
+      let obj = {}
+      obj['tabs[' + idx + ']loading'] = false
+      this.setData(obj)
+      console.log('获取数据失败')
+    })
   },
 
   viewDetail: function (e) {
-    let { id, title, status, enroll_no, institution, examination_no, enroll_time, name, idcard, gender, major, level, pay_time, expired_reson } = e.currentTarget.dataset.enroll
+    let { id, year, creat_at, status, apply_no, exam, name, id_number, sex, domain, level, pay: { pay_time}, cause } = e.currentTarget.dataset.enroll
     let { modal, statusText, modalStatusColor} = this.data
     let _obj = {}
     _obj.id = id
     _obj.status = status
-    _obj.title = title
+    _obj.title = year + domain + level
     let content = []
-    content[0] = { title: '报名单号', content: enroll_no }
-    content[1] = { title: '负责机构', content: institution }
-    content[2] = { title: '考试编号', content: examination_no }
-    content[3] = { title: '报名时间', content: enroll_time }
-    content[4] = { title: '考生姓名', content: name }
-    content[5] = { title: '身份证号', content: idcard }
-    content[6] = { title: '性别', content: gender }
-    content[7] = { title: '报考专业', content: major }
-    content[8] = { title: '报考等级', content: level }
-    content[9] = { title: '当前进度', content: statusText[status.toString()], c_color: modalStatusColor[status.toString()] }
-    content[10] = { title: '缴费时间', content: pay_time }
-    content[11] = { title: '失效原因', content: expired_reson }
+    content.push({ title: '报名单号', content: apply_no })
+    content.push({ title: '负责机构', content: '中国音乐学院海南考区承办-雅典艺术团' })
+    content.push({ title: '考试编号', content: exam.number })
+    content.push({ title: '报名时间', content: creat_at })
+    content.push({ title: '考生姓名', content: name })
+    content.push({ title: '身份证号', content: id_number })
+    content.push({ title: '性别', content: sex })
+    content.push({ title: '报考专业', content: domain })
+    content.push({ title: '报考等级', content: level })
+    content.push({ title: '当前进度', content: statusText[status.toString()], c_color: modalStatusColor[status.toString()] })
+    if (status.toString() === '4') {
+      content.push({ title: '缴费时间', content: pay_time }) // 已缴费才显示
+    }
+    content.push({ title: '失效原因', content: cause })
     _obj.visible = true
-    if (status.toString() === '1') { // 待缴费
+    if (status.toString() === '2') { // 待缴费
       _obj.buttons = ['立即缴费']
       _obj.buttonColor = '#108EE9'
-    } else if (status.toString() === '2') { // 审核中
+    } else if (status.toString() === '1') { // 审核中
       _obj.buttons = []
-    } else if (status.toString() === '3') { // 已缴费
+    } else if (status.toString() === '4') { // 已缴费
       _obj.buttons = ['查看详情']
       _obj.buttonColor = '#108EE9'
-    } else if (status.toString() === '4') { // 已失效
+    } else if (status.toString() === '3') { // 已失效
       _obj.buttons = []
     }
     let obj = Object.assign({}, modal, _obj, {modalContent: content})

@@ -1,4 +1,6 @@
 // pages/queryscore/queryscore.js
+import util from '../../utils/util.js'
+
 Page({
 
   /**
@@ -7,80 +9,8 @@ Page({
   data: {
     name: '',
     idcard: '',
-    major: [
-      {
-        text: '专业1',
-        value: '1'
-      },
-      {
-        text: '专业2',
-        value: '2'
-      },
-      {
-        text: '专业3',
-        value: '3'
-      },
-      {
-        text: '专业4',
-        value: '4'
-      },
-      {
-        text: '专业5',
-        value: '5'
-      },
-      {
-        text: '专业6',
-        value: '6'
-      },
-      {
-        text: '专业7',
-        value: '7'
-      },
-      {
-        text: '专业8上地理课肌肤阿了三分爱丽丝发送 ',
-        value: '8'
-      },
-      {
-        text: '专业9',
-        value: '9'
-      },
-      {
-        text: '专业10',
-        value: '10'
-      },
-      {
-        text: '专业11',
-        value: '11'
-      },
-      {
-        text: '专业12',
-        value: '12'
-      }
-    ],
-    selectedMajor: null,
-    level: [
-      {
-        text: '等级1',
-        value: '1'
-      },
-      {
-        text: '等级2',
-        value: '2'
-      },
-      {
-        text: '等级3',
-        value: '3'
-      },
-      {
-        text: '等级4',
-        value: '4'
-      }
-    ],
-    selectedLevel: null,
     submitting: false,
-    userInfo: null,
-    examInfo: null,
-    pass: false
+    examInfo: []
   },
 
   /**
@@ -170,54 +100,56 @@ Page({
 
   btnTap: function () {
     console.log('btnTap')
-    let { submitting } = this.data
+    let { submitting, name, idcard } = this.data
     if (submitting) {
       return false
     }
     this.setData({
       submitting: true
     })
-    // 模拟获取考场信息成功
-    setTimeout(() => {
-      const info = {
-        name: '张三',
-        nationality: '中国',
-        volk: '汉族',
-        card_number: '460027201912315566',
-        institution: '中国音乐学院考级委员会',
-        major: '钢琴',
-        level: '1级',
-        certificate_time: '2019年01月23日',
-        certification_number: '00222256529888'
+    
+    util.request('/search', { name, id_card: idcard}).then(res => {
+      let obj = {}
+      obj.submitting = false
+      if (res && res.error.toString() === '0') { // 获取数据成功
+        if (res.data) {
+          obj.examInfo = res.data
+          if (!res.data[0]) {
+            wx.showToast({
+              title: '未查询到该考生成绩信息',
+              icon: 'none'
+            })
+          }
+        } else {
+          wx.showToast({
+            title: '未查询到该考生信息',
+            icon: 'none'
+          })
+        }
       }
-      let { name, nationality, volk, card_number, institution, major, level, certificate_time, certification_number} = info
-      let _obj = {}
-      _obj.submitting = false
-      _obj.userInfo = [
-        { title: '姓名', content: name },
-        { title: '国籍', content: nationality },
-        { title: '民族', content: volk },
-        { title: '证件号码', content: card_number}
-      ]
-      _obj.examInfo = [
-        { title: '报考机构单位', content: institution },
-        { title: '报考专业', content: major },
-        { title: '报考等级', content: level },
-        { title: '发证时间', content: certificate_time },
-        { title: '证书编号', content: certification_number }
-      ]
-      _obj.pass = true // 通过考试
-      this.setData(_obj)
-    }, 500)
-    // 模拟获取不到考场信息
-    // setTimeout(() => {
-    //   this.setData({
-    //     submitting: false
-    //   })
-    //   wx.showToast({
-    //     title: '未查询到该考生信息',
-    //     icon: 'none'
-    //   })
-    // }, 500)
+      if (res && res.error && res.error.toString() !== '0') {
+        if (res.msg) {
+          wx.showToast({
+            title: res.msg,
+            icon: 'none'
+          })
+        }
+      }
+      this.setData(obj)
+    }).catch(err => {
+      this.setData({
+        submitting: false
+      })
+      console.log('获取数据失败')
+    })
+  },
+  seeMore: function (e) {
+    let {result} = e.currentTarget.dataset
+    let resultJson = JSON.stringify(result)
+    console.log('resultJson', resultJson, result)
+    wx.setStorageSync('scoreresult', resultJson)
+    wx.navigateTo({
+      url: '/pages/scoreresult/scoreresult',
+    })
   }
 })

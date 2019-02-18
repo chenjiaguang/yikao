@@ -1,0 +1,13 @@
+{
+  "navigationBarBackgroundColor": "#67462B",
+  "navigationBarTitleText": "成绩查询",
+  "backgroundColor": "#F4F4F4",
+  "backgroundTextStyle": "dark",
+  "navigationBarTextStyle": "white",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "sub-header": "../../components/subHeader/subHeader",
+    "ft-table-list": "../../components/ftTableList/ftTableList",
+    "ft-iphone-bottom-adapter": "../../components/ftIphoneBottomAdapter/ftIphoneBottomAdapter"
+  }
+}

@@ -109,3 +109,10 @@
   height: 100%;
   position: relative;
 }
+
+.empty-tip{
+  padding:100rpx 4% 20rpx;
+  text-align:center;
+  font-size:30rpx;
+  color:#999;
+}

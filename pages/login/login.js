@@ -74,7 +74,7 @@ Page({
       util.request('/user/savemes', { encryptedData, iv}).then(res => {
         this.setData({ logining: false })
         console.log('/user/savemes', res)
-        if (!res.error) { // 授权登录成功
+        if (res && res.error.toString() === '0') { // 授权登录成功
           wx.setStorageSync('union_id', true)
           let url = wx.getStorageSync('loginBack') || '/pages/index/index'
           wx.reLaunch({

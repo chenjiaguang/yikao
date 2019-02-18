@@ -1,17 +1,17 @@
 <!--pages/myenroll/myenroll.wxml-->
 <view class='page-myenroll'>
-  <ft-tabs wx:if="{{indexTab || indexTab === 0}}" index="{{indexTab}}" tabs="{{tabs}}" type="2" content-style="background:#F4F4F4" indicator-size="{{tabIndicatorSize}}" currentColor="#67462B" color="#999" bindtabchange="tabChange" bindfetchlist="fetchMyEnrolls">
+  <ft-tabs wx:if="{{indexTab || indexTab === 0}}" index="{{indexTab}}" tabs="{{tabs}}" type="2" content-style="background:#F4F4F4" indicator-size="{{tabIndicatorSize}}" currentColor="#67462B" color="#999" bindtabchange="tabChange" bindfetchlist="fetchMyEnrolls" first-page="{{1}}">
     <view class='tab-content' wx:for="{{tabs}}" wx:for-item="tab" wx:for-index="idx" wx:key="title" slot="tab{{idx}}">
       <view class='enroll-box' wx:for="{{tab.list}}" wx:for-index="eidx" wx:for-item="enroll" wx:key="id">
         <view class='block-separator'></view>
         <view class='header'>
-          <view class='title'>{{enroll.title}}</view>
+          <view class='title'>{{enroll.year + enroll.domain + enroll.level}}</view>
           <view class='status' style="color:{{statusColor[enroll.status]}}">{{statusText[enroll.status]}}</view>
         </view>
-        <view class='enroll-content-text'>报名单号：{{enroll.enroll_no}}</view>
-        <view class='enroll-content-text'>承办机构：{{enroll.institution}}</view>
-        <view class='enroll-content-text'>考试编号：{{enroll.examination_no}}</view>
-        <view class='enroll-content-text'>报名时间：{{enroll.enroll_time}}</view>
+        <view class='enroll-content-text'>报名单号：{{enroll.apply_no}}</view>
+        <view class='enroll-content-text'>承办机构：中国音乐学院海南考区承办-雅典艺术团</view>
+        <view class='enroll-content-text'>考试编号：{{enroll.exam.number}}</view>
+        <view class='enroll-content-text'>报名时间：{{enroll.create_at}}</view>
         <view class='line-separator-h' style="width:686rpx;margin:28rpx 32rpx 0"></view>
         <ft-entrance title="查看详情" title-style="font-size:28rpx;color:#67462B" data-enroll="{{enroll}}" catchtap="viewDetail" />
       </view>
@@ -19,7 +19,7 @@
   </ft-tabs>
   <ft-custom-modal visible="{{modal.visible}}" buttons="{{modal.buttons}}" button-font-size="{{modal.buttonFontSize}}" button-color="{{modal.buttonColor}}" button-bg="{{modal.buttonBg}}" title="{{modal.title}}" title-style="text-align:left" bindtap="modalTap"
     data-status="{{modal.status}}" data-id="{{modal.id}}">
-    <view style="padding:32rpx 0">
+    <view style="padding:28rpx 0">
       <ft-table-list table-data="{{modal.modalContent}}" content-color="#333" font-size="{{24}}" />
     </view>
   </ft-custom-modal>
