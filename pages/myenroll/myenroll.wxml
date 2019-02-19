@@ -6,7 +6,7 @@
         <view class='block-separator'></view>
         <view class='header'>
           <view class='title'>{{enroll.year + enroll.domain + enroll.level}}</view>
-          <view class='status' style="color:{{statusColor[enroll.status]}}">{{statusText[enroll.status]}}</view>
+          <view class='status' style="color:{{statusColor[enroll.plan]}}">{{statusText[enroll.plan]}}</view>
         </view>
         <view class='enroll-content-text'>报名单号：{{enroll.apply_no}}</view>
         <view class='enroll-content-text'>承办机构：中国音乐学院海南考区承办-雅典艺术团</view>
@@ -18,7 +18,7 @@
     </view>
   </ft-tabs>
   <ft-custom-modal visible="{{modal.visible}}" buttons="{{modal.buttons}}" button-font-size="{{modal.buttonFontSize}}" button-color="{{modal.buttonColor}}" button-bg="{{modal.buttonBg}}" title="{{modal.title}}" title-style="text-align:left" bindtap="modalTap"
-    data-status="{{modal.status}}" data-id="{{modal.id}}">
+    data-plan="{{modal.plan}}" data-id="{{modal.id}}">
     <view style="padding:28rpx 0">
       <ft-table-list table-data="{{modal.modalContent}}" content-color="#333" font-size="{{24}}" />
     </view>

@@ -1,4 +1,6 @@
 // pages/pay/pay.js
+import util from '../../utils/util.js'
+
 Page({
 
   /**
@@ -32,6 +34,32 @@ Page({
         enrollid: options.id
       })
     }
+    this.fetchPayData(options.id)
+  },
+
+  fetchPayData: function (id) {
+    let rData = {
+      apply_id:id
+    }
+    util.request('/pay', rData).then(res => {
+      if (res && res.data && !res.error) { // 获取数据成功
+        console.log('/pay', res)
+        let { appId, nonceStr, package: Pkg, paySign, signType, timeStamp} = res.data
+        wx.requestPayment({
+          timeStamp,
+          nonceStr,
+          package: Pkg,
+          signType,
+          paySign,
+          success: (res) => {
+            console.log('res', res)
+          },
+          fail(res) { }
+        })
+      }
+    }).catch(err => {
+      console.log('获取数据失败', err)
+    })
   },
 
   /**

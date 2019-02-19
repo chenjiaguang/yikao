@@ -199,11 +199,11 @@ Page({
   },
 
   viewDetail: function (e) {
-    let { id, year, creat_at, status, apply_no, exam, name, id_number, sex, domain, level, pay: { pay_time}, cause } = e.currentTarget.dataset.enroll
+    let { id, year, creat_at, plan, apply_no, exam, name, id_number, sex, domain, level, pay: { pay_time}, cause } = e.currentTarget.dataset.enroll
     let { modal, statusText, modalStatusColor} = this.data
     let _obj = {}
     _obj.id = id
-    _obj.status = status
+    _obj.plan = plan
     _obj.title = year + domain + level
     let content = []
     content.push({ title: '报名单号', content: apply_no })
@@ -215,21 +215,23 @@ Page({
     content.push({ title: '性别', content: sex })
     content.push({ title: '报考专业', content: domain })
     content.push({ title: '报考等级', content: level })
-    content.push({ title: '当前进度', content: statusText[status.toString()], c_color: modalStatusColor[status.toString()] })
-    if (status.toString() === '4') {
+    content.push({ title: '当前进度', content: statusText[plan.toString()], c_color: modalStatusColor[plan.toString()] })
+    if (plan.toString() === '4') { // 已缴费
       content.push({ title: '缴费时间', content: pay_time }) // 已缴费才显示
     }
-    content.push({ title: '失效原因', content: cause })
+    if (cause) {
+      content.push({ title: '失效原因', content: cause })
+    }
     _obj.visible = true
-    if (status.toString() === '2') { // 待缴费
+    if (plan.toString() === '2') { // 待缴费
       _obj.buttons = ['立即缴费']
       _obj.buttonColor = '#108EE9'
-    } else if (status.toString() === '1') { // 审核中
+    } else if (plan.toString() === '1') { // 审核中
       _obj.buttons = []
-    } else if (status.toString() === '4') { // 已缴费
+    } else if (plan.toString() === '4') { // 已缴费
       _obj.buttons = ['查看详情']
       _obj.buttonColor = '#108EE9'
-    } else if (status.toString() === '3') { // 已失效
+    } else if (plan.toString() === '3') { // 已失效
       _obj.buttons = []
     }
     let obj = Object.assign({}, modal, _obj, {modalContent: content})
@@ -240,17 +242,17 @@ Page({
   },
 
   modalTap: function (e) {
-    let {status, id} = e.currentTarget.dataset
+    let {plan, id} = e.currentTarget.dataset
     let {ele} = e.detail
     if (ele === 'btn_close') { // 点击的是关闭按钮
       this.closeModal()
-    } else if (ele === 'btn_bottom0' && status.toString() === '1') { // 待缴费
+    } else if (ele === 'btn_bottom0' && plan.toString() === '2') { // 待缴费
       console.log('点击了立即缴费，跳转待缴费详情')
       this.closeModal()
       wx.navigateTo({
         url: '/pages/pay/pay?id=' + id
       })
-    } else if (ele === 'btn_bottom0' && status.toString() === '3') { // 已缴费
+    } else if (ele === 'btn_bottom0' && plan.toString() === '4') { // 已缴费
       console.log('点击了查看详情，跳转已缴费详情')
       this.closeModal()
       wx.navigateTo({

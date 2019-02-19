@@ -1,4 +1,5 @@
 module.exports = {
   env: 'prod',
-  baseUrl: 'https://artminitest.fantuan.cn'
+  baseUrl: 'https://artminitest.fantuan.cn',
+  dynamicWebviewDomain: ''
 }

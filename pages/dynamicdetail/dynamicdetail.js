@@ -1,11 +1,13 @@
 // pages/dynamicdetail/dynamicdetail.js
+import util from '../../utils/util.js'
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    url: ''
   },
 
   /**
@@ -13,6 +15,19 @@ Page({
    */
   onLoad: function (options) {
     console.log('dynamic_onload', options.cateid, options.id, options.weburl)
+    // this.fetchData(options.id)
+    this.setData({
+      url: 'http://artadmintest.fantuan.cn/download'
+    })
+  },
+
+  fetchData: function (id) {
+    let app = getApp()
+    console.log('app', app)
+    let url = app.config.dynamicWebviewDomain + '/miniappdynamic?id=' + id
+    this.setData({
+      url
+    })
   },
 
   /**
