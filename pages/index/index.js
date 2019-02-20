@@ -260,12 +260,9 @@ Page({
   fetchData: function () {
     util.request('/home').then(res => {
       if (res && !res.error) { // 获取数据成功
-        let banners = res.data.banner ? res.data.banner.map((item, i) => { return { idx: i, url: item}}) : []
+        let banners = res.data.banner ? res.data.banner.map((item, i) => { return { idx: i, url: item.img, path: item.url}}) : []
         let cates = res.data.list
-        this.setData({
-          banners: banners,
-          cates: cates
-        })
+        this.setData({ banners, cates })
       }
     }).catch(err => {
       console.log('获取数据失败')
@@ -289,6 +286,16 @@ Page({
       console.log('点击了考场查询')
       wx.navigateTo({
         url: '/pages/queryhall/queryhall'
+      })
+    }
+  },
+
+  bannerTap: function (e) {
+    console.log('bannerTap', e)
+    let {item} = e.detail
+    if (item && item.path) {
+      wx.navigateTo({
+        url: '/pages/webviewpage/webviewpage?url=' + item.path
       })
     }
   },

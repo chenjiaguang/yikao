@@ -226,13 +226,11 @@ Page({
     if (plan.toString() === '2') { // 待缴费
       _obj.buttons = ['立即缴费']
       _obj.buttonColor = '#108EE9'
-    } else if (plan.toString() === '1') { // 审核中
+    } else if (plan.toString() === '1' || plan.toString() === '3') { // 审核中、已失效
       _obj.buttons = []
     } else if (plan.toString() === '4') { // 已缴费
       _obj.buttons = ['查看详情']
       _obj.buttonColor = '#108EE9'
-    } else if (plan.toString() === '3') { // 已失效
-      _obj.buttons = []
     }
     let obj = Object.assign({}, modal, _obj, {modalContent: content})
     console.log('obj', obj)
@@ -246,19 +244,21 @@ Page({
     let {ele} = e.detail
     if (ele === 'btn_close') { // 点击的是关闭按钮
       this.closeModal()
-    } else if (ele === 'btn_bottom0' && plan.toString() === '2') { // 待缴费
-      console.log('点击了立即缴费，跳转待缴费详情')
-      this.closeModal()
-      wx.navigateTo({
-        url: '/pages/pay/pay?id=' + id
-      })
-    } else if (ele === 'btn_bottom0' && plan.toString() === '4') { // 已缴费
-      console.log('点击了查看详情，跳转已缴费详情')
+    } else if (ele === 'btn_bottom0' && (plan.toString() === '2' || plan.toString() === '4')) { // 待缴费、已缴费
       this.closeModal()
       wx.navigateTo({
         url: '/pages/myenrolldetail/myenrolldetail?id=' + id
       })
     }
+  },
+
+  getEnrollData: function (id) {
+    let list = []
+    this.data.tabs.forEach(item => {
+      list = list.concat(item.list)
+    })
+    let enroll = list.filter(item => item.id.toString() === id.toString())[0] || null
+    return enroll ? JSON.parse(JSON.stringify(enroll)) : null
   },
 
   closeModal: function () {

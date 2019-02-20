@@ -17,7 +17,7 @@ Component({
    */
   data: {
     modal: {
-      is_exam: false,
+      is_apply: false,
       exam:{},
       url: ''
     }
@@ -31,25 +31,31 @@ Component({
       util.request('/exam').then(res => {
         console.log('check', res)
         if (!res.error && res.data) { // 获取信息成功
-          let { is_exam, exam, url} = res.data
+          let { is_apply, exam, url} = res.data
           this.setData({
             modal: {
-              is_exam: is_exam,
+              is_apply: is_apply,
               exam,
               url
             }
           })
+          if (!is_apply) { // 报名已结束
+            wx.showToast({
+              title: res.msg || '报名已结束',
+              icon: 'none'
+            })
+          }
         } else {
           this.setData({
             modal: {
-              is_exam: false
+              is_apply: false
             }
           })
         }
         if (res.error) {
           if (res.msg) {
             wx.showToast({
-              title: msg,
+              title: res.msg,
               icon: 'none'
             })
           }
@@ -57,7 +63,7 @@ Component({
       }).catch(err => {
         this.setData({
           modal: {
-            is_exam: false
+            is_apply: false
           }
         })
       })
@@ -65,7 +71,7 @@ Component({
     handleHide: function () {
       this.setData({
         modal: {
-          is_exam: false
+          is_apply: false
         }
       })
     },
@@ -74,12 +80,12 @@ Component({
       let { ele } = e.detail
       if (ele === 'btn_close') { // 关闭按钮
         this.setData({
-          'modal.is_exam': false
+          'modal.is_apply': false
         })
       } else if (ele === 'btn_bottom0') { // 确定按钮
         console.log('点击了确定按钮')
         this.setData({
-          'modal.is_exam': false
+          'modal.is_apply': false
         })
         if (this.data.modal.exam && this.data.modal.exam.id) {
           wx.navigateTo({
@@ -93,10 +99,10 @@ Component({
       let {url} = this.data.modal
       if (url) {
         this.setData({
-          'modal.is_exam': false
+          'modal.is_apply': false
         })
         wx.navigateTo({
-          url: '/pages/dynamicdetail/dynamicdetail?weburl=' + url
+          url: '/pages/webviewpage/webviewpage?url=' + url
         })
       }
     }

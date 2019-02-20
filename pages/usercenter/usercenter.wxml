@@ -18,8 +18,8 @@
   <view class='entry-box'>
     <ft-entrance catchtap="entryTap" data-ele="enroll" image="/assets/images/u_icon_enroll.png" image-size="{{44}}" title="我的报名" />
     <view class='line-separator-h' style="margin-left:108rpx"></view>
-    <ft-entrance catchtap="entryTap" data-ele="wechat" image="/assets/images/u_icon_wechat.png" image-size="{{44}}" title="加入微信群" />
-    <view class='line-separator-h' style="margin-left:108rpx"></view>
+    <!-- <ft-entrance catchtap="entryTap" data-ele="wechat" image="/assets/images/u_icon_wechat.png" image-size="{{44}}" title="加入微信群" />
+    <view class='line-separator-h' style="margin-left:108rpx"></view> -->
     <ft-entrance catchtap="entryTap" data-ele="about" image="/assets/images/u_icon_about.png" image-size="{{44}}" title="关于我们" />
   </view>
 </view>

@@ -2,7 +2,7 @@
 <view class='page-index'>
 <!-- 轮播 -->
   <view class='ad'>
-    <ft-banners banners="{{banners}}" border-radius="4rpx" previous-margin="24rpx" next-margin="24rpx" />
+    <ft-banners banners="{{banners}}" border-radius="4rpx" previous-margin="24rpx" next-margin="24rpx" bindtap="bannerTap" />
   </view>
   <!-- 入口按钮 -->
   <view class='page-entry'>
@@ -25,7 +25,7 @@
     <big-header title="{{cate.name}}" />
     <view style="margin-bottom:10rpx"></view>
     <view class='dynamics-body'>
-      <visiting-card bindtap="cardTap" data-cateid="{{cate.id}}" data-id="{{dynamic.id}}" wx:for="{{cate.list}}" wx:for-item="dynamic" wx:for-index="didx" wx:key="title" card-data="{{dynamic}}" top-separator="{{didx !== 0}}" />
+      <visiting-card bindtap="cardTap" data-cateid="{{cate.id}}" data-id="{{dynamic.id}}" wx:for="{{cate.list}}" wx:for-item="dynamic" wx:for-index="didx" wx:key="id" card-data="{{dynamic}}" top-separator="{{didx !== 0}}" />
     </view>
     <view class='line-separator-h'></view>
     <view class='show-more' catchtap="seeMore" data-cateid="{{cate.id}}" data-title="{{cate.name}}">

@@ -6,4 +6,16 @@ page{
 .dynamiclist-body{
   padding: 0 32rpx;
   background: #fff;
+  position: relative;
+}
+.empty-box{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  padding-top: 400rpx;
+  font-size: 30rpx;
+  color: #666;
+  text-align: center;
+  background: transparent;
 }

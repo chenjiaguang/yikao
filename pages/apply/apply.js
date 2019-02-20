@@ -576,20 +576,10 @@ Page({
   },
 
   submitSuccess: function (enrollid, code) {
-    // if (code.toString() === '305') { // 跳转缴费页面
-    //   wx.redirectTo({
-    //     url: '/pages/pay/pay?id=' + enrollid,
-    //   })
-    // } else if (code.toString() === '306') { // 跳转提交成功页面（需审核）
-    //   wx.redirectTo({
-    //     url: '/pages/successpage/successpage?type=2&id=' + enrollid,
-    //   })
-    // }
     wx.removeStorageSync('applyForm')
     wx.removeStorageSync('applyFormOptions')
-    wx.redirectTo({
-      url: '/pages/successpage/successpage?type=2&id=' + enrollid,
-    })
+    let navData = { method: 'redirect', params: { navTitle: '提交成功', successText: '报名提交成功，请等待审核', tip1: '审核通过并进行缴费后完成报名', tip2: '关注微信公众号“海南考级中心”及时获取更多考试相关信息'}}
+    util.navToSuccesspage(navData)
   },
 
   saveTap: function() {
@@ -671,7 +661,7 @@ Page({
         })
         console.log('/apply/add', res)
         if (res && res.data && !res.error) { // 提交表单成功
-          this.submitSuccess(formData.exam_id)
+          this.submitSuccess()
         }
       }).catch(err => {
         this.setState({

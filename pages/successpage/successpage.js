@@ -5,38 +5,33 @@ Page({
    * 页面的初始数据
    */
   data: {
-    titleText: { // type:1(缴费成功)
-      1: '缴费成功',
-      2: '提交成功'
-    },
-    successText: {
-      1: '缴费成功',
-      2: '报名提交成功，请等待审核'
-    },
-    tipText: {
-      1: '关注微信公众号“xxx”及时获取考试相关信息',
-      2: '审核通过并进行缴费后完成报名'
-    },
-    tipText2: {
-      1: '',
-      2: '关注微信公众号“XXX”及时获取更多考试相关信息'
-    }
+    navTitle: '',
+    successText: '',
+    tip1: '',
+    tip2: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    let {
-      type,
-      id
-    } = options
-    type = type ? type.toString() : '1' // 默认是1
-    this.setData({
-      type,
-      id
-    })
-    this.setTitle(type)
+    let _params = options.params
+    if (_params) {
+      let params = JSON.parse(_params)
+      let {
+        navTitle = '',
+        successText = '',
+        tip1 = '',
+        tip2 = ''
+      } = params
+      this.setData({
+        navTitle,
+        successText,
+        tip1,
+        tip2
+      })
+      this.setTitle(navTitle)
+    }
   },
 
   /**
@@ -88,42 +83,18 @@ Page({
 
   },
 
-  setTitle: function(type) {
-    let {
-      titleText
-    } = this.data
-    let title = titleText[type.toString()]
-    wx.setNavigationBarTitle({
-      title
-    })
+  setTitle: function(title) {
+    if (title || title === '') {
+      wx.setNavigationBarTitle({
+        title
+      })
+    }
   },
 
   btnTap: function() {
     console.log('点击了完成')
-    let {
-      type,
-      id
-    } = this.data
-    if (type.toString() === '1') { // 缴费成功
-      if (id) {
-        wx.redirectTo({
-          url: '/pages/myenrolldetail/myenrolldetail?id=' + id
-        })
-      } else {
-        wx.navigateBack({
-          delta: 1
-        })
-      }
-    } else if (type.toString() === '2') { // 提交成功，审核中...
-      if (id) {
-        wx.redirectTo({
-          url: '/pages/myenroll/myenroll'
-        })
-      } else {
-        wx.navigateBack({
-          delta: 1
-        })
-      }
-    }
+    let app = getApp()
+    console.log('app.successCompleteFn', app.successCompleteFn)
+    app.successCompleteFn && app.successCompleteFn()
   }
 })

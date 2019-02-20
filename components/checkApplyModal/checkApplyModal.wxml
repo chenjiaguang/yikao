@@ -1,5 +1,5 @@
 <!--components/checkApplyModal/checkApplyModal.wxml-->
-<ft-custom-modal visible="{{modal.is_exam}}" buttons="{{['确定']}}" button-font-size="{{36}}" button-color="#108EE9" button-bg="transparent" title="{{modal.exam.name}}" title-style="text-align:left" bindtap="modalTap">
+<ft-custom-modal visible="{{modal.is_apply}}" buttons="{{['确定']}}" button-font-size="{{36}}" button-color="#108EE9" button-bg="transparent" title="{{modal.exam.name}}" title-style="text-align:left" bindtap="modalTap">
   <view class="modal-content">
     <view class='modal-content-text'>中国音乐学院社会艺术水平考级——海南考区</view>
     <view class='modal-content-text'><text class='modal-item'>承办机构：</text><text>中国音乐学院海南考区承办-雅典艺术团</text></view>

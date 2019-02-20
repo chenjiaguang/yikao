@@ -14,5 +14,6 @@ App({
   config: null,
   globalData: {
     userInfo: null
-  }
+  },
+  successCompleteFn: () => {} // successpage页面的点击完成按钮的方法
 })

@@ -8,7 +8,7 @@ Page({
   data: {
     avatar: '',
     name: '',
-    message: 5
+    message: 100
   },
 
   /**

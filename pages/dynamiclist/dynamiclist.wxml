@@ -2,8 +2,11 @@
 <view class='page-dynamiclist'>
   <view class='dynamiclist-body'>
     <ft-list-loader visible="{{!loaded}}" />
-    <visiting-card bindtap="cardTap" data-id="{{dynamic.id}}" wx:for="{{dynamics}}" wx:for-item="dynamic" wx:for-index="idx" wx:key="title" card-data="{{dynamic}}" top-separator="{{idx !== 0}}" />
-    <ft-list-footer loaded="{{loaded}}" loading="{{loading}}" page="{{page}}" show-no-more="{{page && page.pn && page.pn > 1}}" no-more-text="{{noMoreText}}" />
+    <view wx:if="{{!(dynamics && dynamics[0]) && page.is_end}}" class='empty-box'>暂无数据~</view>
+    <view wx:else class='list-box'>
+      <visiting-card bindtap="cardTap" data-id="{{dynamic.id}}" wx:for="{{dynamics}}" wx:for-item="dynamic" wx:for-index="idx" wx:key="title" card-data="{{dynamic}}" top-separator="{{idx !== 0}}" />
+      <ft-list-footer loaded="{{loaded}}" loading="{{loading}}" page="{{page}}" show-no-more="{{page && page.pn && page.pn > 1}}" no-more-text="{{noMoreText}}" />
+    </view>
     <ft-iphone-bottom-adapter wx:if="{{dynamics && dynamics[0]}}" />
   </view>
 </view>

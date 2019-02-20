@@ -343,6 +343,29 @@ const getParams = (path) => {
   return params
 }
 
+const navToSuccesspage = ({method = 'push', params, completeFn}) => {
+  let _params = params ? JSON.stringify(params) : ''
+  let app = getApp()
+  if (completeFn) {
+    app.successCompleteFn = completeFn
+  } else {
+    app.successCompleteFn = () => {
+      wx.navigateBack({
+        delta: 1
+      })
+    }
+  }
+  if (method === 'push') {
+    wx.navigateTo({
+      url: '/pages/successpage/successpage?params=' + _params,
+    })
+  } else if (method === 'redirect') {
+    wx.redirectTo({
+      url: '/pages/successpage/successpage?params=' + _params,
+    })
+  }
+}
+
 
 module.exports = {
   formatDateToTime: formatDateToTime, // 把Date格式的时间转为 '年-月-日 时:分:秒' 的格式
@@ -361,5 +384,6 @@ module.exports = {
   checkLogin: checkLogin, // 检查是否登录
   checkPhone: checkPhone, // 检查本地是否保存手机号
   syncGlobalData: syncGlobalData, // 将全局数据同步到某个页面
-  getParams: getParams // 获取path中的参数
+  getParams: getParams, // 获取path中的参数
+  navToSuccesspage: navToSuccesspage // 跳转到成功页面
 }

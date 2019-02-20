@@ -71,12 +71,6 @@
 				},
 				{
 					"id": -1,
-					"name": "缴费",
-					"pathName": "pages/pay/pay",
-					"query": ""
-				},
-				{
-					"id": -1,
 					"name": "缴费成功",
 					"pathName": "pages/successpage/successpage",
 					"query": ""

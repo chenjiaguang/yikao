@@ -177,10 +177,10 @@
             <text class='ft-icon c-icon-sanjiao' style="font-size:14rpx;color:#BFBFBF;margin:0;line-height:18rpx"></text>
           </view>
         </picker>
-        <view class="last-get-item">
+        <view class="last-get-item" style="background:#CCCCCC">
           <view class="last-get-item-text {{majors[form.major.idx].value ? '' : 'unselected'}}">{{majors[form.major.idx].text || '专业'}}</view>
         </view>
-        <view class="last-get-item">
+        <view class="last-get-item" style="background:#CCCCCC">
           <view class="last-get-item-text {{form.level.value ? '' : 'unselected'}}">{{levels[form.level.idx - 1] || '等级'}}</view>
         </view>
       </view>

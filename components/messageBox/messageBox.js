@@ -71,7 +71,7 @@ Component({
       } else if (ele === 'query_pay') { // 缴费
         console.log('点击了进行缴费')
         wx.navigateTo({
-          url: '/pages/pay/pay'
+          url: '/pages/myenrolldetail/myenrolldetail'
         })
       } else if (ele === 'query_enroll') { // 重新报名
         console.log('点击了重新报名')

@@ -98,8 +98,8 @@ Component({
       })
     },
     bannerTap: function (e) {
-      let {idx} = e.currentTarget.dataset
-      this.triggerEvent('tap', Object.assign({}, this.data.extraData, {idx}))
+      let { idx, item} = e.currentTarget.dataset
+      this.triggerEvent('tap', Object.assign({}, this.data.extraData, {idx, item}))
     }
   }
 })
