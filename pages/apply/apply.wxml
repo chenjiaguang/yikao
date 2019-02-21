@@ -212,7 +212,7 @@
         <ft-button text="上传" width="180rpx" height="80rpx" font-size="{{30}}" bg="#108EE9" border-radius="4rpx" data-ele="basicmusiccertificate" disabled="{{form.basicmusiccertificate.uploading}}" disabled-bg="#CCCCCC" catchtap="chooseImage" />
       </view>
       <view class='tip-header'>
-        <ft-tip text="演唱演奏3~5级必须上传一级基本乐科证书；6~9级必须上传 二级基本乐科证书；10级或以上必须上传三级基本乐科证书" />
+        <ft-tip text="报考演唱演奏3~5级必须上传一级基本乐科证书，6~9级必须上传 二级基本乐科证书，10级或以上必须上传三级基本乐科证书；报考基本乐科2~6级，需上传上一级别证书，选择连考的考生上传最近一次获得的乐科证书即可" />
       </view>
     </view>
     <view class='block' id="bent1">

@@ -558,7 +558,7 @@ Page({
       formData.domain = this.data.form.major.value
       formData.level = this.data.form.level.value
       formData.continuous_level = this.data.form.continuity.text
-      formData.lately_credential = this.data.form.lastgetcertificate.year.value + ',' + this.data.form.lastgetcertificate.month.value + ',' + this.data.form.major.value + this.data.form.level.value.replace('级', '')
+      formData.lately_credential = (this.data.form.lastgetcertificate.year.value === 'none' && this.data.form.lastgetcertificate.month.value) ? '' : (this.data.form.lastgetcertificate.year.value + ',' + this.data.form.lastgetcertificate.month.value + ',' + this.data.form.major.value + ',' + this.data.form.level.value.replace('级', ''))
       formData.pro_certificate_id = this.data.form.majorcertificate.id
       formData.basic_certificate_id = this.data.form.basicmusiccertificate.id
       formData.track_one = this.data.form.bent1.value

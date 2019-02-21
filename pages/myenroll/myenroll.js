@@ -199,7 +199,7 @@ Page({
   },
 
   viewDetail: function (e) {
-    let { id, year, creat_at, plan, apply_no, exam, name, id_number, sex, domain, level, pay: { pay_time}, cause } = e.currentTarget.dataset.enroll
+    let { id, year, creat_at, plan, apply_no, exam, name, id_number, sex, domain, level, pay, cause } = e.currentTarget.dataset.enroll
     let { modal, statusText, modalStatusColor} = this.data
     let _obj = {}
     _obj.id = id
@@ -216,8 +216,8 @@ Page({
     content.push({ title: '报考专业', content: domain })
     content.push({ title: '报考等级', content: level })
     content.push({ title: '当前进度', content: statusText[plan.toString()], c_color: modalStatusColor[plan.toString()] })
-    if (plan.toString() === '4') { // 已缴费
-      content.push({ title: '缴费时间', content: pay_time }) // 已缴费才显示
+    if (plan.toString() === '4' && pay && pay.pay_time) { // 已缴费
+      content.push({ title: '缴费时间', content: pay.pay_time }) // 已缴费才显示
     }
     if (cause) {
       content.push({ title: '失效原因', content: cause })

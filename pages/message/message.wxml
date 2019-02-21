@@ -1,9 +1,12 @@
 <!--pages/message/message.wxml-->
 <view class='page-message'>
   <ft-list-loader visible="{{!loaded}}" />
-  <view class='message-box' wx:for="{{messages}}" wx:for-index="idx" wx:for-item="message" wx:key="id">
-    <message-box catchtap="boxTap" message="{{message}}" />
+  <view wx:if="{{messages && messages.length}}">
+    <view class='message-box' wx:for="{{messages}}" wx:for-index="idx" wx:for-item="message" wx:key="id">
+      <message-box catchtap="boxTap" message="{{message}}" />
+    </view>
+    <ft-list-footer loaded="{{loaded}}" loading="{{loading}}" page="{{page}}" show-no-more="{{page && page.pn && page.pn !== '0'}}" no-more-text="{{noMoreText}}" />
   </view>
-  <ft-list-footer loaded="{{loaded}}" loading="{{loading}}" page="{{page}}" show-no-more="{{page && page.pn && page.pn !== '0'}}" no-more-text="{{noMoreText}}" />
+  <view wx:if="{{loaded && !(messages && messages.length)}}" class='empty-box'>暂无消息~</view>
   <ft-iphone-bottom-adapter wx:if="{{messages && messages[0]}}" />
 </view>

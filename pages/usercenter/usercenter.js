@@ -1,5 +1,6 @@
 // pages/usercenter/usercenter.js
 import util from '../../utils/util.js'
+
 Page({
 
   /**
@@ -8,14 +9,23 @@ Page({
   data: {
     avatar: '',
     name: '',
-    message: 100
+    message: 100,
+    aboutUsUrl: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    util.request('/user').then(res => {
+      if (res && res.data && !res.error) { // 获取数据成功
+        console.log('/user', res)
+        let { avatar, nick_name: name, unread_num: message, about_us_url: aboutUsUrl} = res.data
+        this.setData({ avatar, name, message, aboutUsUrl })
+      }
+    }).catch(err => {
+      console.log('获取数据失败', err)
+    })
   },
 
   /**
@@ -67,6 +77,10 @@ Page({
 
   },
 
+  fetchUserInfo: function () {
+
+  },
+
   messageTap: function () {
     console.log('点击了消息icon')
     let unionId = util.checkUnionId()
@@ -96,9 +110,11 @@ Page({
       })
     } else if (ele === 'about') { // 点击了关于我们
       console.log('点击了关于我们')
-      wx.navigateTo({
-        url: '/pages/aboutus/aboutus'
-      })
+      if (this.data.aboutUsUrl) {
+        wx.navigateTo({
+          url: '/pages/webviewpage/webviewpage?url=' + this.data.aboutUsUrl
+        })
+      }
     }
   }
 })

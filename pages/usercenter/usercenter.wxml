@@ -9,7 +9,7 @@
     </view>
     <view class='message-box' catchtap="messageTap">
       <image class='message-image' mode="aspectFit" src="/assets/images/icon_notice.png" />
-      <view wx:if="{{message}}" class='message-num'>
+      <view wx:if="{{message && message > 0}}" class='message-num'>
         <text>{{message > 99 ? '99+' : message}}</text>
       </view>
     </view>

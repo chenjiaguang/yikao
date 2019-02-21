@@ -1,12 +1,12 @@
 <!--components/messageBox/messageBox.wxml-->
 <view class='wrapper'>
-  <view class='time'>{{message.time}}</view>
-  <view class='box' catchtap="goDetail">
-    <view class='title'>{{message.title}}</view>
-    <view class='content'>{{message.content}}</view>
-    <view class='buttons' wx:if="{{btns && btns[0]}}">
+  <view class='time'>{{message.inform.create_at}}</view>
+  <view class='box' catchtap="goDetail" data-ele="box">
+    <view class='title'>{{titleText[message.inform.type]}}</view>
+    <view class='content'>{{message.inform.content}}</view>
+    <view wx:if="{{btns && btns.length > 0}}" class='buttons' catchtap="stopPropagation">
       <view class='line-separator-h'></view>
-      <view wx:for="{{btns}}" wx:for-index="idx" wx:for-item="btn" wx:key="text" class='btn' catchtap="btnTap" data-ele="{{btn.ele}}">{{btn.text}}</view>
+      <view wx:for="{{btns}}" wx:for-index="idx" wx:for-item="btn" wx:key="*this" class='btn' catchtap="btnTap" data-ele="{{btn}}">{{btn}}</view>
     </view>
   </view>
 </view>

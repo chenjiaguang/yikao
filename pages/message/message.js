@@ -1,4 +1,6 @@
 // pages/message/message.js
+import util from '../../utils/util.js'
+
 Page({
 
   /**
@@ -16,7 +18,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.fetchlist(0)
+    this.fetchlist(1)
   },
 
   /**
@@ -51,14 +53,16 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.fetchlist(1)
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    let {page} = this.data
+    let pn = (page && page.pn) ? (parseInt(page.pn) + 1) : 1
+    this.fetchlist(pn)
   },
 
   /**
@@ -69,80 +73,54 @@ Page({
   },
 
   fetchlist: function (pn) {
-    this.setData({
-      loading: true
-    })
-    setTimeout(() => {
-      this.setData({
-        loaded: true,
-        loading: false,
-        messages: [
-          {
-            id: 1,
-            title: '成绩查询通知',
-            time: '昨天 13:26',
-            content: '中国音乐学院全国社会艺术水平考试海南考区的考试成绩已公布，点击右下方入口马上查询成绩。',
-            entry: {
-              query_score: true,
-              query_hall: false
-            }
-          },
-          {
-            id: 2,
-            title: '准考证领取通知',
-            time: '01-15 13:04',
-            content: '请参加中国音乐学院社会艺术水平考级的考生，社会艺术水平考级的社会艺术水平考级的社会艺术水平考级。',
-            entry: {
-              query_score: false
-            }
-          },
-          {
-            id: 3,
-            title: '考场查询通知',
-            time: '2018-12-15 13:26',
-            content: '中国音乐学院全国社会艺术水平考试海南考区的考试考场安排已公布。点击右下方入口马上查询考场。',
-            entry: {
-              query_score: false,
-              query_hall: true
-            }
-          },
-          {
-            id: 4,
-            title: '缴费成功通知',
-            time: '01-15 13:04',
-            content: '您已成功报名中国音乐学院社会艺术水平考级考试！ 关注微信公众号“海南考级中心”及时获取更多考试相关信息',
-            entry: {
-              query_score: false
-            }
-          },
-          {
-            id: 5,
-            title: '缴费通知',
-            time: '2018-12-15 13:26',
-            content: '您提交的中国音乐学院全国社会艺术水平考级报名信息已通过审核，请在规定报名时间内完成缴费！若逾期未缴费，视为放弃报名。',
-            entry: {
-              query_pay: true
-            }
-          },
-          {
-            id: 6,
-            title: '审核未通过',
-            time: '2018-12-15 13:26',
-            content: '您提交的中国音乐学院全国社会艺术水平考级报名信息未通过审核。请上传正确的相关证书，并在规定报名时间内重新进行报名。',
-            entry: {
-              query_enroll: true
+    let {loading, page} = this.data
+    if (loading || (page && page.is_end && pn.toString() !== '1')) { // 正在加载数据 或 最后一页且不是获取第一页的数据时
+      if (pn.toString() === '1') { // 停止下拉刷新动画
+        wx.stopPullDownRefresh()
+      }
+      return false
+    }
+    let rData = {
+      pn
+    }
+    util.request('/inform/list', rData).then(res => {
+      let obj = {}
+      obj.loading = false
+      if (pn.toString() === '1') {
+        wx.stopPullDownRefresh()
+      }
+      if (res && res.data && !res.error) { // 获取数据成功
+        console.log('/inform/list', res)
+        obj.loaded = true
+        obj.page = res.data.page
+        if (pn.toString() === '1') { // 第一页
+          obj.messages = res.data.list
+        } else {
+          let len = res.data.list.length
+          let dataLen = this.data.messages.length
+          if (len) {
+            for (let i = 0; i < len; i++) {
+              obj['messages[' + (dataLen + i) + ']'] = res.data.list[i]
             }
           }
-        ],
-        page: {
-          isend: true,
-          pn: 0
         }
-      })
-    }, 1000)
+      }
+      this.setData(obj)
+    }).catch(err => {
+      let obj = {}
+      obj.loading = false
+      this.setData(obj)
+      console.log('获取数据失败')
+    })
   },
 
   boxTap: function (e) {
     console.log('boxTap', e)
+    let {message, ele} = e.detail
+    if (ele === 'box' && message.inform && message.inform.detail) {
+      wx.navigateTo({
+        url: '/pages/webviewpage/webviewpage?url=' + message.inform.detail
+      })
+    }
   }
 })

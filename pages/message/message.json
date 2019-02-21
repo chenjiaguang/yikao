@@ -4,7 +4,7 @@
   "backgroundColor": "#F4F4F4",
   "backgroundTextStyle": "dark",
   "navigationBarTextStyle": "white",
-  "enablePullDownRefresh": false,
+  "enablePullDownRefresh": true,
   "usingComponents": {
     "ft-list-loader": "../../components/ftListLoader/ftListLoader",
     "ft-list-footer": "../../components/ftListFooter/ftListFooter",

@@ -1,1 +1,7 @@
 /* pages/message/message.wxss */
+.empty-box{
+  padding: 200rpx 4% 20rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color: #999;
+}

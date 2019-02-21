@@ -18,20 +18,38 @@ Page({
    */
   onLoad: function (options) {
     if (options.id) {
-      let enroll = this.getLocalEnroll(options.id)
-      this.setData({ enroll, payData: enroll.pay })
+      // let enroll = this.getLocalEnroll(options.id)
+      // this.setData({ enroll, payData: enroll.pay })
+      this.getOriginEnroll(options.id)
     }
   },
 
-  getLocalEnroll: function (id) {
-    const currentPages = getCurrentPages()
-    let listPages = currentPages.filter(item => item.route === 'pages/myenroll/myenroll')
-    let listPage = listPages.length > 0 ? listPages[listPages.length - 1] : null
-    if (!(listPage && id)) {
-      return false
+  // getLocalEnroll: function (id) {
+  //   const currentPages = getCurrentPages()
+  //   let listPages = currentPages.filter(item => item.route === 'pages/myenroll/myenroll')
+  //   let listPage = listPages.length > 0 ? listPages[listPages.length - 1] : null
+  //   if (!(listPage && id)) {
+  //     return false
+  //   }
+  //   let enrollData = listPage.getEnrollData(id)
+  //   return enrollData || null
+  // },
+
+  getOriginEnroll: function (id) {
+    console.log('获取远程报名详情')
+    let rData = {
+      id
     }
-    let enrollData = listPage.getEnrollData(id)
-    return enrollData || null
+    util.request('/apply/detail', rData).then(res => {
+      if (res && res.data && !res.error) { // 获取数据成功
+        console.log('/apply/detail', res)
+        let enroll = res.data
+        let payData = res.data.pay
+        this.setData({ enroll, payData})
+      }
+    }).catch(err => {
+      console.log('获取数据失败', err)
+    })
   },
 
   requestPay: function () {

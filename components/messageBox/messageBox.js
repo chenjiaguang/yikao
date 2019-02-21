@@ -7,8 +7,8 @@ Component({
     message: {
       type: Object,
       value: {},
-      observer(newVal, oldVal, changedPath) {
-        this.getBtn()
+      observer: function (newVal, oldVal, changedPath) {
+        this.getBtns(newVal)
       }
     },
     customEvent: {
@@ -26,11 +26,17 @@ Component({
    */
   data: {
     btns: [],
-    buttonText: {
-      query_score: '点此查询成绩',
-      query_hall: '点此查询考场',
-      query_pay: '点此进行缴费',
-      query_enroll: '点此重新报名'
+    titleText: {
+      1: '成绩查询通知',
+      2: '准考证领取通知',
+      3: '考场查询通知',
+      4: '考试报名通知',
+      5: '大赛通知',
+      6: '系统通知',
+      7: '审核未通过',
+      8: '缴费通知',
+      9: '缴费成功通知',
+      10: '缺考顺延通知'
     }
   },
 
@@ -38,19 +44,23 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    getBtn: function () {
-      let {message} = this.data
-      if (message.entry) {
-        let len = Object.keys(message.entry).length
-        let btnArr = []
-        for (let i = 0; i < len; i++) {
-          let { buttonText} = this.data
-          if (message.entry[Object.keys(message.entry)[i]]) {
-            btnArr.push({ ele: Object.keys(message.entry)[i], text: buttonText[Object.keys(message.entry)[i]]})
-          }
-        }
-        this.setData({btns: btnArr})
+    getBtns: function (message) {
+      let btns = []
+      if (!message.inform) {
+        return false
       }
+      if (message.inform.type.toString() === '1') { // 成绩查询通知
+        btns = ['点此查询成绩']
+      } else if (message.inform.type.toString() === '3') { // 考场查询通知
+        btns = ['点此查询考场']
+      } else if (message.inform.type.toString() === '7') { // 审核未通过
+        btns = ['点此重新报名']
+      } else if (message.inform.type.toString() === '8') { // 缴费通知
+        btns = ['点此进行缴费']
+      } else {
+        btns = []
+      }
+      this.setData({btns})
     },
     btnTap: function (e) {
       let {ele} = e.currentTarget.dataset
@@ -58,30 +68,32 @@ Component({
       if (this.data.customEvent) { // 不执行默认行为
         return false
       }
-      if (ele === 'query_score') { // 成绩查询
-        console.log('点击了查询成绩')
+      if (ele === '点此查询成绩') { // 成绩查询
         wx.navigateTo({
           url: '/pages/queryscore/queryscore'
         })
-      } else if (ele === 'query_hall') { // 考场查询
-        console.log('点击了查询考场')
+      } else if (ele === '点此查询考场') { // 考场查询
         wx.navigateTo({
           url: '/pages/queryhall/queryhall'
         })
-      } else if (ele === 'query_pay') { // 缴费
-        console.log('点击了进行缴费')
+      } else if (ele === '点此进行缴费') { // 缴费
+        let id = this.data.message.inform.id
         wx.navigateTo({
-          url: '/pages/myenrolldetail/myenrolldetail'
+          url: '/pages/myenrolldetail/myenrolldetail?id=' + id
         })
-      } else if (ele === 'query_enroll') { // 重新报名
-        console.log('点击了重新报名')
+      } else if (ele === '点此重新报名') { // 重新报名
         wx.navigateTo({
           url: '/pages/apply/apply'
         })
       }
     },
-    goDetail: function () {
-      console.log('goDetail 跳转通知详情')
+    goDetail: function (e) {
+      let {message} = this.data
+      let { ele } = e.currentTarget.dataset
+      this.triggerEvent('tap', Object.assign({}, { ele, message }, this.data.extraData))
+    },
+    stopPropagation: function () {
+      return false
     }
   }
 })

@@ -36,10 +36,15 @@
   text-overflow: ellipsis;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+  white-space: pre-wrap;
+  word-break: break-all;
 }
 
 .buttons {
   margin-top: 18rpx;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
 }
 
 .btn {

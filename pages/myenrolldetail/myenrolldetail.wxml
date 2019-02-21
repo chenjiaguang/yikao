@@ -1,7 +1,7 @@
 <!--pages/myenrolldetail/myenrolldetail.wxml-->
 <view class='page-myenrolldetail'>
   <view class='image-box'>
-    <image class='image' mode="widthFix" src="{{formImage}}" />
+    <image class='image' mode="widthFix" src="{{enroll.bm_image_url}}" />
     <view wx:if="{{enroll && enroll.plan && enroll.plan == 2}}" class='line-separator-h'></view>
   </view>
   <view wx:if="{{enroll && enroll.plan && enroll.plan == 2}}">
@@ -9,9 +9,9 @@
       <view class='pay-header'>¥应缴费用</view>
       <view class='fee-box'>
         <view class='fee-title'>考试费用：</view>
-        <view wx:for="{{payFee}}" wx:for-idx="idx" wx:for-item="fee" wx:key="id" class='fee-item'>
+        <view wx:if="{{payData && payData.domain && payData.domain.length > 0}}" wx:for="{{payData.domain}}" wx:for-idx="idx" wx:for-item="fee" wx:key="id" class='fee-item'>
           <view class='fee-left'>考试项目：{{fee.name}}</view>
-          <view class='fee-right'>{{fee.price || '0.00'}}元</view>
+          <view class='fee-right'>{{fee.price || '0.00元'}}</view>
         </view>
         <view class='fee-total'>总计：{{payData.price || '0.00'}}元</view>
       </view>
