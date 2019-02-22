@@ -1,8 +1,8 @@
 <!--pages/applycontacts/applycontacts.wxml-->
 <view class='page-applycontacts'>
   <ft-list-loader visible="{{!loaded}}" />
-  <view class='contacts-wrapper'>
-    <view class='district-box' wx:for="{{districts}}" wx:for-index="idx" wx:for-item="district" wx:key="name">
+  <view wx:if="{{loaded && !isEmpty}}" class='contacts-wrapper'>
+    <view class='district-box' wx:for="{{districts}}" wx:for-index="idx" wx:for-item="district" wx:if="{{district.contacts && district.contacts.length > 0}}" wx:key="name">
       <view class='block-separator' style="background:{{idx === 0 ? 'transparent' : '#F4F4F4'}}"></view>
       <view class='header'>
         <view class='title'>
@@ -11,9 +11,9 @@
       </view>
       <view class='contact' wx:for="{{district.contacts}}" wx:for-index="didx" wx:for-item="contact" wx:key="id">
         <view class='line-separator-h' style="margin-bottom:8rpx;background:{{didx === 0 ? 'transparent' : '#F4F4F4'}}"></view>
-        <view class='location' wx:if="{{contact.address}}">
+        <view class='location' wx:if="{{contact.organ_address}}">
           <image class='location-image' src="/assets/images/picon_location.png" mode="aspectFit"></image>
-          <view class='location-text'>{{contact.address}}</view>
+          <view class='location-text'>{{contact.organ_address}}</view>
         </view>
         <view class='phone' wx:if="{{contact.phone && contact.phone[0]}}">
           <image class='phone-image' src="/assets/images/picon_phone.png" mode="aspectFit"></image>
@@ -23,14 +23,15 @@
             </view>
           </view>
         </view>
-        <view class='user' wx:if="{{contact.contact}}">
+        <view class='user' wx:if="{{contact.name}}">
           <image class='user-image' src="/assets/images/picon_user.png" mode="aspectFit"></image>
-          <view class='user-text'>{{contact.contact}}</view>
+          <view class='user-text'>{{contact.name}}</view>
         </view>
       </view>
     </view>
   </view>
-  <view wx:if="{{loaded}}" class='tip-box'>
+  <view wx:else class='empty-tip'>暂无线下报名信息~</view>
+  <view wx:if="{{loaded && !isEmpty}}" class='tip-box'>
     <view class='line-separator-h'></view>
     <view class='tip'>其它未设点市县可就近选择报名点或电话到海口报名</view>
   </view>

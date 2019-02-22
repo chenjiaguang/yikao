@@ -1,4 +1,6 @@
 // pages/applycontacts/applycontacts.js
+import util from '../../utils/util.js'
+
 Page({
 
   /**
@@ -7,7 +9,8 @@ Page({
   data: {
     loaded: false,
     loading: false,
-    districts: []
+    districts: [],
+    isEmpty: false
   },
 
   /**
@@ -70,147 +73,49 @@ Page({
   },
 
   fetchContacts: function () {
+    console.log('btnTap')
+    let { loading } = this.data
+    if (loading) {
+      return false
+    }
     this.setData({
-      loading: false
+      loading: true
     })
-    setTimeout(() => {
-      this.setData({
-        loading: false,
-        loaded: true,
-        districts: [
-          {
-            name: '海口市',
-            contacts: [
-              {
-                id: 1,
-                address: '海口市龙昆南路海南师范大学旁边板桥路口海南雅典艺术学校',
-                contact: '赵老师',
-                phone: ['66713376', '13876988256', '13337536400']
-              },
-              {
-                id: 2,
-                address: '海口市大同路8号小提琴世界',
-                contact: '林老师',
-                phone: ['13389831167']
-              },
-              {
-                id: 3,
-                address: '海口市龙昆南路海南师范大学旁边板桥路口海南雅典艺术学校',
-                contact: '赵老师',
-                phone: ['66713376', '13876988256', '13337536400']
-              },
-              {
-                id: 4,
-                address: '海口市大同路8号小提琴世界',
-                contact: '林老师',
-                phone: ['13389831167']
-              },
-              {
-                id: 5,
-                address: '海口市龙昆南路海南师范大学旁边板桥路口海南雅典艺术学校',
-                contact: '赵老师',
-                phone: ['66713376', '13876988256', '13337536400']
-              },
-              {
-                id: 6,
-                address: '海口市大同路8号小提琴世界',
-                contact: '林老师',
-                phone: ['13389831167']
-              },
-              {
-                id: 7,
-                address: '海口市龙昆南路海南师范大学旁边板桥路口海南雅典艺术学校',
-                contact: '赵老师',
-                phone: ['66713376', '13876988256', '13337536400']
-              },
-              {
-                id: 8,
-                address: '海口市大同路8号小提琴世界',
-                contact: '林老师',
-                phone: ['13389831167']
-              },
-              {
-                id: 9,
-                address: '海口市龙昆南路海南师范大学旁边板桥路口海南雅典艺术学校',
-                contact: '赵老师',
-                phone: ['66713376', '13876988256', '13337536400']
-              },
-              {
-                id: 10,
-                address: '海口市大同路8号小提琴世界',
-                contact: '林老师',
-                phone: ['13389831167']
+
+    util.request('/apply/offline').then(res => {
+      wx.stopPullDownRefresh()
+      let obj = {}
+      obj.loading = false
+      if (res && res.error.toString() === '0') { // 获取数据成功
+        obj.loaded = true
+        if (res.data) {
+          let isEmpty = true
+          if (res.data && res.data.length > 0) {
+            res.data.forEach(item => {
+              if (item.contacts && item.contacts.length > 0) {
+                isEmpty = false
               }
-            ]
-          },
-          {
-            name: '其他市县',
-            contacts: [
-              {
-                id: 1,
-                address: '海口市龙昆南路海南师范大学旁边板桥路口海南雅典艺术学校',
-                contact: '赵老师',
-                phone: ['66713376', '13876988256', '13337536400']
-              },
-              {
-                id: 2,
-                address: '海口市大同路8号小提琴世界',
-                contact: '林老师',
-                phone: ['13389831167']
-              },
-              {
-                id: 3,
-                address: '海口市龙昆南路海南师范大学旁边板桥路口海南雅典艺术学校',
-                contact: '赵老师',
-                phone: ['66713376', '13876988256', '13337536400']
-              },
-              {
-                id: 4,
-                address: '海口市大同路8号小提琴世界',
-                contact: '林老师',
-                phone: ['13389831167']
-              },
-              {
-                id: 5,
-                address: '海口市龙昆南路海南师范大学旁边板桥路口海南雅典艺术学校',
-                contact: '赵老师',
-                phone: ['66713376', '13876988256', '13337536400']
-              },
-              {
-                id: 6,
-                address: '海口市大同路8号小提琴世界',
-                contact: '林老师',
-                phone: ['13389831167']
-              },
-              {
-                id: 7,
-                address: '海口市龙昆南路海南师范大学旁边板桥路口海南雅典艺术学校',
-                contact: '赵老师',
-                phone: ['66713376', '13876988256', '13337536400']
-              },
-              {
-                id: 8,
-                address: '海口市大同路8号小提琴世界',
-                contact: '林老师',
-                phone: ['13389831167']
-              },
-              {
-                id: 9,
-                address: '海口市龙昆南路海南师范大学旁边板桥路口海南雅典艺术学校',
-                contact: '赵老师',
-                phone: ['66713376', '13876988256', '13337536400']
-              },
-              {
-                id: 10,
-                address: '海口市大同路8号小提琴世界',
-                contact: '林老师',
-                phone: ['13389831167']
-              }
-            ]
+            })
           }
-        ]
+          obj.districts = res.data
+          obj.isEmpty = isEmpty
+        }
+      }
+      if (res && res.error && res.error.toString() !== '0') {
+        if (res.msg) {
+          wx.showToast({
+            title: res.msg,
+            icon: 'none'
+          })
+        }
+      }
+      this.setData(obj)
+    }).catch(err => {
+      this.setData({
+        loading: false
       })
-    }, 1000)
+      console.log('获取数据失败')
+    })
   },
 
   makePhoneCall: function (e) {

@@ -59,6 +59,12 @@
   align-items: center;
 }
 
+.empty-tip{
+  font-size: 30rpx;
+  color: #666;
+  text-align: center;
+  padding-top: 300rpx;
+}
 .tip-box{
   padding: 0 32rpx;
 }
