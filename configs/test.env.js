@@ -1,4 +1,4 @@
 module.exports = {
   env: 'test',
-  baseUrl: 'https://artminitest.fantuan.cn'
+  baseUrl: 'https://www.hnyskj.net/mini'
 }
