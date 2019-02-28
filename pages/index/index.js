@@ -7,193 +7,32 @@ Page({
    * 页面的初始数据
    */
   data: {
-    banners: [
-      {
-        key: 1,
-        title: '',
-        url: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3390961998,1154407883&fm=200&gp=0.jpg'
-      },
-      {
-        key: 2,
-        title: '',
-        url: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1917712929,4122611779&fm=200&gp=0.jpg'
-      },
-      {
-        key: 3,
-        title: '',
-        url: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1819776845,1128606894&fm=26&gp=0.jpg'
-      },
-      {
-        key: 4,
-        title: '',
-        url: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=877288732,706910501&fm=200&gp=0.jpg'
-      }
-    ],
+    banners: [],
     cates: [
       {
         id: '1',
         name: '考级动态',
-        list: [
-          {
-            id: 11,
-            title: '2019年寒假考级',
-            content: '最多展示一行，超出截断展示最多展示一行，超出截断展示最多展示1行',
-            sign1: '2019-01-07',
-            sign2: '中国音乐学院考级委员会海南考区',
-            image: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1819776845,1128606894&fm=26&gp=0.jpg'
-          },
-          {
-            id: 22,
-            title: '2019年暑假考级',
-            content: '最多展示一行，超出截断展示最多展',
-            sign1: '2019-01-07',
-            sign2: '中国音乐学院考级委员会海南考区',
-            image: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1819776845,1128606894&fm=26&gp=0.jpg'
-          },
-          {
-            id: 33,
-            title: '2019年长期考级',
-            content: '最多展示一行，超出截断展示最多展示一行，超出截断展示最多展示1行',
-            sign1: '2019-01-07',
-            sign2: '中国音乐学院考级委员会海南考区',
-            image: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1819776845,1128606894&fm=26&gp=0.jpg'
-          }
-        ]
+        list: []
       },
       {
         id: '2',
         name: '师资培训',
-        list: [
-          {
-            id: 1,
-            title: '师资培训11111',
-            content: '2行的内容是镂空的肌肤脸上的肌肤',
-            sign1: '2019-01-07',
-            image: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1819776845,1128606894&fm=26&gp=0.jpg'
-          },
-          {
-            id: 2,
-            title: '师资培训222222',
-            content: '2行的内容是镂空的肌肤脸上的肌肤离开善良的风收到了饭就阿善良分家连撒娇阿了三分景拉丝分',
-            sign1: '2019-01-07',
-            image: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=877288732,706910501&fm=200&gp=0.jpg'
-          },
-          {
-            id: 3,
-            title: '师资培训33333',
-            content: '2行的内容是镂空的肌肤脸上的肌肤离开善良的风景拉丝分',
-            sign1: '2019-01-07',
-            image: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3390961998,1154407883&fm=200&gp=0.jpg'
-          }
-        ]
+        list: []
       },
       {
         id: '3',
         name: '艺术团表演',
-        list: [
-          {
-            id: 6,
-            title: '艺术团表演11111',
-            content: '2行的内容是镂空的肌肤脸上的肌肤',
-            sign1: '2019-01-07',
-            image: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1819776845,1128606894&fm=26&gp=0.jpg'
-          },
-          {
-            id: 7,
-            title: '艺术团表演222222',
-            content: '2行的内容是镂空的肌肤脸上的肌肤离开善良的风收到了饭就阿善良分家连撒娇阿了三分景拉丝分',
-            sign1: '2019-01-07',
-            image: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=877288732,706910501&fm=200&gp=0.jpg'
-          },
-          {
-            id: 8,
-            title: '艺术团表演33333',
-            content: '2行的内容是镂空的肌肤脸上的肌肤离开善良的风景拉丝分',
-            sign1: '2019-01-07',
-            image: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3390961998,1154407883&fm=200&gp=0.jpg'
-          }
-        ]
+        list: []
       },
       {
         id: '4',
         name: '大赛',
-        list: [
-          {
-            id: 9,
-            title: '大赛大赛11111',
-            content: '2行的内容是镂空的肌肤脸上的肌肤',
-            sign1: '2019-01-07',
-            image: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1819776845,1128606894&fm=26&gp=0.jpg'
-          },
-          {
-            id: 99,
-            title: '大赛大赛222222',
-            content: '2行的内容是镂空的肌肤脸上的肌肤离开善良的风收到了饭就阿善良分家连撒娇阿了三分景拉丝分',
-            sign1: '2019-01-07',
-            image: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=877288732,706910501&fm=200&gp=0.jpg'
-          },
-          {
-            id: 999,
-            title: '大赛大赛33333',
-            content: '2行的内容是镂空的肌肤脸上的肌肤离开善良的风景拉丝分',
-            sign1: '2019-01-07',
-            image: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3390961998,1154407883&fm=200&gp=0.jpg'
-          }
-        ]
+        list: []
       },
       {
         id: '5',
         name: '考级教材',
-        list: [
-          {
-            id: 9,
-            title: '考级教材111',
-            content: '2行的内容是镂空的肌肤脸上的肌肤',
-            sign1: '2019-01-07',
-            image: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1819776845,1128606894&fm=26&gp=0.jpg'
-          },
-          {
-            id: 99,
-            title: '考级教材22222222222',
-            content: '2行的内容是镂空的肌肤脸上的肌肤离开善良的风收到了饭就阿善良分家连撒娇阿了三分景拉丝分',
-            sign1: '2019-01-07',
-            image: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=877288732,706910501&fm=200&gp=0.jpg'
-          },
-          {
-            id: 999,
-            title: '考级教材33333',
-            content: '2行的内容是镂空的肌肤脸上的肌肤离开善良的风景拉丝分',
-            sign1: '2019-01-07',
-            image: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3390961998,1154407883&fm=200&gp=0.jpg'
-          }
-        ]
-      }
-    ],
-    books: [
-      {
-        id: 1,
-        title: '民族管弦乐器',
-        image: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=832062413,3747718242&fm=26&gp=0.jpg'
-      },
-      {
-        id: 2,
-        title: '西洋管弦乐器',
-        image: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2792394468,2109792806&fm=26&gp=0.jpg'
-      },
-      {
-        id: 3,
-        title: '键盘乐器',
-        image: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=335696418,4043130326&fm=26&gp=0.jpg'
-      },
-      {
-        id: 4,
-        title: '声乐',
-        image: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=154577074,1008762718&fm=26&gp=0.jpg'
-      },
-      {
-        id: 5,
-        title: '基本乐科',
-        image: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=4137700990,2527839804&fm=26&gp=0.jpg'
+        list: []
       }
     ],
     modal: {

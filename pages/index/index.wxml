@@ -20,7 +20,7 @@
     </view>
   </view>
   <!-- 分类动态 -->
-  <view wx:for="{{cates}}" wx:for-item="cate" wx:for-index="idx" wx:key="id" class='dynamics'>
+  <view wx:for="{{cates}}" wx:for-item="cate" wx:for-index="idx" wx:key="id" wx:if="{{cate.list && cate.list.length > 0}}" class='dynamics'>
     <view class='block-separator' style="margin-bottom:30rpx"></view>
     <big-header title="{{cate.name}}" />
     <view style="margin-bottom:10rpx"></view>

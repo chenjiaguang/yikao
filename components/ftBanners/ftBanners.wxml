@@ -1,5 +1,5 @@
 <!--components/ftBanners/ftBanners.wxml-->
-  <view wx:if="{{banners && banners[0]}}" class='banners-box' style="width:{{width}};height:{{height}}">
+  <view class='banners-box' style="width:{{width}};height:{{(banners && banners[0]) ? height : 0}}">
     <block wx:if="{{banners && banners.length > 1}}">
       <swiper class='banner-swiper' previous-margin="{{previousMargin}}" next-margin="{{nextMargin}}" autoplay="{{autoplay}}" circular="{{circular}}" current="{{current}}" interval="{{interval}}" duration="{{duration}}" bindchange="currentChange">
         <swiper-item wx:for="{{banners}}" wx:for-item="banner" wx:for-index="idx" wx:key="key">

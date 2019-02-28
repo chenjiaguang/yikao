@@ -5,6 +5,8 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  overflow: hidden;
+  transition: height 300ms;
 }
 .single-banner{
   display: block;
