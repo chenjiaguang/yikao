@@ -660,8 +660,8 @@ Page({
           submitting: false
         })
         console.log('/apply/add', res)
-        if (res && res.data && !res.error) { // 提交表单成功
-          this.submitSuccess()
+        if (res && res.data && (res.error === 0 || res.error === '0')) { // 提交表单成功
+          this.submitSuccess(res.data.id)
         }
       }).catch(err => {
         this.setState({

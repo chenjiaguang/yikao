@@ -37,7 +37,7 @@ Component({
     },
     height: {
       type: String,
-      value: '302rpx'
+      value: '308rpx'
     },
     indicatorPos: {
       type: String,

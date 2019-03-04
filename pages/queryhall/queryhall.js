@@ -1,4 +1,6 @@
 // pages/queryhall/queryhall.js
+import util from '../../utils/util.js'
+
 Page({
 
   /**
@@ -7,75 +9,9 @@ Page({
   data: {
     name: '',
     idcard: '',
-    major: [
-      {
-        text: '专业1',
-        value: '1'
-      },
-      {
-        text: '专业2',
-        value: '2'
-      },
-      {
-        text: '专业3',
-        value: '3'
-      },
-      {
-        text: '专业4',
-        value: '4'
-      },
-      {
-        text: '专业5',
-        value: '5'
-      },
-      {
-        text: '专业6',
-        value: '6'
-      },
-      {
-        text: '专业7',
-        value: '7'
-      },
-      {
-        text: '专业8上地理课肌肤阿了三分爱丽丝发送 ',
-        value: '8'
-      },
-      {
-        text: '专业9',
-        value: '9'
-      },
-      {
-        text: '专业10',
-        value: '10'
-      },
-      {
-        text: '专业11',
-        value: '11'
-      },
-      {
-        text: '专业12',
-        value: '12'
-      }
-    ],
+    majors: [],
     selectedMajor: null,
-    level: [
-      {
-        text: '等级1',
-        value: '1'
-      },
-      {
-        text: '等级2',
-        value: '2'
-      },
-      {
-        text: '等级3',
-        value: '3'
-      },
-      {
-        text: '等级4',
-        value: '4'
-      }
-    ],
+    levels: [],
     selectedLevel: null,
     submitting: false,
     admissionCard: ''
@@ -85,7 +21,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getOptions()
   },
 
   /**
@@ -137,6 +73,30 @@ Page({
 
   },
 
+  getOptions: function () {
+    util.request('/option').then(res => {
+      console.log('getOptions', res)
+      if (!res.error && res.data) { // 获取信息成功
+        let {
+          major
+        } = res.data
+        let majors = []
+        for (let mj in major) {
+          majors.push({
+            value: mj,
+            text: mj,
+            levels: major[mj]
+          })
+        }
+        this.setData({
+          majors: majors
+        })
+      }
+    }).catch(err => {
+
+    })
+  },
+
   inputChange: function (e) {
     let { ele } = e.currentTarget.dataset
     let { value } = e.detail
@@ -156,8 +116,11 @@ Page({
     let { ele } = e.currentTarget.dataset
     let { value } = e.detail
     if (ele === 'major') { // 专业
+      let {majors} = this.data
       this.setData({
-        selectedMajor: value
+        selectedMajor: value,
+        levels: majors[value].levels,
+        selectedLevel: null
       })
     } else if (ele === 'level') { // 等级
       this.setData({
@@ -172,26 +135,43 @@ Page({
     if (submitting) {
       return false
     }
+    let { majors, levels } = this.data
+    let { name, idcard, selectedMajor, selectedLevel } = this.data
+    let domain = (majors && majors[selectedMajor]) ? majors[selectedMajor] : ''
+    let level = (levels && levels[selectedLevel]) ? levels[selectedLevel] : ''
+    let rData = {
+      name,
+      id_card: idcard,
+      domain,
+      level
+    }
     this.setData({
       submitting: true
     })
-    // 模拟获取考场信息成功
-    setTimeout(() => {
+    util.request('/search/room', rData).then(res => {
+      console.log('/search/room', res)
+      let obj = {}
+      obj.submitting = false
+      if ((res.error === 0 || res.error === '0') && res.data) { // 获取信息成功
+        let { kz_image_url} = res.data
+        obj.admissionCard = kz_image_url
+        if (!kz_image_url) {
+          wx.showToast({
+            title: '未查询到该考生信息',
+            icon: 'none'
+          })
+        }
+      }
+      this.setData(obj)
+    }).catch(err => {
       this.setData({
-        submitting: false,
-        admissionCard: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547556521708&di=c58cebb4b0034b6118a3e5d3bfd40b4b&imgtype=0&src=http%3A%2F%2Fpic.baike.soso.com%2Fp%2F20130608%2F20130608113624-555785523.jpg'
+        submitting: false
       })
-    }, 500)
-    // 模拟获取不到考场信息
-    // setTimeout(() => {
-    //   this.setData({
-    //     submitting: false
-    //   })
-    //   wx.showToast({
-    //     title: '未查询到该考生信息',
-    //     icon: 'none'
-    //   })
-    // }, 500)
+      wx.showToast({
+        title: '未查询到该考生信息',
+        icon: 'none'
+      })
+    })
   },
 
   viewAdmissionCard: function () {

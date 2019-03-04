@@ -4,7 +4,7 @@
     <ft-list-loader visible="{{!loaded}}" />
     <view wx:if="{{!(dynamics && dynamics[0]) && page.is_end}}" class='empty-box'>暂无数据~</view>
     <view wx:else class='list-box'>
-      <visiting-card bindtap="cardTap" data-id="{{dynamic.id}}" wx:for="{{dynamics}}" wx:for-item="dynamic" wx:for-index="idx" wx:key="title" card-data="{{dynamic}}" top-separator="{{idx !== 0}}" />
+      <visiting-card bindtap="cardTap" data-url="{{dynamic.url}}" wx:for="{{dynamics}}" wx:for-item="dynamic" wx:for-index="idx" wx:key="title" card-data="{{dynamic}}" top-separator="{{idx !== 0}}" />
       <ft-list-footer loaded="{{loaded}}" loading="{{loading}}" page="{{page}}" show-no-more="{{page && page.pn && page.pn > 1}}" no-more-text="{{noMoreText}}" />
     </view>
     <ft-iphone-bottom-adapter wx:if="{{dynamics && dynamics[0]}}" />

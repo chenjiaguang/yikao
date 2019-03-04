@@ -1,8 +1,25 @@
 /* pages/login/login.wxss */
 
+.page-login{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+.avatar-box{
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-top: 160rpx;
+}
+.name-box{
+  color: #333;
+  margin-top: 40rpx;
+}
 .btn-box{
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 45rpx 0 15rpx;
+  padding: 100rpx 0 15rpx;
 }

@@ -133,17 +133,21 @@ Page({
     console.log('bannerTap', e)
     let {item} = e.detail
     if (item && item.path) {
+      let url = encodeURIComponent(item.path)
       wx.navigateTo({
-        url: '/pages/webviewpage/webviewpage?url=' + item.path
+        url: '/pages/webviewpage/webviewpage?url=' + url
       })
     }
   },
 
   cardTap: function (e) {
-    let {cateid, id} = e.currentTarget.dataset
-    wx.navigateTo({
-      url: '/pages/dynamicdetail/dynamicdetail?cateid=' + cateid + '&id=' + id
-    })
+    let {url} = e.currentTarget.dataset
+    if (url) {
+      url = encodeURIComponent(url)
+      wx.navigateTo({
+        url: '/pages/webviewpage/webviewpage?url=' + url
+      })
+    }
   },
 
   bookTap: function (e) {

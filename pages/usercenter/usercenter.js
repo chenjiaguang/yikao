@@ -16,12 +16,22 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     util.request('/user').then(res => {
       if (res && res.data && !res.error) { // 获取数据成功
         console.log('/user', res)
-        let { avatar, nick_name: name, unread_num: message, about_us_url: aboutUsUrl} = res.data
-        this.setData({ avatar, name, message, aboutUsUrl })
+        let {
+          avatar,
+          nick_name: name,
+          unread_num: message,
+          about_us_url: aboutUsUrl
+        } = res.data
+        this.setData({
+          avatar,
+          name,
+          message,
+          aboutUsUrl
+        })
       }
     }).catch(err => {
       console.log('获取数据失败', err)
@@ -31,57 +41,57 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   },
 
-  fetchUserInfo: function () {
+  fetchUserInfo: function() {
 
   },
 
-  messageTap: function () {
+  messageTap: function() {
     console.log('点击了消息icon')
     let unionId = util.checkUnionId()
     if (!unionId) {
@@ -92,8 +102,10 @@ Page({
     })
   },
 
-  entryTap: function (e) {
-    let {ele} = e.currentTarget.dataset
+  entryTap: function(e) {
+    let {
+      ele
+    } = e.currentTarget.dataset
     let unionId = util.checkUnionId()
     if (!unionId) {
       return false
@@ -111,8 +123,9 @@ Page({
     } else if (ele === 'about') { // 点击了关于我们
       console.log('点击了关于我们')
       if (this.data.aboutUsUrl) {
+        let url = encodeURIComponent(this.data.aboutUsUrl)
         wx.navigateTo({
-          url: '/pages/webviewpage/webviewpage?url=' + this.data.aboutUsUrl
+          url: '/pages/webviewpage/webviewpage?url=' + url
         })
       }
     }

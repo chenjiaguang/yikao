@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 9,
+			"current": 10,
 			"list": [
 				{
 					"id": -1,
@@ -82,8 +82,8 @@
 					"query": ""
 				},
 				{
-					"id": -1,
-					"name": "报名页面",
+					"id": 7,
+					"name": "微信群",
 					"pathName": "pages/wechatgroup/wechatgroup",
 					"query": ""
 				},
@@ -91,6 +91,18 @@
 					"id": -1,
 					"name": "成绩详情页",
 					"pathName": "pages/scoreresult/scoreresult",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "授权登录",
+					"pathName": "pages/login/login",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "考场查询",
+					"pathName": "pages/queryhall/queryhall",
 					"query": ""
 				}
 			]

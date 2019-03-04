@@ -6,6 +6,8 @@
   "navigationBarTextStyle": "white",
   "enablePullDownRefresh": false,
   "usingComponents": {
+    "user-avatar": "../../components/userAvatar/userAvatar",
+    "user-name": "../../components/userName/userName",
     "ft-button": "../../components/ftButton/ftButton"
   }
 }

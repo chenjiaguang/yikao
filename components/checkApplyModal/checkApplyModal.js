@@ -101,6 +101,7 @@ Component({
         this.setData({
           'modal.is_apply': false
         })
+        url = encodeURIComponent(url)
         wx.navigateTo({
           url: '/pages/webviewpage/webviewpage?url=' + url
         })

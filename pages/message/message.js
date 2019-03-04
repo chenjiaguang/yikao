@@ -118,8 +118,9 @@ Page({
     console.log('boxTap', e)
     let {message, ele} = e.detail
     if (ele === 'box' && message.inform && message.inform.detail) {
+      let url = encodeURIComponent(message.inform.detail)
       wx.navigateTo({
-        url: '/pages/webviewpage/webviewpage?url=' + message.inform.detail
+        url: '/pages/webviewpage/webviewpage?url=' + url
       })
     }
   }

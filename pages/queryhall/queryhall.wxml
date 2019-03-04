@@ -12,22 +12,22 @@
         <input class='idcard-input' placeholder-style="font-size:30rpx;color:#999;font-weight:normal" value="{{idcard}}" placeholder='身份证号' type="idcard" bindinput='inputChange' data-ele="idcard" />
       </view>
       <view class='major-and-level'>
-        <picker bindchange="pickerChange" value="{{selectedMajor || 0}}" range="{{major}}" range-key="text" data-ele="major">
-          <view class="major">
-            <view class="major-text {{(selectedMajor || selectedMajor === 0) ? '' : 'unselected'}}">{{major[selectedMajor].text || '请选择专业'}}</view>
+        <picker bindchange="pickerChange" value="{{selectedMajor || 0}}" range="{{majors}}" range-key="text" data-ele="major">
+          <view class="major {{!(majors && majors.length > 0) ? 'disabled' : ''}}">
+            <view class="major-text {{(selectedMajor || selectedMajor === 0) ? '' : 'unselected'}}">{{majors[selectedMajor].text || '请选择专业'}}</view>
             <text class='ft-icon c-icon-sanjiao' style="font-size:18rpx;color:#BFBFBF;margin:0 20rpx;line-height:18rpx"></text>
           </view>
         </picker>
-        <picker bindchange="pickerChange" value="{{selectedLevel || 0}}" range="{{level}}" range-key="text" data-ele="level">
-          <view class="level">
-            <view class="level-text {{(selectedLevel || selectedLevel === 0) ? '' : 'unselected'}}">{{level[selectedLevel].text || '请选择级别'}}</view>
+        <picker bindchange="pickerChange" value="{{selectedLevel || 0}}" range="{{levels}}" data-ele="level" disabled="{{!(levels && levels.length > 0)}}">
+          <view class="level {{!(levels && levels.length > 0) ? 'disabled' : ''}}">
+            <view class="level-text {{(selectedLevel || selectedLevel === 0) ? '' : 'unselected'}}">{{levels[selectedLevel] || '请选择级别'}}</view>
             <text class='ft-icon c-icon-sanjiao' style="font-size:18rpx;color:#BFBFBF;margin:0 20rpx;line-height:18rpx"></text>
           </view>
         </picker>
       </view>
     </view>
     <view class='btn-box'>
-      <ft-button text="查询" width="686rpx" height="94rpx" border-radius="4rpx" color="#67462B" bg="#F2E0CA" disabled="{{!(name && idcard && selectedMajor && selectedLevel) || submitting}}" disabled-color="#fff" disabled-bg="#CCCCCC" catchtap="btnTap" />
+      <ft-button text="查询" width="686rpx" height="94rpx" border-radius="4rpx" color="#67462B" bg="#F2E0CA" disabled="{{!(name && idcard && (selectedMajor || selectedMajor === 0) && (selectedLevel || selectedLevel === 0)) || submitting}}" disabled-color="#fff" disabled-bg="#CCCCCC" catchtap="btnTap" />
     </view>
   </view>
   <image wx:if="{{admissionCard}}" class='admission-image' mode="widthFix" src="{{admissionCard}}" catchtap="viewAdmissionCard"></image>

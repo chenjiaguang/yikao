@@ -57,6 +57,9 @@ page{
   border: 1px solid #999999;
   border-radius: 4rpx;
 }
+.major.disabled, .level.disabled{
+  background: #ccc;
+}
 .major-text, .level-text{
   overflow: hidden;
   white-space: nowrap;

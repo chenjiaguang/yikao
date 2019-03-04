@@ -1,4 +1,4 @@
-const env = 'dev' //更改该env参数来更换环境，dev，test，为测试环境域名，prod为正式环境域名
+const env = 'prod' //更改该env参数来更换环境，dev，test，为测试环境域名，prod为正式环境域名
 
 let commonConfig = require('common.env.js')
 let config = {}

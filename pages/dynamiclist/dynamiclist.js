@@ -160,9 +160,12 @@ Page({
   },
 
   cardTap: function (e) {
-    let { id} = e.currentTarget.dataset
-    wx.navigateTo({
-      url: '/pages/dynamicdetail/dynamicdetail?id=' + id
-    })
+    let { url} = e.currentTarget.dataset
+    url = encodeURIComponent(url)
+    if (url) {
+      wx.navigateTo({
+        url: '/pages/webviewpage/webviewpage?url=' + url
+      })
+    }
   }
 })

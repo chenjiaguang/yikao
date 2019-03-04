@@ -13,8 +13,9 @@ Page({
    */
   onLoad: function (options) {
     if (options.url) {
+      const url = decodeURIComponent(options.url)
       this.setData({
-        url: options.url
+        url: url
       })
     }
   },

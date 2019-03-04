@@ -77,7 +77,7 @@ Component({
           url: '/pages/queryhall/queryhall'
         })
       } else if (ele === '点此进行缴费') { // 缴费
-        let id = this.data.message.inform.id
+        let id = this.data.message.apply_id
         wx.navigateTo({
           url: '/pages/myenrolldetail/myenrolldetail?id=' + id
         })
