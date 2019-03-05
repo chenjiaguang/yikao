@@ -148,11 +148,10 @@ Page({
   },
 
   tabChange: function (e) {
-    console.log('tabChange', e)
+    
   },
 
   fetchMyEnrolls: function (e) {
-    console.log('fetchMyEnrolls', e)
     let { planType } = this.data
     let { idx, pn, isRefresh } = e.detail
     let plan = planType[idx.toString()]
@@ -171,7 +170,6 @@ Page({
       let obj = {}
       obj['tabs[' + idx + ']loading'] = false
       if (res && res.data && !res.error) { // 获取数据成功
-        console.log('/apply/list', res)
         obj['tabs[' + idx + ']loaded'] = true
         obj['tabs[' + idx + ']page'] = res.data.page
         res.data.list.forEach(item => {
@@ -194,7 +192,7 @@ Page({
       let obj = {}
       obj['tabs[' + idx + ']loading'] = false
       this.setData(obj)
-      console.log('获取数据失败')
+      console.log('获取数据失败', err)
     })
   },
 
@@ -233,7 +231,6 @@ Page({
       _obj.buttonColor = '#108EE9'
     }
     let obj = Object.assign({}, modal, _obj, {modalContent: content})
-    console.log('obj', obj)
     this.setData({
       modal: obj
     })

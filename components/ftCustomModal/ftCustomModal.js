@@ -70,7 +70,7 @@ Component({
    */
   methods: {
     stopPropagation: function () {
-      console.log('阻止冒泡')
+      
     },
     buttonTap: function (e) {
       let {ele} = e.currentTarget.dataset

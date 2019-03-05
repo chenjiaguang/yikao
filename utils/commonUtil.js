@@ -48,7 +48,6 @@ const request = (url, data, config = {}) => {
   const apiVersion = (config && config.apiVersion) ? config.apiVersion : (app.config.apiVersion || '')
   const token = (config && config.token) || storageUtil.getStorage('token') || ''
   let _data = Object.assign({}, data, {token: token})
-  console.log('apiVersion', apiVersion)
   return new Promise((resolve, reject) => {
     wx.request({
       url: app.config.baseUrl + apiVersion + url,
@@ -87,7 +86,7 @@ const request = (url, data, config = {}) => {
         reject(res) // 返回错误提示信息
       },
       complete: function (res) {
-
+        
       }
     })
   })

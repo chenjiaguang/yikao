@@ -90,7 +90,6 @@ Page({
         wx.stopPullDownRefresh()
       }
       if (res && res.data && !res.error) { // 获取数据成功
-        console.log('/inform/list', res)
         obj.loaded = true
         obj.page = res.data.page
         if (pn.toString() === '1') { // 第一页
@@ -110,12 +109,11 @@ Page({
       let obj = {}
       obj.loading = false
       this.setData(obj)
-      console.log('获取数据失败')
+      console.log('获取数据失败', err)
     })
   },
 
   boxTap: function (e) {
-    console.log('boxTap', e)
     let {message, ele} = e.detail
     if (ele === 'box' && message.inform && message.inform.detail) {
       let url = encodeURIComponent(message.inform.detail)

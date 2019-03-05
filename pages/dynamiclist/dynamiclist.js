@@ -52,7 +52,6 @@ Page({
    */
   onLoad: function (options) {
     let {cateid, title} = options
-    console.log(cateid, title)
     if (title) {
       wx.setNavigationBarTitle({ title})
     }

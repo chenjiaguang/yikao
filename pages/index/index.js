@@ -8,33 +8,7 @@ Page({
    */
   data: {
     banners: [],
-    cates: [
-      {
-        id: '1',
-        name: '考级动态',
-        list: []
-      },
-      {
-        id: '2',
-        name: '师资培训',
-        list: []
-      },
-      {
-        id: '3',
-        name: '艺术团表演',
-        list: []
-      },
-      {
-        id: '4',
-        name: '大赛',
-        list: []
-      },
-      {
-        id: '5',
-        name: '考级教材',
-        list: []
-      }
-    ],
+    cates: [],
     modal: {
       visible: false
     }
@@ -104,7 +78,7 @@ Page({
         this.setData({ banners, cates })
       }
     }).catch(err => {
-      console.log('获取数据失败')
+      console.log('获取数据失败', err)
     })
   },
 
@@ -117,12 +91,10 @@ Page({
     if (ele === 'enroll') { // 点击了考级报名
       util.checkExaming()
     } else if (ele === 'queryscore') { // 点击了成绩查询
-      console.log('点击了成绩查询')
       wx.navigateTo({
         url: '/pages/queryscore/queryscore'
       })
     } else if (ele === 'queryhall') { // 点击了考场查询
-      console.log('点击了考场查询')
       wx.navigateTo({
         url: '/pages/queryhall/queryhall'
       })
@@ -130,7 +102,6 @@ Page({
   },
 
   bannerTap: function (e) {
-    console.log('bannerTap', e)
     let {item} = e.detail
     if (item && item.path) {
       let url = encodeURIComponent(item.path)
@@ -171,7 +142,6 @@ Page({
         'modal.visible': false
       })
     } else if (ele === 'btn_bottom0') { // 确定按钮
-      console.log('点击了确定按钮')
       this.setData({
         'modal.visible': false
       })

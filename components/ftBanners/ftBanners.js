@@ -93,7 +93,6 @@ Component({
    */
   methods: {
     currentChange: function (e) {
-      console.log('e', e)
       let {source} = e.detail
       if (source === 'touch') {
         this.setData({

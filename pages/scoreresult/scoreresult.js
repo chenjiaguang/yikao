@@ -36,7 +36,6 @@ Page({
   getExamInfo: function () {
     let scoreresult = wx.getStorageSync('scoreresult')
     let data = JSON.parse(scoreresult)
-    console.log('data', data)
     let userData = []
     let examData = []
     userData.push({ title: '姓名', content: data.name })

@@ -25,7 +25,7 @@ Component({
    */
   methods: {
     stopPropagation: function () {
-      console.log('阻止冒泡')
+      
     },
 
     hideRedpacketBox: function () {

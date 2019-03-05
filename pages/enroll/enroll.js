@@ -70,7 +70,6 @@ Page({
 
   tapEntry: function (e) {
     let {ele} = e.currentTarget.dataset
-    console.log('tapEntry', ele)
     let unionId = util.checkUnionId()
     if (!unionId) {
       return false

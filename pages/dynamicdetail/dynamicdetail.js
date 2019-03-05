@@ -14,16 +14,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('dynamic_onload', options.cateid, options.id, options.weburl)
     this.fetchData(options.id)
-    // this.setData({
-    //   url: 'http://artadmintest.fantuan.cn/download'
-    // })
   },
 
   fetchData: function (id) {
     let app = getApp()
-    console.log('app', app)
     let url = app.config.dynamicWebviewDomain + '/miniappdynamic?id=' + id
     this.setData({
       url

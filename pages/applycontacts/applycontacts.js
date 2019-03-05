@@ -73,7 +73,6 @@ Page({
   },
 
   fetchContacts: function () {
-    console.log('btnTap')
     let { loading } = this.data
     if (loading) {
       return false
@@ -114,7 +113,7 @@ Page({
       this.setData({
         loading: false
       })
-      console.log('获取数据失败')
+      console.log('获取数据失败', err)
     })
   },
 

@@ -75,7 +75,6 @@ Page({
 
   getOptions: function () {
     util.request('/option').then(res => {
-      console.log('getOptions', res)
       if (!res.error && res.data) { // 获取信息成功
         let {
           major
@@ -112,7 +111,6 @@ Page({
   },
 
   pickerChange: function (e) {
-    console.log('pickerChange', e)
     let { ele } = e.currentTarget.dataset
     let { value } = e.detail
     if (ele === 'major') { // 专业
@@ -130,7 +128,6 @@ Page({
   },
 
   btnTap: function () {
-    console.log('btnTap')
     let {submitting} = this.data
     if (submitting) {
       return false
@@ -149,7 +146,6 @@ Page({
       submitting: true
     })
     util.request('/search/room', rData).then(res => {
-      console.log('/search/room', res)
       let obj = {}
       obj.submitting = false
       if ((res.error === 0 || res.error === '0') && res.data) { // 获取信息成功

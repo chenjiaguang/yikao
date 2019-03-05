@@ -29,7 +29,6 @@ Component({
   methods: {
     handleShow: function () {
       util.request('/exam').then(res => {
-        console.log('check', res)
         if (!res.error && res.data) { // 获取信息成功
           let { is_apply, exam, url} = res.data
           this.setData({
@@ -76,14 +75,12 @@ Component({
       })
     },
     modalTap: function (e) {
-      console.log('modalTap', e)
       let { ele } = e.detail
       if (ele === 'btn_close') { // 关闭按钮
         this.setData({
           'modal.is_apply': false
         })
       } else if (ele === 'btn_bottom0') { // 确定按钮
-        console.log('点击了确定按钮')
         this.setData({
           'modal.is_apply': false
         })
@@ -95,7 +92,6 @@ Component({
       }
     },
     regulationsEntryTap: function () {
-      console.log('点击了查看简章')
       let {url} = this.data.modal
       if (url) {
         this.setData({

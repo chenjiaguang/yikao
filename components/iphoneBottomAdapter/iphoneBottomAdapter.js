@@ -23,7 +23,7 @@ Component({
   },
 
   created: function () {
-    console.log('this.data', this.data)
+    
   },
 
   /**

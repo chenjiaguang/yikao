@@ -9,7 +9,7 @@ Page({
   data: {
     avatar: '',
     name: '',
-    message: 100,
+    message: 0,
     aboutUsUrl: ''
   },
 
@@ -31,7 +31,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    this.getUserCenterData()
+    this.updateUserCenterData()
   },
 
   /**
@@ -48,10 +48,9 @@ Page({
 
   },
 
-  getUserCenterData: function () {
+  updateUserCenterData: function () {
     util.request('/user').then(res => {
       if (res && res.data && !res.error) { // 获取数据成功
-        console.log('/user', res)
         let {
           avatar,
           nick_name: name,
@@ -96,7 +95,6 @@ Page({
   },
 
   messageTap: function() {
-    console.log('点击了消息icon')
     let unionId = util.checkUnionId()
     if (!unionId) {
       return false
@@ -115,17 +113,14 @@ Page({
       return false
     }
     if (ele === 'enroll') { // 点击了我的报名
-      console.log('点击了我的报名')
       wx.navigateTo({
         url: '/pages/myenroll/myenroll'
       })
     } else if (ele === 'wechat') { // 点击了加入微信群
-      console.log('点击了加入微信群')
       wx.navigateTo({
         url: '/pages/wechatgroup/wechatgroup'
       })
     } else if (ele === 'about') { // 点击了关于我们
-      console.log('点击了关于我们')
       if (this.data.aboutUsUrl) {
         let url = encodeURIComponent(this.data.aboutUsUrl)
         wx.navigateTo({

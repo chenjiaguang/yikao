@@ -68,13 +68,10 @@ Page({
 
   getUserInfo: function (e) {
     let { encryptedData, iv, signature} = e.detail
-    console.log('getUserInfo', e)
     if (encryptedData && iv) {
       this.setData({ logining: true })
       util.request('/user/savemes', { encryptedData, iv}).then(res => {
-        console.log('/user/savemes', res)
         this.setData({ logining: false })
-        // console.log('/user/savemes', res)
         if (res && res.error.toString() === '0') { // 授权登录成功
           wx.setStorageSync('union_id', true)
           let url = (wx.getStorageSync('loginBack').indexOf('pages/login/login' !== -1)) ? '/pages/index/index' : (wx.getStorageSync('loginBack') || '/pages/index/index')

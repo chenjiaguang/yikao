@@ -92,9 +92,7 @@ Page({
   },
 
   btnTap: function() {
-    console.log('点击了完成')
     let app = getApp()
-    console.log('app.successCompleteFn', app.successCompleteFn)
     app.successCompleteFn && app.successCompleteFn()
   }
 })

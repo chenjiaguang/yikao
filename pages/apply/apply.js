@@ -231,7 +231,6 @@ Page({
     this.setData({
       exam_id: options.examId
     })
-    console.log('exam_id', options.examId)
   },
 
   /**
@@ -290,7 +289,6 @@ Page({
     let {
       value
     } = e.detail
-    console.log(ele, value)
     if (ele === 'name') { // 姓名
       let pinyin = ''
       if (value && Mtils.validation.isChinese(value)) { // 全中文
@@ -305,7 +303,6 @@ Page({
       } else { // 非全中文
         pinyin = this.titleCase(value)
       }
-      console.log('pinyin', pinyin)
       this.setData({
         'form.name.value': value,
         'form.name.valid': value ? true : false,
@@ -335,7 +332,6 @@ Page({
   },
 
   genderChange: function(e) {
-    console.log('genderChange', e)
     let {
       value
     } = e.detail
@@ -346,7 +342,6 @@ Page({
   },
 
   pickerChange: function(e) {
-    console.log('pickerChange', e)
     let {
       ele
     } = e.currentTarget.dataset
@@ -513,7 +508,6 @@ Page({
     let form = JSON.parse(JSON.stringify(this.data.form))
     let valid = true
     for (let key in form) {
-      console.log('key', key)
       if (key === 'lastgetcertificate') { // 最近一次获得同专业考级证书
         if (form.lastgetcertificate.required) { // 需要选择时
           if (!form.lastgetcertificate.year.valid && form.lastgetcertificate.year.required) {
@@ -593,7 +587,6 @@ Page({
   },
 
   saveTap: function() {
-    console.log('点击了保存')
     this.saveForm()
   },
 
@@ -645,7 +638,6 @@ Page({
     for (let key in _form) {
       newForm[key] = Object.assign({}, _form[key], applyForm[key])
     }
-    console.log('getForm', _form, newForm)
     if (applyForm) {
       this.setData({
         form: newForm,
@@ -656,7 +648,6 @@ Page({
   },
 
   submitTap: function() {
-    console.log('点击了提交')
     let formData = this.getFormData()
     if (formData) {
       if (this.data.submitting) { // 正在提交表单
@@ -669,7 +660,6 @@ Page({
         this.setData({
           submitting: false
         })
-        console.log('/apply/add', res)
         if (res && res.data && (res.error === 0 || res.error === '0')) { // 提交表单成功
           this.submitSuccess(res.data.id)
         }
@@ -697,7 +687,6 @@ Page({
       sizeType: ['compressed', 'original'],
       sourceType: ['album', 'camera'],
       success: res => {
-        console.log('tempFilePaths', res.tempFilePaths[0])
         if (res && res.tempFilePaths && res.tempFilePaths[0]) {
           let obj = {}
           obj['form.' + ele + '.url'] = res.tempFilePaths[0]
@@ -708,7 +697,6 @@ Page({
           if (this.uploadTask[ele] && this.uploadTask[ele].abort) { // 如果有正在上传的队列，则取消正在上传的队列，然后开始新的队列
             this.uploadTask[ele].abort()
           }
-          console.log('res.tempFilePaths[0]', res)
           this.uploadTask[ele] = wx.uploadFile({
             url: app.config.baseUrl + app.config.apiVersion + '/upload',
             filePath: res.tempFilePaths[0],
@@ -748,7 +736,6 @@ Page({
               this.setData(_obj)
             },
             fail: res => {
-              console.log('上传失败', res)
               let _obj = {}
               _obj['form.' + ele + '.id'] = ''
               _obj['form.' + ele + '.originUrl'] = ''
@@ -769,7 +756,6 @@ Page({
   },
   getOptions: function() {
     util.request('/option').then(res => {
-      console.log('getOptions', res)
       if (!res.error && res.data) { // 获取信息成功
         let {
           nationality,

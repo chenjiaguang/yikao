@@ -84,7 +84,6 @@ Page({
   },
 
   pickerChange: function (e) {
-    console.log('pickerChange', e)
     let {ele} = e.currentTarget.dataset
     let {value} = e.detail
     if (ele === 'major') { // 专业
@@ -99,7 +98,6 @@ Page({
   },
 
   btnTap: function () {
-    console.log('btnTap')
     let { submitting, name, idcard } = this.data
     if (submitting) {
       return false
@@ -140,13 +138,12 @@ Page({
       this.setData({
         submitting: false
       })
-      console.log('获取数据失败')
+      console.log('获取数据失败', err)
     })
   },
   seeMore: function (e) {
     let {result} = e.currentTarget.dataset
     let resultJson = JSON.stringify(result)
-    console.log('resultJson', resultJson, result)
     wx.setStorageSync('scoreresult', resultJson)
     wx.navigateTo({
       url: '/pages/scoreresult/scoreresult',

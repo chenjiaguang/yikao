@@ -9,8 +9,7 @@ Page({
   data: {
     paying: false,
     enroll: null,
-    payData: {},
-    formImage: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=259722020,584703296&fm=26&gp=0.jpg'
+    payData: {}
   },
 
   /**
@@ -36,13 +35,11 @@ Page({
   // },
 
   getOriginEnroll: function (id) {
-    console.log('获取远程报名详情')
     let rData = {
       id
     }
     util.request('/apply/detail', rData).then(res => {
       if (res && res.data && !res.error) { // 获取数据成功
-        console.log('/apply/detail', res)
         let enroll = res.data
         let payData = res.data.pay
         this.setData({ enroll, payData})
@@ -86,7 +83,6 @@ Page({
           signType,
           paySign,
           success: (res) => {
-            console.log('res', res)
             this.refreshEnrollData()
             let navData = { method: 'redirect', params: { navTitle: '缴费成功', successText: '缴费成功', tip1: '关注微信公众号“海南考级中心”及时获取考试相关信息' } }
             util.navToSuccesspage(navData)
@@ -115,7 +111,6 @@ Page({
     let currentPages = getCurrentPages()
     if (currentPages && currentPages.length) {
       for (let i = 0; i < currentPages.length; i++) {
-        console.log('currentPages', currentPages[i])
         if (currentPages[i].ftRouteName === 'myenroll' && currentPages[i].refreshPage) {
           currentPages[i].refreshPage()
         }

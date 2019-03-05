@@ -14,7 +14,6 @@ Page({
   onLoad: function (options) {
     if (options.url) {
       const url = decodeURIComponent(options.url)
-      console.log('onLoad', options.url, url)
       this.setData({
         url: url
       })

@@ -46,7 +46,6 @@ Component({
         fetching: true
       })
       util.request('/pay/type').then(res => {
-        console.log('获取充值数据', res)
         if (res && res.data && !res.msg) { // 获取数据成功
           this.setData({
             'rechargeData.rechargeList': res.data
@@ -69,9 +68,6 @@ Component({
       if (!rechargeList || (rechargeList && !rechargeList[0])) { // 无相关数据
         return false
       }
-      console.log('rechargeList', rechargeList)
-      console.log('rechargeCurrent', rechargeCurrent)
-      console.log('submit', rechargeList[rechargeCurrent])
       let rData = rechargeList[rechargeCurrent]
       // let rData = {sale: 0.01, value: 0.02}
       this.setData({
@@ -85,7 +81,6 @@ Component({
           })
         }
         if (res && res.data && !res.error) { // 请求获取支付数据成功
-          console.log('请求获取支付数据成功', res.data)
           let { timeStamp, nonceStr, signType, paySign, out_trade_no} = res.data
           this.setData({
             requestPayment: true
@@ -97,15 +92,13 @@ Component({
             signType,
             paySign,
             success: res => {
-              console.log('支付成功', res)
               this.rechargeSuccess()
               this.hideRechargeBox()
             },
             fail: res => {
-              console.log('支付失败', res)
+
             },
             complete: res => {
-              console.log('支付结束')
               this.setData({
                 requestPayment: false
               })
@@ -122,7 +115,7 @@ Component({
     },
 
     stopPropagation: function () {
-      console.log('阻止冒泡')
+      
     },
 
     hideRechargeBox: function () {
