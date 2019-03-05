@@ -1,7 +1,7 @@
 <!--components/ftBanners/ftBanners.wxml-->
   <view class='banners-box' style="width:{{width}};height:{{(banners && banners[0]) ? height : 0}}">
     <block wx:if="{{banners && banners.length > 1}}">
-      <swiper class='banner-swiper' previous-margin="{{previousMargin}}" next-margin="{{nextMargin}}" autoplay="{{autoplay}}" circular="{{circular}}" current="{{current}}" interval="{{interval}}" duration="{{duration}}" bindchange="currentChange">
+      <swiper class='banner-swiper' previous-margin="{{previousMargin}}" next-margin="{{nextMargin}}" indicator-dots indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorCurruntColor}}" autoplay="{{autoplay}}" circular="{{circular}}" current="{{current}}" interval="{{interval}}" duration="{{duration}}">
         <swiper-item wx:for="{{banners}}" wx:for-item="banner" wx:for-index="idx" wx:key="key">
           <view class='banner-item-content' style="margin:0 {{spacing / 2}}rpx;border-radius:{{borderRadius}}" catchtap="bannerTap" data-idx="{{idx}}" data-item="{{banner}}">
             <image class='banner-image image-bg' src="{{banner.url}}" mode="aspectFill"></image>
@@ -9,9 +9,9 @@
           </view>
         </swiper-item>
       </swiper>
-      <view class='banner-indicator' style="position:{{indicatorPos === 'out' ? 'relative' : 'absolute'}}">
+      <!-- <view class='banner-indicator' style="position:{{indicatorPos === 'out' ? 'relative' : 'absolute'}}">
         <view class="banner-indicator-item {{current === idx ? 'current' : ''}}" style="background:{{current === idx ? indicatorCurruntColor : indicatorColor}}" wx:for="{{banners}}" wx:for-index="idx" wx:for-item="banner" wx:key="key"></view>
-      </view>
+      </view> -->
     </block>
     <block wx:if="{{banners && banners.length === 1}}">
       <image class='single-banner' src="{{banners[0].url}}" catchtap="bannerTap" data-idx="{{0}}" data-item="{{banners[0]}}" mode="aspectFill"></image>

@@ -93,9 +93,13 @@ Component({
    */
   methods: {
     currentChange: function (e) {
-      this.setData({
-        current: e.detail.current
-      })
+      console.log('e', e)
+      let {source} = e.detail
+      if (source === 'touch') {
+        this.setData({
+          current: e.detail.current
+        })
+      }
     },
     bannerTap: function (e) {
       let { idx, item} = e.currentTarget.dataset

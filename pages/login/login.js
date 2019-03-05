@@ -67,8 +67,8 @@ Page({
   },
 
   getUserInfo: function (e) {
-    console.log('getUserInfo', encryptedData, iv)
     let { encryptedData, iv, signature} = e.detail
+    console.log('getUserInfo', e)
     if (encryptedData && iv) {
       this.setData({ logining: true })
       util.request('/user/savemes', { encryptedData, iv}).then(res => {
@@ -77,8 +77,7 @@ Page({
         // console.log('/user/savemes', res)
         if (res && res.error.toString() === '0') { // 授权登录成功
           wx.setStorageSync('union_id', true)
-          console.log('back', wx.getStorageSync('loginBack'), res.data)
-          let url = wx.getStorageSync('loginBack') || '/pages/index/index'
+          let url = (wx.getStorageSync('loginBack').indexOf('pages/login/login' !== -1)) ? '/pages/index/index' : (wx.getStorageSync('loginBack') || '/pages/index/index')
           wx.reLaunch({
             url
           })

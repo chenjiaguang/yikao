@@ -129,9 +129,9 @@
           <text class='ft-icon c-icon-sanjiao' style="font-size:18rpx;color:#BFBFBF;margin:0 0 0 20rpx;line-height:18rpx"></text>
         </view>
       </picker>
-      <view class='tip-header'>
-        <ft-tip text="报考音乐基础知识专业的考生，考试曲目1、2都填写“无”" />
-      </view>
+      <!-- <view class='tip-header'>
+        <ft-tip text="报考基本乐科的考生，考试曲目1、2都填写“无”" />
+      </view> -->
     </view>
     <view class='block' id="level">
       <view class='header-wrapper'>
@@ -160,7 +160,7 @@
         <ft-tip text="连考表示同时报考两个连续级别" />
       </view>
     </view>
-    <view class='block' id="lastgetcertificate">
+    <view hidden="{{!form.lastgetcertificate.required}}" class='block' id="lastgetcertificate">
       <view class='header-wrapper'>
         <ft-require-header required="{{form.lastgetcertificate.required}}" text="最近一次获得同专业考级证书是：" />
       </view>
@@ -215,31 +215,31 @@
         <ft-tip text="报考演唱演奏3~5级必须上传一级基本乐科证书，6~9级必须上传 二级基本乐科证书，10级或以上必须上传三级基本乐科证书；报考基本乐科2~6级，需上传上一级别证书，选择连考的考生上传最近一次获得的乐科证书即可" />
       </view>
     </view>
-    <view class='block' id="bent1">
+    <view hidden="{{majors[form.major.idx].text === '基本乐科' || !form.major.value}}" class='block' id="bent1">
       <view class='header-wrapper'>
         <ft-require-header required="{{form.bent1.required}}" text="考试曲目1：" />
       </view>
       <input class='full-input' value="{{form.bent1.value}}" data-ele="bent1" bindinput="inputChange" />
     </view>
-    <view class='block' id="bent2">
+    <view hidden="{{majors[form.major.idx].text === '基本乐科' || !form.major.value}}" class='block' id="bent2">
       <view class='header-wrapper'>
         <ft-require-header required="{{form.bent2.required}}" text="考试曲目2：" />
       </view>
       <input class='full-input' value="{{form.bent2.value}}" data-ele="bent2" bindinput="inputChange" />
     </view>
-    <view class='block' id="bent3">
+    <view hidden="{{majors[form.major.idx].text === '基本乐科' || !form.major.value}}" class='block' id="bent3">
       <view class='header-wrapper'>
         <ft-require-header required="{{form.bent3.required}}" text="考试曲目3：" />
       </view>
       <input class='full-input' value="{{form.bent3.value}}" data-ele="bent3" bindinput="inputChange" />
     </view>
-    <view class='block' id="bent14">
+    <view hidden="{{majors[form.major.idx].text === '基本乐科' || !form.major.value}}" class='block' id="bent14">
       <view class='header-wrapper'>
         <ft-require-header required="{{form.bent4.required}}" text="考试曲目4：" />
       </view>
       <input class='full-input' value="{{form.bent4.value}}" data-ele="bent4" bindinput="inputChange" />
     </view>
-    <view class='block' id="bent5">
+    <view hidden="{{majors[form.major.idx].text === '基本乐科' || !form.major.value}}" class='block' id="bent5">
       <view class='header-wrapper'>
         <ft-require-header required="{{form.bent5.required}}" text="考试曲目5：" />
       </view>

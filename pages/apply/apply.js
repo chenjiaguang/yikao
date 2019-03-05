@@ -120,9 +120,9 @@ Page({
         tip: '请选择是否连考'
       },
       lastgetcertificate: {
-        required: true,
+        required: false,
         year: {
-          required: true,
+          required: false,
           idx: '',
           value: '',
           text: '',
@@ -130,7 +130,7 @@ Page({
           tip: '请选择年份'
         },
         month: {
-          required: true,
+          required: false,
           idx: '',
           value: '',
           text: '',
@@ -411,7 +411,12 @@ Page({
         'form.continuity.text': '',
         'form.continuity.valid': false,
         'form.majorcertificate.required': false,
-        'form.basicmusiccertificate.required': false
+        'form.basicmusiccertificate.required': false,
+        'form.lastgetcertificate.required': false,
+        'form.lastgetcertificate.year.required': false,
+        'form.lastgetcertificate.month.required': false,
+        'form.bent1.required': majors[value].text === '基本乐科' ? false : true,
+        'form.bent2.required': majors[value].text === '基本乐科' ? false : true
       })
     } else if (ele === 'level') { // 报考级别
       let {
@@ -450,7 +455,10 @@ Page({
         'form.level.text': levels[value],
         'form.level.valid': levels[value] ? true : false,
         'form.majorcertificate.required': needMajorCer,
-        'form.basicmusiccertificate.required': needBasicMusicCer
+        'form.basicmusiccertificate.required': needBasicMusicCer,
+        'form.lastgetcertificate.required': needMajorCer,
+        'form.lastgetcertificate.year.required': needMajorCer,
+        'form.lastgetcertificate.month.required': needMajorCer
       })
     } else if (ele === 'continuity') {
       let {
@@ -507,26 +515,28 @@ Page({
     for (let key in form) {
       console.log('key', key)
       if (key === 'lastgetcertificate') { // 最近一次获得同专业考级证书
-        if (!form.lastgetcertificate.year.valid) {
-          this.scrollToBlock(key)
-          if (form.lastgetcertificate.year.tip) {
-            wx.showToast({
-              title: form.lastgetcertificate.year.tip,
-              icon: 'none'
-            })
+        if (form.lastgetcertificate.required) { // 需要选择时
+          if (!form.lastgetcertificate.year.valid && form.lastgetcertificate.year.required) {
+            this.scrollToBlock(key)
+            if (form.lastgetcertificate.year.tip) {
+              wx.showToast({
+                title: form.lastgetcertificate.year.tip,
+                icon: 'none'
+              })
+            }
+            valid = false
+            break
+          } else if (!form.lastgetcertificate.month.valid && form.lastgetcertificate.month.required) {
+            this.scrollToBlock(key)
+            if (form.lastgetcertificate.month.tip) {
+              wx.showToast({
+                title: form.lastgetcertificate.month.tip,
+                icon: 'none'
+              })
+            }
+            valid = false
+            break
           }
-          valid = false
-          break
-        } else if (!form.lastgetcertificate.month.valid) {
-          this.scrollToBlock(key)
-          if (form.lastgetcertificate.month.tip) {
-            wx.showToast({
-              title: form.lastgetcertificate.month.tip,
-              icon: 'none'
-            })
-          }
-          valid = false
-          break
         }
       } else {
         if (form[key].required && !form[key].valid) { // 必填且无效
@@ -558,14 +568,14 @@ Page({
       formData.domain = this.data.form.major.value
       formData.level = this.data.form.level.value
       formData.continuous_level = this.data.form.continuity.text
-      formData.lately_credential = (this.data.form.lastgetcertificate.year.value === 'none' && this.data.form.lastgetcertificate.month.value) ? '' : (this.data.form.lastgetcertificate.year.value + ',' + this.data.form.lastgetcertificate.month.value + ',' + this.data.form.major.value + ',' + this.data.form.level.value.replace('级', ''))
-      formData.pro_certificate_id = this.data.form.majorcertificate.id
-      formData.basic_certificate_id = this.data.form.basicmusiccertificate.id
-      formData.track_one = this.data.form.bent1.value
-      formData.track_two = this.data.form.bent2.value
-      formData.track_three = this.data.form.bent3.value
-      formData.track_four = this.data.form.bent4.value
-      formData.track_five = this.data.form.bent5.value
+      formData.lately_credential = this.data.form.lastgetcertificate.required ? (this.data.form.lastgetcertificate.year.value + ',' + this.data.form.lastgetcertificate.month.value + ',' + this.data.form.major.value + ',' + this.data.form.level.value.replace('级', '')) : ''
+      formData.pro_certificate_id = this.data.form.majorcertificate.required ? this.data.form.majorcertificate.id : ''
+      formData.basic_certificate_id = this.data.form.basicmusiccertificate.required ? this.data.form.basicmusiccertificate.id : ''
+      formData.track_one = this.data.form.major.value === '基本乐科' ? '无' : this.data.form.bent1.value
+      formData.track_two = this.data.form.major.value === '基本乐科' ? '无' : this.data.form.bent2.value
+      formData.track_three = this.data.form.major.value === '基本乐科' ? '' : this.data.form.bent3.value
+      formData.track_four = this.data.form.major.value === '基本乐科' ? '' : this.data.form.bent4.value
+      formData.track_five = this.data.form.major.value === '基本乐科' ? '' : this.data.form.bent5.value
       formData.preparer = this.data.form.fillter.value
       formData.adviser = this.data.form.teacher.value
       formData.adviser_phone = this.data.form.teacherphone.value
