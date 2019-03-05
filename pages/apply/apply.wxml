@@ -6,7 +6,7 @@
         <ft-require-header required="{{form.avatar.required}}" text="考生照片：" />
       </view>
       <view class='avatar-box'>
-      <image class='avatar-image' mode="aspectFit" src="{{form.avatar.url || '/assets/images/default_photo.png'}}"></image>
+      <image class='avatar-image' mode="aspectFit" src="{{form.avatar.url || '/assets/images/default_photo.png'}}" data-url="{{form.avatar.url}}" catchtap="viewImage"></image>
       <view wx:if="{{form.avatar.uploading || form.avatar.uploadingText}}" class='avatar-loader'><text>{{form.avatar.uploadingText}}</text></view>
       </view>
       <view style="margin:20rpx auto 40rpx;width:222rpx;height:66rpx">
@@ -191,7 +191,7 @@
       </view>
       <view class='major-certificate-image-wrapper'>
         <view class='major-certificate-image-box'>
-          <image wx:if="{{form.majorcertificate.url}}" class='major-certificate-image' src="{{form.majorcertificate.url}}" mode="aspectFit" />
+          <image wx:if="{{form.majorcertificate.url}}" class='major-certificate-image' src="{{form.majorcertificate.url}}" mode="aspectFit" data-url="{{form.majorcertificate.url}}" catchtap="viewImage" />
           <view wx:if="{{form.majorcertificate.uploading || form.majorcertificate.uploadingText}}" class='major-certificate-image-loader'><text>{{form.majorcertificate.uploadingText}}</text></view>
         </view>
         <ft-button text="上传" width="180rpx" height="80rpx" font-size="{{30}}" bg="#108EE9" border-radius="4rpx" data-ele="majorcertificate" disabled="{{form.majorcertificate.uploading}}" disabled-bg="#CCCCCC" catchtap="chooseImage" />
@@ -206,7 +206,7 @@
       </view>
       <view class='basicmusic-certificate-image-wrapper'>
         <view class='basicmusic-certificate-image-box'>
-          <image wx:if="{{form.basicmusiccertificate.url}}" class='basicmusic-certificate-image' src="{{form.basicmusiccertificate.url}}" mode="aspectFit" />
+          <image wx:if="{{form.basicmusiccertificate.url}}" class='basicmusic-certificate-image' src="{{form.basicmusiccertificate.url}}" mode="aspectFit" data-url="{{form.basicmusiccertificate.url}}" catchtap="viewImage" />
           <view wx:if="{{form.basicmusiccertificate.uploading || form.basicmusiccertificate.uploadingText}}" class='basicmusic-certificate-image-loader'><text>{{form.basicmusiccertificate.uploadingText}}</text></view>
         </view>
         <ft-button text="上传" width="180rpx" height="80rpx" font-size="{{30}}" bg="#108EE9" border-radius="4rpx" data-ele="basicmusiccertificate" disabled="{{form.basicmusiccertificate.uploading}}" disabled-bg="#CCCCCC" catchtap="chooseImage" />

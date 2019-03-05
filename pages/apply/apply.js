@@ -808,5 +808,14 @@ Page({
     }).catch(err => {
 
     })
+  },
+
+  viewImage: function (e) {
+    let { url } = e.currentTarget.dataset
+    if (url) {
+      wx.previewImage({
+        urls: [url]
+      })
+    }
   }
 })

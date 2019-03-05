@@ -1,4 +1,5 @@
 // components/visitingCard/visitingCard.js
+
 Component({
   /**
    * 组件的属性列表
@@ -11,7 +12,7 @@ Component({
         intro: '',
         sign1: '',
         sign2: '',
-        image: ''
+        cover_url: ''
       }
     },
     width: {
@@ -83,7 +84,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-
+    defaultCover: '../../assets/images/default_img.png'
   },
 
   /**
@@ -92,8 +93,15 @@ Component({
   methods: {
     eleTap: function (e) {
       let { ele } = e.currentTarget.dataset
-      let { title, content, state, image } = this.data
-      this.triggerEvent('tap', Object.assign({}, { ele, title, content, state, image }, this.data.extraData))
+      let { title, intro, create_at, cover_url } = this.data.cardData
+      console.log('ele', ele, cover_url)
+      if (ele === 'image' && cover_url) {
+        wx.previewImage({
+          urls: [cover_url]
+        })
+        return false
+      }
+      this.triggerEvent('tap', Object.assign({}, { ele, title, intro, create_at, cover_url }, this.data.extraData))
     }
   }
 })

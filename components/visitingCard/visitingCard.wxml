@@ -12,7 +12,7 @@
     </view>
     <!-- 有title、intro、state、三者之一，且有图片时才有spacing -->
     <view wx:if="{{(cardData.title || cardData.intro || cardData.state) && cardData.cover_url}}" class='spacing'></view>
-    <image wx:if="{{cardData.cover_url}}" style="{{imageStyle}}" class="image" src="{{cardData.cover_url}}" mode="aspectFill" catchtap="eleTap" data-ele="image" />
+    <image style="{{imageStyle}}" class="image" src="{{cardData.cover_url || defaultCover}}" mode="{{cardData.cover_url ? 'aspectFill' : 'aspectFit'}}" catchtap="eleTap" data-ele="image" />
   </view>
   <view wx:if="{{bottomSeparator}}" class='line-separator-h'></view>
 </view>

@@ -50,10 +50,12 @@ Page({
   },
 
   viewImage: function (e) {
-    let {url} = e.currentTarget.dataset
-    wx.previewImage({
-      urls: [url]
-    })
+    let { url } = e.currentTarget.dataset
+    if (url) {
+      wx.previewImage({
+        urls: [url]
+      })
+    }
   },
 
   requestPay: function () {

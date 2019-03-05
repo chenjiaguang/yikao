@@ -62,3 +62,6 @@ page{
   color: #fff;
   border-radius: 16rpx;
 }
+.entry-box{
+  overflow: hidden;
+}
