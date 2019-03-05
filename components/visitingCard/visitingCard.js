@@ -94,13 +94,12 @@ Component({
     eleTap: function (e) {
       let { ele } = e.currentTarget.dataset
       let { title, intro, create_at, cover_url } = this.data.cardData
-      console.log('ele', ele, cover_url)
-      if (ele === 'image' && cover_url) {
-        wx.previewImage({
-          urls: [cover_url]
-        })
-        return false
-      }
+      // if (ele === 'image' && cover_url) {
+      //   wx.previewImage({
+      //     urls: [cover_url]
+      //   })
+      //   return false
+      // }
       this.triggerEvent('tap', Object.assign({}, { ele, title, intro, create_at, cover_url }, this.data.extraData))
     }
   }
