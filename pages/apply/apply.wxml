@@ -165,13 +165,13 @@
         <ft-require-header required="{{form.lastgetcertificate.required}}" text="最近一次获得同专业考级证书是：" />
       </view>
       <view class='last-get-certificate-body'>
-        <picker data-ele="lastgetyear" bindchange="pickerChange" mode="selector" range="{{years}}" range-key="text" value="{{form.lastgetcertificate.year.idx || 100}}">
+        <picker data-ele="lastgetyear" bindchange="pickerChange" mode="selector" range="{{years}}" range-key="text" value="{{form.lastgetcertificate.year.idx || 99}}">
           <view class="last-get-item">
             <view class="last-get-item-text {{form.lastgetcertificate.year.value ? '' : 'unselected'}}">{{years[form.lastgetcertificate.year.idx].text || '年'}}</view>
             <text class='ft-icon c-icon-sanjiao' style="font-size:14rpx;color:#BFBFBF;margin:0;line-height:18rpx"></text>
           </view>
         </picker>
-        <picker data-ele="lastgetmonth" bindchange="pickerChange" mode="selector" range="{{months}}" range-key="text" value="{{form.lastgetcertificate.month.idx || 12}}">
+        <picker data-ele="lastgetmonth" bindchange="pickerChange" mode="selector" range="{{months}}" range-key="text" value="{{form.lastgetcertificate.month.idx || 11}}">
           <view class="last-get-item">
             <view class="last-get-item-text {{form.lastgetcertificate.month.value ? '' : 'unselected'}}">{{months[form.lastgetcertificate.month.idx].text || '月'}}</view>
             <text class='ft-icon c-icon-sanjiao' style="font-size:14rpx;color:#BFBFBF;margin:0;line-height:18rpx"></text>

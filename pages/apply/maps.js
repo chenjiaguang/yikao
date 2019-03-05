@@ -704,31 +704,17 @@ let years = []
 let months = []
 const nowYear = new Date().getFullYear()
 const nowMonth = new Date().getMonth()
-for (let i = 0; i < 101; i++) {
-  if (i === 100) {
-    years.push({
-      value: 'none',
-      text: '无'
-    })
-  } else {
-    years.unshift({
-      value: (nowYear - i).toString(),
-      text: (nowYear - i).toString() + '年'
-    })
-  }
+for (let i = 0; i < 100; i++) {
+  years.unshift({
+    value: (nowYear - i).toString(),
+    text: (nowYear - i).toString() + '年'
+  })
 }
-for (let j = 0; j < 13; j++) {
-  if (j === 12) {
-    months.push({
-      value: 'none',
-      text: '无'
-    })
-  } else {
-    months.push({
-      value: (j + 1).toString(),
-      text: (j + 1).toString() + '月'
-    })
-  }
+for (let j = 0; j < 12; j++) {
+  months.push({
+    value: (j + 1).toString(),
+    text: (j + 1).toString() + '月'
+  })
 }
 
 module.exports = {

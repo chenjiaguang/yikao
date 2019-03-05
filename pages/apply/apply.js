@@ -159,13 +159,13 @@ Page({
         uploadingText: ''
       },
       bent1: { // 曲目1
-        required: true,
+        required: false,
         value: '',
         valid: false,
         tip: '请填写考试曲目1'
       },
       bent2: {
-        required: true,
+        required: false,
         value: '',
         valid: false,
         tip: '请填写考试曲目2'
@@ -415,8 +415,8 @@ Page({
         'form.lastgetcertificate.required': false,
         'form.lastgetcertificate.year.required': false,
         'form.lastgetcertificate.month.required': false,
-        'form.bent1.required': majors[value].text === '基本乐科' ? false : true,
-        'form.bent2.required': majors[value].text === '基本乐科' ? false : true
+        'form.bent1.required': majors[value].value === '基本乐科' ? false : true,
+        'form.bent2.required': majors[value].value === '基本乐科' ? false : true
       })
     } else if (ele === 'level') { // 报考级别
       let {
