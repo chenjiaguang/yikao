@@ -7,6 +7,6 @@
     <user-name />
   </view>
   <view class='btn-box'>
-    <ft-button text="微信授权登录" width="686rpx" height="94rpx" border-radius="4rpx" color="#67462B" bg="#F2E0CA" disabled="{{logining}}" disabled-color="#fff" disabled-bg="#CCCCCC" open-type="getUserInfo" bindgetuserinfo="getUserInfo" />
+    <ft-button text="微信授权登录" width="686rpx" height="94rpx" border-radius="4rpx" color="#67462B" bg="#F2E0CA" disabled="{{logining || !code}}" disabled-color="#fff" disabled-bg="#CCCCCC" open-type="getUserInfo" bindgetuserinfo="getUserInfo" binderrror="getUserInfoError" />
   </view>
 </view>

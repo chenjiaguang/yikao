@@ -10,18 +10,23 @@ App({
 
     // 检查登录
     wx.checkSession({
-      success() {
+      success: () => {
         // session_key 未过期，并且在本生命周期一直有效
+        console.log('checkSession_s')
         util.checkLogin(options)
       },
-      fail() {
+      fail: () => {
         // session_key 已经失效，需要重新执行登录流程
+        console.log('checkSession_f')
         wx.setStorageSync('token', '')
         util.checkLogin(options)
       }
     })
-    util.checkLogin(options)
+    if (util.checkLogin(options)) {
+      this.isLaunch = true
+    }
   },
+  isLaunch: false,
   config: null,
   globalData: {
     userInfo: null

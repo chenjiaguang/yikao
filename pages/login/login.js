@@ -7,14 +7,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    logining: false
+    logining: true,
+    code: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getCode()
   },
 
   /**
@@ -66,23 +67,53 @@ Page({
 
   },
 
+  getCode: function () {
+    wx.login({
+      success: res => {
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        this.setData({
+          logining: false,
+          code: res.code
+        })
+      }
+    })
+  },
+
   getUserInfo: function (e) {
     let { encryptedData, iv, signature} = e.detail
     if (encryptedData && iv) {
       this.setData({ logining: true })
-      util.request('/user/savemes', { encryptedData, iv}).then(res => {
+      let rData = {
+        code: this.data.code,
+        encryptedData,
+        iv
+      }
+      console.log('rData', rData)
+      util.request('/login', rData).then(res => {
         this.setData({ logining: false })
-        if (res && res.error.toString() === '0') { // 授权登录成功
-          wx.setStorageSync('union_id', true)
+        if (res.data && !res.error) { // 登录成功
+          let { avatar, token, union_id, username } = res.data
+          let obj = { avatar, token, union_id, username }
+          for (let key in obj) {
+            wx.setStorageSync(key, obj[key])
+          }
           let url = (wx.getStorageSync('loginBack').indexOf('pages/login/login' !== -1)) ? '/pages/index/index' : (wx.getStorageSync('loginBack') || '/pages/index/index')
           wx.reLaunch({
             url
           })
         }
       }).catch(err => {
-        console.log('catch', err)
+        console.log('登录失败err', err)
         this.setData({ logining: false })
       })
+    } else {
+      console.log('拒绝')
+      this.setData({ logining: false })
     }
+  },
+
+  getUserInfoError: function (e) {
+    console.log('getUserInfoError')
+    this.setData({ logining: false })
   }
 })

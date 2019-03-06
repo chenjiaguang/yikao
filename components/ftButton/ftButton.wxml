@@ -1,5 +1,5 @@
 <!--components/ftButton/ftButton.wxml-->
-<button class='ft-button' style="width:{{width}};height:{{height}};border-radius:{{borderRadius}};background:{{disabled ? disabledBg : bg}};border:1px solid {{borderColor}};font-size:{{fontSize}}rpx;color:{{disabled ? disabledColor : color}}" hover-stay-time="{{0}}" catchtap="buttonTap" open-type="{{openType}}" app-parameter="{{appParameter}}" binderror="otError" bindgetphonenumber="otGetPhoneNumber" bindgetuserinfo="otGetUserInfo" bindcontact="otContact" bindopensetting="otOpenSetting">
+<button disabled="{{disabled}}" class='ft-button' style="width:{{width}};height:{{height}};border-radius:{{borderRadius}};background:{{disabled ? disabledBg : bg}};border:1px solid {{borderColor}};font-size:{{fontSize}}rpx;color:{{disabled ? disabledColor : color}}" hover-stay-time="{{0}}" catchtap="buttonTap" open-type="{{openType}}" app-parameter="{{appParameter}}" binderror="otError" bindgetphonenumber="otGetPhoneNumber" bindgetuserinfo="otGetUserInfo" bindcontact="otContact" bindopensetting="otOpenSetting">
   <image wx:if="{{icon}}" class='icon' src="{{icon}}" mode="aspectFit" />
   <text class='text'>{{text}}</text>
   <view class="hover-bg {{(disabled || loading) ? 'hover-disabled' : ''}}" hover-class="hover">

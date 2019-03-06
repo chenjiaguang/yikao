@@ -258,7 +258,9 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function() {
-
+    if (this.saveTimer) {
+      clearTimeout(this.saveTimer)
+    }
   },
 
   /**
@@ -582,7 +584,12 @@ Page({
   submitSuccess: function (enrollid, code) {
     wx.removeStorageSync('applyForm')
     wx.removeStorageSync('applyFormOptions')
-    let navData = { method: 'redirect', params: { navTitle: '提交成功', successText: '报名提交成功，请等待审核', tip1: '审核通过并进行缴费后完成报名', tip2: '关注微信公众号“海南考级中心”及时获取更多考试相关信息'}}
+    const completeTap = () => {
+      wx.redirectTo({
+        url: '/pages/myenroll/myenroll'
+      })
+    }
+    let navData = { method: 'redirect', params: { navTitle: '提交成功', successText: '报名提交成功，请等待审核', tip1: '审核通过并进行缴费后完成报名', tip2: '关注微信公众号“海南考级中心”及时获取更多考试相关信息' }, completeFn: completeTap}
     util.navToSuccesspage(navData)
   },
 
@@ -621,6 +628,14 @@ Page({
       title: '保存成功',
       icon: 'none'
     })
+    if (this.saveTimer) {
+      clearTimeout(this.saveTimer)
+    }
+    setTimeout(() => {
+      wx.navigateBack({
+        delta: 1
+      })
+    }, 1500)
   },
 
   getForm: function() {

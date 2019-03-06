@@ -275,44 +275,74 @@ const getUrl = (path, query) => {
 }
 
 const checkLogin = (options) => {
-  if (storageUtil.getStorage('token')) {
+  console.log('checklogin', storageUtil.getStorage('token') && storageUtil.getStorage('union_id'))
+  if (storageUtil.getStorage('token') && storageUtil.getStorage('union_id')) {
     return true
   }
+
   const pages = getCurrentPages()
   const page = pages[pages.length - 1]
   if (page) {
     wx.setStorageSync('loginBack', '/' + getUrl(page.route, page.options))
-    // wx.reLaunch({
-    //   url: '/pages/login/login'
-    // })
   } else {
     wx.setStorageSync('loginBack', '/' + getUrl(options.path, options.query))
-    // wx.reLaunch({
-    //   url: '/pages/login/login'
-    // })
   }
-  wx.login({
-    success: res => {
-      // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      let rData = {
-        code: res.code
-      }
-      console.log('rData', rData)
-      request('/login', rData).then(res => {
-        if (res.data && !res.error) { // 登录成功
-          let { avatar, token, union_id, username } = res.data
-          let obj = { avatar, token, union_id, username }
-          for (let key in obj) {
-            wx.setStorageSync(key, obj[key])
-          }
-          let url = wx.getStorageSync('loginBack') || '/pages/index/index'
-          wx.reLaunch({
-            url
-          })
+
+  if ((storageUtil.getStorage('token') && !storageUtil.getStorage('union_id')) || !(storageUtil.getStorage('token') && storageUtil.getStorage('union_id'))) { // 有token，没unionid   或   二者都没有
+    wx.redirectTo({
+      url: '/pages/login/login'
+    })
+  } else if (storageUtil.getStorage('token') && !storageUtil.getStorage('union_id')) { // 没token，有unionid， 说明已授权过，无需重复授权，简单登录即可
+    wx.login({
+      success: res => {
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        let rData = {
+          code: res.code
         }
-      })
-    }
-  })
+        console.log('rData', rData)
+        request('/login', rData).then(res => {
+          if (res.data && !res.error) { // 登录成功
+            let { avatar, token, union_id, username } = res.data
+            let obj = { avatar, token, union_id, username }
+            for (let key in obj) {
+              wx.setStorageSync(key, obj[key])
+            }
+            let url = (wx.getStorageSync('loginBack').indexOf('pages/login/login' !== -1)) ? '/pages/index/index' : (wx.getStorageSync('loginBack') || '/pages/index/index')
+            wx.reLaunch({
+              url
+            })
+          }
+        })
+      }
+    })
+  }
+  
+  // wx.redirectTo({
+  //   url: '/pages/login/login'
+  // })
+  // return false
+  // wx.login({
+  //   success: res => {
+  //     // 发送 res.code 到后台换取 openId, sessionKey, unionId
+  //     let rData = {
+  //       code: res.code
+  //     }
+  //     console.log('rData', rData)
+  //     request('/login', rData).then(res => {
+  //       if (res.data && !res.error) { // 登录成功
+  //         let { avatar, token, union_id, username } = res.data
+  //         let obj = { avatar, token, union_id, username }
+  //         for (let key in obj) {
+  //           wx.setStorageSync(key, obj[key])
+  //         }
+  //         let url = wx.getStorageSync('loginBack') || '/pages/index/index'
+  //         wx.reLaunch({
+  //           url
+  //         })
+  //       }
+  //     })
+  //   }
+  // })
   return false
 }
 
