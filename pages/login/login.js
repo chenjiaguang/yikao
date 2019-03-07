@@ -88,7 +88,6 @@ Page({
         encryptedData,
         iv
       }
-      console.log('rData', rData)
       util.request('/login', rData).then(res => {
         this.setData({ logining: false })
         if (res.data && !res.error) { // 登录成功
@@ -107,13 +106,12 @@ Page({
         this.setData({ logining: false })
       })
     } else {
-      console.log('拒绝')
       this.setData({ logining: false })
     }
   },
 
   getUserInfoError: function (e) {
-    console.log('getUserInfoError')
+    console.log('getUserInfoError', e)
     this.setData({ logining: false })
   }
 })

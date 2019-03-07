@@ -22,11 +22,11 @@ App({
         util.checkLogin(options)
       }
     })
-    if (util.checkLogin(options)) {
-      this.isLaunch = true
-    }
+    // util.checkLogin(options)
   },
-  isLaunch: false,
+  onError: function (e) {
+    console.log('onError', e)
+  },
   config: null,
   globalData: {
     userInfo: null
