@@ -2,6 +2,8 @@
 <view class='page-myenrolldetail'>
   <view class='image-box'>
     <image class='image' mode="widthFix" src="{{enroll.bm_image_url}}" catchtap="viewImage" data-url="{{enroll.bm_image_url}}" />
+    <view wx:if="{{enroll.bm_continuous_image_url}}" class='line-separator-h'></view>
+    <image wx:if="{{enroll.bm_continuous_image_url}}" class='image' style="margin-top:40rpx" mode="widthFix" src="{{enroll.bm_continuous_image_url}}" catchtap="viewImage" data-url="{{enroll.bm_continuous_image_url}}" />
     <view wx:if="{{enroll && enroll.plan && enroll.plan == 2}}" class='line-separator-h'></view>
   </view>
   <view wx:if="{{enroll && enroll.plan && enroll.plan == 2}}">

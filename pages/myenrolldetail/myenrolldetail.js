@@ -50,12 +50,18 @@ Page({
   },
 
   viewImage: function (e) {
-    let { url } = e.currentTarget.dataset
-    if (url) {
-      wx.previewImage({
-        urls: [url]
-      })
+    let urls = []
+    if (this.data.enroll.bm_image_url) {
+      urls.push(this.data.enroll.bm_image_url)
     }
+    if (this.data.enroll.bm_continuous_image_url) {
+      urls.push(this.data.enroll.bm_continuous_image_url)
+    }
+    let { url } = e.currentTarget.dataset
+    wx.previewImage({
+      urls: urls,
+      current: url
+    })
   },
 
   requestPay: function () {
