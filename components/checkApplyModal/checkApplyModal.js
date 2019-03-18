@@ -28,6 +28,7 @@ Component({
    */
   methods: {
     handleShow: function () {
+      console.log('handleShow')
       util.request('/exam').then(res => {
         if (!res.error && res.data) { // 获取信息成功
           let { is_apply, exam, url} = res.data

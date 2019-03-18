@@ -89,6 +89,7 @@ Page({
         iv
       }
       util.request('/login', rData).then(res => {
+        console.log('登录成功', res, rData)
         this.setData({ logining: false })
         if (res.data && !res.error) { // 登录成功
           let { avatar, token, union_id, username } = res.data
@@ -102,7 +103,7 @@ Page({
           })
         }
       }).catch(err => {
-        console.log('登录失败err', err)
+        console.log('登录失败err', err, rData)
         this.setData({ logining: false })
       })
     } else {

@@ -37,13 +37,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 10,
+			"current": 0,
 			"list": [
 				{
-					"id": -1,
+					"id": 0,
 					"name": "我的报名",
 					"pathName": "pages/myenroll/myenroll",
-					"query": ""
+					"query": "default_tab=0"
 				},
 				{
 					"id": -1,

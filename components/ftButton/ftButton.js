@@ -67,6 +67,10 @@ Component({
     extraData: {
       type: Object,
       value: null
+    },
+    formType: {
+      type: String,
+      value: ''
     }
   },
 

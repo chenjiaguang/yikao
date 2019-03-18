@@ -62,7 +62,13 @@ const request = (url, data, config = {}) => {
       success: function (res) {
         if (res.data.error && (res.data.error == 401 || res.data.error == 403)) {
           storageUtil.setStorage('token', '')
-          checkLogin(app.globalData.launchOptions)
+          if (url === '/login') { // 如果本身是login接口，则跳转到授权登录页面
+            wx.redirectTo({
+              url: '/pages/login/login'
+            })
+          } else {
+            checkLogin(app.globalData.launchOptions)
+          }
           reject(res.data || res) // 返回错误提示信息
           return
         }
@@ -275,6 +281,8 @@ const getUrl = (path, query) => {
 }
 
 const checkLogin = (options) => {
+  console.log('checkLogin_token', storageUtil.getStorage('token'))
+  console.log('checkLogin_union_id', storageUtil.getStorage('union_id'))
   if (storageUtil.getStorage('token') && storageUtil.getStorage('union_id')) {
     return true
   }
@@ -294,11 +302,13 @@ const checkLogin = (options) => {
   } else if (!storageUtil.getStorage('token') && storageUtil.getStorage('union_id')) { // 没token，有unionid， 说明已授权过，无需重复授权，简单登录即可
     wx.login({
       success: res => {
+        console.log('checkLogin_wx.login')
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         let rData = {
           code: res.code
         }
         request('/login', rData).then(res => {
+          console.log('/login_then', res, rData)
           if (res.data && !res.error) { // 登录成功
             let { avatar, token, union_id, username } = res.data
             let obj = { avatar, token, union_id, username }
@@ -310,6 +320,13 @@ const checkLogin = (options) => {
               url
             })
           }
+        }).catch(err => {
+          // if (err.error === 401 || err.error === 403 || err.error === '401' || err.error === '403') {
+          //   wx.redirectTo({
+          //     url: '/pages/login/login'
+          //   })
+          // }
+          console.log('/login_catch', err, rData)
         })
       }
     })

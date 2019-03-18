@@ -662,7 +662,7 @@ Page({
     }
   },
 
-  submitTap: function() {
+  submitTap: function(e) {
     let formData = this.getFormData()
     if (formData) {
       if (this.data.submitting) { // 正在提交表单
@@ -671,7 +671,9 @@ Page({
       this.setData({
         submitting: true
       })
-      util.request('/apply/add', formData).then(res => {
+      let {fomrId} = e.detail
+      let _formData = Object.assign({}, formData, {formId})
+      util.request('/apply/add', _formData).then(res => {
         this.setData({
           submitting: false
         })
