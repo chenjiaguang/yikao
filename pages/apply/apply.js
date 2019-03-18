@@ -671,8 +671,8 @@ Page({
       this.setData({
         submitting: true
       })
-      let {fomrId} = e.detail
-      let _formData = Object.assign({}, formData, {formId})
+      let { formId} = e.detail
+      let _formData = Object.assign({}, formData, {mini_form_id: formId})
       util.request('/apply/add', _formData).then(res => {
         this.setData({
           submitting: false

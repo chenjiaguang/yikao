@@ -288,7 +288,7 @@
         </view>
       </view>
     </view>
-    <button form-type='submit'>水电费说</button>
+    <!-- <button form-type='submit'>水电费说</button> -->
     <view class='btn-wrapper'>
       <view class="btn-content">
         <view class='btn-box'>

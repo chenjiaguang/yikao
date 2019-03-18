@@ -60,6 +60,7 @@ const request = (url, data, config = {}) => {
         'token': token, // 使用传入的token值，或者全局的token，都没有则默认空字符串
       },
       success: function (res) {
+        console.log('request', _data)
         if (res.data.error && (res.data.error == 401 || res.data.error == 403)) {
           storageUtil.setStorage('token', '')
           if (url === '/login') { // 如果本身是login接口，则跳转到授权登录页面
